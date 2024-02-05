@@ -1,5 +1,24 @@
 import Image from "next/image";
 
+import postgres from 'postgres'
+
+const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
+
+async function getUsers() {
+  const users = await sql`
+    select
+      *
+    from res_company
+  `
+  // users = Result [{ name: "Walter", age: 80 }, { name: 'Murray', age: 68 }, ...]
+  return users
+}
+
+let users = getUsers()
+users.then((users) => console.log(users));
+
+
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
