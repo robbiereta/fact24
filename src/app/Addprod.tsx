@@ -1,4 +1,5 @@
 'use client'
+import FacturaGlobal from "./facturaGlobal";
 function Addprod() {
     
     let  notasPartidas: {
@@ -39,18 +40,27 @@ function Addprod() {
         notasPartidas.push(partida)
       
       console.log(notasPartidas);
+      return notasPartidas
       }
+
       function onSubmit(formData: FormData) {
         const importe = formData.get("importe");
         console.log(importe);
         addPartida(importe)
         
       }
+
+      function sendFacturaGlobal(notasPartidas: any) {
+        FacturaGlobal(notasPartidas)
+      }
     return (
+        <div>
       <form action={onSubmit}>
         <input name="importe" />
         <button type="submit">Agregar</button>
       </form>
+      <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
+    </div>
     );
   
   }

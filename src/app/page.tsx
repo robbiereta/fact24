@@ -2,6 +2,8 @@ import Image from "next/image";
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
 import Addprod from "./Addprod";
+import Button from "./Button/index";
+import axios from "axios";
 
 const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
@@ -59,12 +61,12 @@ console.log(notasPartidas);
 
 notes.then((notes) => notes.map((note) => {
   let sec =  Date.now();
-  let hoy = new Date(sec).toISOString().split('T')[0];
+  let hoy = new Date(sec).toISOString();
 
   let fechaCreacion = new Date(note.create_date).toISOString().split('T')[0];
    
-  console.log(hoy,note.name,fechaCreacion,
-    note.amount_untaxed,note.amount_total,note.invoice_status,note.state);
+//console.log(hoy,note.name,fechaCreacion,
+  //  note.amount_untaxed,note.amount_total,note.invoice_status,note.state); 
   
   // namecheap pone la fecha de creacion 12 horas despues
   //console.log(note);
@@ -73,8 +75,9 @@ notes.then((notes) => notes.map((note) => {
 
 
     addPartida(note);
+    console.log(notasPartidas);
 }
-console.log(notasPartidas);
+
 
 }
 
@@ -83,39 +86,31 @@ console.log(notasPartidas);
 )
 
 
- let fact = {
-  "factura": {
-    "version": "string",
-    "fecha": "2019-08-24T14:15:22Z",
-    "tipo": "ingreso",
-    "Exportacion": "string",
-    "generacion_automatica": true,
-    "subtotal": null,
-    "descuento": null,
-    "impuesto_federal": null,
-    objeto_imp: "01",
-    "moneda": "MXN",
-    "total": null,
-    conceptos:notasPartidas,
-    "serie": "string",
-    "folio": null,
-    "InformacionGlobal": {},
-    "CfdiRelacionados": [],
-    "Complemento": {},
-    "pagos": [],
-    "send_pdf_and_xml_by_mail": true,
-    "emails_send": "string"
+
+function sendFacturaGlobal() {
+  
+
+  axios.post('http://localhost:3000/api_timbrado/factura', fact)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
- }
+
 
 
 export  default async  function Home() {
-  'use server'
-  
+  'use server'  
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
     <div>   
       <Addprod />
+ 
+    </div>
+    <div>
+      
     </div>
   </main>
   );
