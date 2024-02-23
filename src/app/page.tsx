@@ -87,17 +87,6 @@ notes.then((notes) => notes.map((note) => {
 
 
 
-function sendFacturaGlobal() {
-  
-
-  axios.post('http://localhost:3000/api_timbrado/factura', fact)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
 
 
 

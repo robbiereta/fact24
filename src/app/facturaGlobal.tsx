@@ -1,4 +1,5 @@
 'use client'
+import axios from "axios";
 function FacturaGlobal(notasPartidas : any) {
     var total3 = 0;
      
@@ -61,7 +62,20 @@ return total3
     
    
    }
-      console.log(fact);
+      console.log(fact)
+
+      function sendFacturaGlobal() {
+  
+
+        axios.post('http://localhost:3000/api_timbrado/factura', fact)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
+      
       
 }
 
