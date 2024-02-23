@@ -24,6 +24,8 @@ return total3
 }
 }
       let total = getTotal();
+      let iva=total * 0.16
+      let subtotal=total - iva
     
 
  let fact = {
@@ -46,8 +48,8 @@ return total3
        fecha: '{{now}}',
        tipo: "ingreso",
        Exportacion: "01",
-       subtotal: null,
-       impuesto_federal: null,
+       subtotal: subtotal,
+       impuesto_federal: iva,
        moneda: "MXN",
        total: total,
        generacion_automatica: true,
@@ -63,11 +65,11 @@ return total3
    
    }
       console.log(fact)
-
-      function sendFacturaGlobal() {
+      saveFacturaObj(fact)
+      function saveFacturaObj(fact) {
   
 
-        axios.post('http://localhost:3000/api_timbrado/factura', fact)
+        axios.post('http://localhost:3008/facturas_borradorObject', fact)
           .then(function (response) {
             console.log(response);
           })
