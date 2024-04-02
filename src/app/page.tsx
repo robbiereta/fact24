@@ -2,7 +2,7 @@ import Image from "next/image";
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
 import Addprod from "./Addprod";
-import Button from "./Button/index";
+import BotondeTimbre from "./Button/index";
 import axios from "axios";
 
 const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
@@ -96,7 +96,7 @@ export  default async  function Home() {
     <main className="flex min-h-screen flex-col items-center p-24">
     <div>   
       <Addprod />
-      
+      <BotondeTimbre />
     </div>
     <div>
       

@@ -66,6 +66,7 @@ return total3
    }
       console.log(fact)
       saveFacturaObj(fact)
+      
       function saveFacturaObj(fact) {
   
 

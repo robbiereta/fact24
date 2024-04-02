@@ -61,7 +61,7 @@ function Addprod() {
         <button type="submit">Agregar</button>
       </form>
       <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
-      
+       
     </div>
     );
   
