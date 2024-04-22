@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import Addprod from "./Addprod";
 import BotondeTimbre from "./Button/index";
 import axios from "axios";
+import NavScroll from "./components/nav";
 
-const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FormAddprod from "./Addprod";
+/*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
       let notes = await sql`SELECT id,partner_id, fiscal_position_id, payment_term_id, pricelist_id, create_uid, write_uid, name, state, client_order_ref, origin, reference, signed_by, invoice_status, validity_date, note, currency_rate, amount_untaxed, amount_tax, amount_total, amount_to_invoice, locked, require_signature, require_payment, create_date, commitment_date, date_order, signed_on, write_date, prepayment_percent, sale_order_template_id
       FROM public.sale_order WHERE partner_id = '44';
@@ -13,8 +16,9 @@ const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use
       // notes = Result [{ name: "Walter", age: 80 }, { name: 'Murray', age: 68 }, ...]
       return notes
     }
-    
-   
+  
+
+
 
 let notes = getNotes()
 let  notasPartidas: {
@@ -64,12 +68,13 @@ notes.then((notes) => notes.map((note) => {
   let hoy = new Date(sec).toISOString();
 
   let fechaCreacion = new Date(note.create_date).toISOString().split('T')[0];
-   
-//console.log(hoy,note.name,fechaCreacion,
-  //  note.amount_untaxed,note.amount_total,note.invoice_status,note.state); 
   
-  // namecheap pone la fecha de creacion 12 horas despues
-  //console.log(note);
+  
+console.log(hoy,note.name,fechaCreacion,
+  note.amount_untaxed,note.amount_total,note.invoice_status,note.state); 
+  
+   namecheap pone la fecha de creacion 12 horas despues
+  console.log(note);
   
   if (note.partner_id == '44' && fechaCreacion== hoy && note.invoice_status == 'to invoice') {
 
@@ -85,17 +90,15 @@ notes.then((notes) => notes.map((note) => {
 
 )
 
-
-
-
-
+*/
 
 export  default async  function Home() {
   'use server'  
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main>
     <div>   
-      <Addprod />
+    <NavScroll/>
+      <FormAddprod />
       <BotondeTimbre />
     </div>
     <div>

@@ -1,6 +1,8 @@
 'use client'
+import { FormControl, FormGroup } from "react-bootstrap";
 import FacturaGlobal from "./facturaGlobal";
-function Addprod() {
+import Form from 'react-bootstrap/Form';
+function FormAddprod() {
     
     let  notasPartidas: {
         clave_producto_servicio: string; clave_unidad_de_medida: string; cantidad: number; descripcion: string; valor_unitario: number; total // will use psql environment variables
@@ -56,10 +58,15 @@ function Addprod() {
       
     return (
         <div>
-      <form action={onSubmit}>
-        <input name="importe" />
-        <button type="submit">Agregar</button>
-      </form>
+            <Form action={onSubmit}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Importe</Form.Label>
+        <Form.Control type="text" placeholder="importe" />
+      </Form.Group>
+     <FormGroup className="mb-3" controlId="exampleForm.ControlInput2">
+      <FormControl type="submit" ></FormControl>
+     </FormGroup>
+    </Form>
       <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
        
     </div>
@@ -67,5 +74,4 @@ function Addprod() {
   
   }
   
-  export default Addprod
-  
+  export default FormAddprod  

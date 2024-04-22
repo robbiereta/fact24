@@ -1,0 +1,1464 @@
+{
+    "emisor": {
+        "uuid": "243e2426-7e9e-4362-b22b-141b59bb6107"
+    },
+    "receptor": {
+        "razon_social": "PUBLICO EN GENERAL",
+        "rfc": "XAXX010101000",
+        "email": "robbie.reta67@gmail.com",
+        "metodo_de_pago": "PUE",
+        "forma_de_pago": "01",
+        "uso_de_cfdi": "S01",
+        "cp": "87030",
+        "regimen": "616"
+    },
+    "factura": {
+        "version": "4.0",
+        "fecha": "2024-04-17T00:00:00",
+        "tipo": "ingreso",
+        "Exportacion": "01",
+        "subtotal": 16351.44,
+        "impuesto_federal": 3114.56,
+        "moneda": "MXN",
+        "total": 19466,
+        "generacion_automatica": true,
+        "conceptos": [
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 95,
+                "total": 95,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "95",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 79.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1603,
+                "total": 1603,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1603",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 1346.52,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 15,
+                "total": 15,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "15",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 12.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 630,
+                "total": 630,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "630",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 529.2,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 65,
+                "total": 65,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "65",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 54.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 490,
+                "total": 490,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "490",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 411.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 68,
+                "total": 68,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "68",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 57.12,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 175,
+                "total": 175,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "175",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 147,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 258,
+                "total": 258,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "258",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 216.72,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 185,
+                "total": 185,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "185",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 155.4,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 320,
+                "total": 320,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "320",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 268.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 75,
+                "total": 75,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "75",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 63,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 20,
+                "total": 20,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "20",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 16.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 6,
+                "total": 6,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "6",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 5.04,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 12,
+                "total": 12,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "12",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 10.08,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 438,
+                "total": 438,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "438",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 367.92,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 120,
+                "total": 120,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "120",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 100.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 30,
+                "total": 30,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "30",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 25.2,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1012,
+                "total": 1012,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1012",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 850.0799999999999,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1250,
+                "total": 1250,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1250",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 1050,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 795,
+                "total": 795,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "795",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 667.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 38,
+                "total": 38,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "38",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 31.92,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 14,
+                "total": 14,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "14",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 11.76,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 452,
+                "total": 452,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "452",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 379.68,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 273,
+                "total": 273,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "273",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 229.32,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 220,
+                "total": 220,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "220",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 184.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 485,
+                "total": 485,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "485",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 407.4,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 405,
+                "total": 405,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "405",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 340.2,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 136,
+                "total": 136,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "136",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 114.24,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 455,
+                "total": 455,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "455",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 382.2,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1100,
+                "total": 1100,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1100",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 924,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 115,
+                "total": 115,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "115",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 96.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 15,
+                "total": 15,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "15",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 12.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 120,
+                "total": 120,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "120",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 100.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 256,
+                "total": 256,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "256",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 215.04,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 120,
+                "total": 120,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "120",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 100.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 50,
+                "total": 50,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "50",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 42,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 464,
+                "total": 464,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "464",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 389.76,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 30,
+                "total": 30,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "30",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 25.2,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 40,
+                "total": 40,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "40",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 33.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 50,
+                "total": 50,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "50",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 42,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 342,
+                "total": 342,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "342",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 287.28,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 40,
+                "total": 40,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "40",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 33.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 370,
+                "total": 370,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "370",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 310.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 203,
+                "total": 203,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "203",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 170.51999999999998,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 107,
+                "total": 107,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "107",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 89.88,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 45,
+                "total": 45,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "45",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 37.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1035,
+                "total": 1035,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1035",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 869.4,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 435,
+                "total": 435,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "435",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 365.4,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 82,
+                "total": 82,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "82",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 68.88,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 190,
+                "total": 190,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "190",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 159.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 98,
+                "total": 98,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "98",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 82.32,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 85,
+                "total": 85,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "85",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 71.4,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 225,
+                "total": 225,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "225",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 189,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 95,
+                "total": 95,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "95",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 79.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 70,
+                "total": 70,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "70",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 58.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 140,
+                "total": 140,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "140",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 117.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 125,
+                "total": 125,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "125",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 105,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 920,
+                "total": 920,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "920",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 772.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 89,
+                "total": 89,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "89",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 74.76,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 120,
+                "total": 120,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "120",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 100.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 1495,
+                "total": 1495,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "1495",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 1255.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 220,
+                "total": 220,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "220",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 184.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 195,
+                "total": 195,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "195",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 163.8,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "clave_producto_servicio": "01010101",
+                "clave_unidad_de_medida": "ACT",
+                "cantidad": 1,
+                "descripcion": "Venta",
+                "valor_unitario": 240,
+                "total": 240,
+                "impuestos": {
+                    "traslados": {
+                        "traslado": [
+                            {
+                                "base": "240",
+                                "impuesto": "002",
+                                "tipoFactor": "Tasa",
+                                "tasaOCuota": 0.16,
+                                "importe": 201.6,
+                                "tipo": "Traslado"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "InformacionGlobal": {
+            "Periodicidad": "Diario",
+            "Meses": "Enero",
+            "Anio": "2024"
+        },
+        "send_pdf_and_xml_by_mail": true
+    }
+}
