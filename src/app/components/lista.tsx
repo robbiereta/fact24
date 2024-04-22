@@ -4,14 +4,16 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
 
-function Lista(data) {
-    axios.defaults.baseURL = 'http://express/'
+function Lista(props) {
+    axios.defaults.baseURL = 'https://express-low5.onrender.com'
     const [tableElements, setTableElements] = useState([]);
 
     const getData = async () => {
         try {
-            const response = await axios.get(data);
+            const response = await axios.get("/"+ props.data);
             setTableElements(response.data);
+            console.log(response.data);
+            
         } catch (error) {
             console.error(error);
         }
