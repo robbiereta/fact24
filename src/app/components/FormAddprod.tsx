@@ -1,6 +1,6 @@
 'use client'
 import { FormControl, FormGroup } from "react-bootstrap";
-import FacturaGlobal from "./facturaGlobal";
+import FacturaGlobal from "../facturaGlobal";
 import Form from 'react-bootstrap/Form';
 function FormAddprod() {
     

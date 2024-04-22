@@ -1,13 +1,12 @@
 import Image from "next/image";
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
-import Addprod from "./Addprod";
-import BotondeTimbre from "./Button/index";
+import BotondeTimbre from "./components/Button/index";
 import axios from "axios";
 import NavScroll from "./components/nav";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FormAddprod from "./Addprod";
+import FormAddprod from "./components/FormAddprod";
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
       let notes = await sql`SELECT id,partner_id, fiscal_position_id, payment_term_id, pricelist_id, create_uid, write_uid, name, state, client_order_ref, origin, reference, signed_by, invoice_status, validity_date, note, currency_rate, amount_untaxed, amount_tax, amount_total, amount_to_invoice, locked, require_signature, require_payment, create_date, commitment_date, date_order, signed_on, write_date, prepayment_percent, sale_order_template_id
