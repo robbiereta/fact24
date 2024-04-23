@@ -5,12 +5,12 @@ import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
 
 function Lista(props) {
-    axios.defaults.baseURL = 'https://express-low5.onrender.com'
+   
     const [tableElements, setTableElements] = useState([]);
 
     const getData = async () => {
         try {
-            const response = await axios.get("/"+ props.data);
+            const response = await axios.get(props.recurso);
             setTableElements(response.data);
             console.log(response.data);
             
@@ -23,35 +23,43 @@ function Lista(props) {
         getData();
     });
 
-
+    const fields = {
+      'precio' : String,
+      'categoria' : String,
+      'descripcion' : String,
+      'marca' : String,
+      'especificaciones' : String,
+      'codigo' : String,
+      'moto' : String,
+      'compatibilidades' : Array
+    }
     return (
     <Table striped>
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>descripcion</th>
+          <th>marca</th>
+          <th>especificaciones</th>
+          <th>compatibilidades</th>
+          <th>precio</th>
+          <th>codigo</th>
+          <th>moto</th>
+          <th>categoria</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {tableElements.map((element) => (
+          <tr>
+            <td>{element.descripcion}</td>
+            <td>{element.categoria}</td>
+            <td>{element.especificaciones}</td>
+            <td>{element.compatibilidades}</td>
+            <td>{element.precio}</td>
+            <td>{element.codigo}</td>
+            <td>{element.moto}</td>
+            <td>{element.categoria}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
