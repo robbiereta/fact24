@@ -49,7 +49,7 @@ function Lista(props) {
       </thead>
       <tbody>
         {tableElements.map((element) => (
-          <tr>
+          <tr key={element.id}>
             <td>{element.descripcion}</td>
             <td>{element.categoria}</td>
             <td>{element.especificaciones}</td>
