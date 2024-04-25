@@ -9,7 +9,7 @@ function FacturaGlobal(notasPartidas : any) {
 try {
     
     notasPartidas.map(
-        function name(nota) {
+        function name(nota:{total: number}) {
            total3 += Number(nota.total)
            console.log(Number(total3))
         
@@ -23,7 +23,8 @@ return total3
     
 }
 }
-      let total = getTotal();
+      let total= getTotal();
+      if(total!==undefined){
       let iva=total * 0.16
       let subtotal=total - iva
     
@@ -64,10 +65,11 @@ return total3
     
    
    }
+  
       console.log(fact)
       saveFacturaObj(fact)
-      
-      function saveFacturaObj(fact) {
+      }    
+      function saveFacturaObj(fact: any) {
   
 
         axios.post('http://localhost:3008/facturas_borradorObject', fact)
