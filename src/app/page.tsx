@@ -1,7 +1,6 @@
 import Image from "next/image";
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
-import BotondeTimbre from "./components/Button/index";
 import axios from "axios";
 import NavScroll from "./components/nav";
 

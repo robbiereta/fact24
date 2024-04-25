@@ -3,8 +3,18 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 
+interface FormCreatorProps {
+  elements: {
+    name: string;
+    id: number;
+    type: string;
+    placeholder: string;
+  }[];
+  recurso: string
+}
 
-function FormCreator(props) {
+
+function FormCreator(props:FormCreatorProps) {
     let elements=props.elements
     let formElements:any[]=[]
     elements.map((element)=>{

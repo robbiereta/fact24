@@ -3,11 +3,23 @@
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
+interface ListaProps {
+  // Define the properties and their types here
+  'precio' : String,
+  'categoria' : String,
+  'descripcion' : String,
+  'marca' : String,
+  'especificaciones' : String,
+  'codigo' : String,
+  'moto' : String,
+  'compatibilidades' : [],
+  'recurso' : string
+}
 
-function Lista(props) {
+
+function Lista(props: ListaProps) {
    
     const [tableElements, setTableElements] = useState([]);
-
     const getData = async () => {
         try {
             const response = await axios.get(props.recurso);
@@ -23,16 +35,7 @@ function Lista(props) {
         getData();
     });
 
-    const fields = {
-      'precio' : String,
-      'categoria' : String,
-      'descripcion' : String,
-      'marca' : String,
-      'especificaciones' : String,
-      'codigo' : String,
-      'moto' : String,
-      'compatibilidades' : Array
-    }
+    
     return (
     <Table striped>
       <thead>
@@ -48,8 +51,8 @@ function Lista(props) {
         </tr>
       </thead>
       <tbody>
-        {tableElements.map((element) => (
-          <tr key={element.id}>
+        {Array.isArray(tableElements) && tableElements.map((element:any) => (
+          <tr key={element._id}>
             <td>{element.descripcion}</td>
             <td>{element.categoria}</td>
             <td>{element.especificaciones}</td>
