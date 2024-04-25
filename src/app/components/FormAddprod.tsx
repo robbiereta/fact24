@@ -6,7 +6,7 @@ function FormAddprod() {
     
     let  notasPartidas: {
         clave_producto_servicio: string; clave_unidad_de_medida: string; cantidad: number; descripcion: string; valor_unitario: number; total // will use psql environment variables
-          : number; exento_de_impuestos: boolean; impuestos: { traslados: { traslado: { base: any; impuesto: string; tipoFactor: string; tasaOCuota: number; importe: number; tipo: string; }[]; }; };
+          : number; impuestos: { traslados: { traslado: { base: any; impuesto: string; tipoFactor: string; tasaOCuota: number; importe: number; tipo: string; }[]; }; };
       }[]=  [];
       
     function addPartida(importe: any) {
