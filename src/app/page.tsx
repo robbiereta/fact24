@@ -92,6 +92,18 @@ console.log(hoy,note.name,fechaCreacion,
 )
 
 */
+let ListaProps= {
+  // Define the properties and their types here
+  'precio' : String,
+  'categoria' : String,
+  'descripcion' : String,
+  'marca' : String,
+  'especificaciones' : String,
+  'codigo' : String,
+  'moto' : String,
+  'compatibilidades' : [],
+  'recurso' : String
+}
 
 let elements= [{
   name: "precio",
@@ -145,17 +157,36 @@ let elements= [{
   placeholder: "compatibilidades"
 }
 ]
-export  default async  function Home() {
-  'use server'  
+/**
+ * Home component is the main component of the application.
+ * It renders the navigation bar, the form creator, and the list component.
+ * 
+ * @returns JSX.Element
+ */
+export default async function Home() {
+  'use server'
+  // Render the main container
   return (
     <main>
-    <div>   
-    <NavScroll/>
-    </div>
-    <div>
-      <FormCreator elements={elements} recurso={url+"/productos"}/>
-      <Lista  recurso={url+"/productos"}/ >
-    </div>
-  </main>
+      {/* Render the navigation bar */}
+      <div>   
+        <NavScroll/>
+      </div>
+      {/* Render the form creator and the list component */}
+      <div>
+        {/* Render the form creator */}
+        <FormCreator 
+          // Pass the elements array as a prop
+          elements={elements} 
+          // Pass the URL for the productos resource as a prop
+          recurso={url+"/productos"} 
+        />
+        {/* Render the list component */}
+        
+        <Lista 
+          lineas={ListaProps}
+        />
+      </div>
+    </main>
   );
 }

@@ -17,7 +17,7 @@ interface ListaProps {
 }
 
 
-function Lista(props: ListaProps) {
+function Lista(props:any) {
    
     const [tableElements, setTableElements] = useState([]);
     const getData = async () => {
