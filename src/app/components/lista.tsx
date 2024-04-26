@@ -18,11 +18,11 @@ interface ListaProps {
 
 
 function Lista(props:any) {
-   
+  let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
     const [tableElements, setTableElements] = useState([]);
     const getData = async () => {
         try {
-            const response = await axios.get(props.recurso);
+            const response = await axios.get(url+props.recurso);
             setTableElements(response.data);
             console.log(response.data);
             

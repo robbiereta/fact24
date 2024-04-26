@@ -1,3 +1,4 @@
+'use server'
 import Image from "next/image";
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
@@ -164,7 +165,6 @@ let elements= [{
  * @returns JSX.Element
  */
 export default async function Home() {
-  'use server'
   // Render the main container
   return (
     <main>
@@ -183,9 +183,7 @@ export default async function Home() {
         />
         {/* Render the list component */}
         
-        <Lista 
-          lineas={ListaProps}
-        />
+        <Lista recurso='/productos'  />
       </div>
     </main>
   );
