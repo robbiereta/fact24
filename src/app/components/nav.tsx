@@ -11,7 +11,7 @@ function NavScroll() {
     <Navbar   expand="lg" 
     className="navbar navbar-expand-lg navbar-light bg-primary" >
       <Container fluid>
-        <Navbar.Brand  className='text-white' href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand  className='text-white' href="#">Bici-Vic</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

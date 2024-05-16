@@ -3,19 +3,8 @@
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
-interface ListaProps {
-  // Define the properties and their types here
-  'precio' : String,
-  'categoria' : String,
-  'descripcion' : String,
-  'marca' : String,
-  'especificaciones' : String,
-  'codigo' : String,
-  'moto' : String,
-  'compatibilidades' : [],
-  'recurso' : string
-}
-
+import { Button } from 'react-bootstrap';
+import UpdateandDeleteControls from './updateanddelete';
 
 function Lista(props:any) {
   let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
@@ -29,12 +18,17 @@ function Lista(props:any) {
         } catch (error) {
             console.error(error);
         }
-    };
+    };  
 
     useEffect(() => {
         getData();
     });
 
+    let formElements = [
+      {
+        name: 'descripcion'
+      },
+    ]
     
     return (
     <Table striped>
@@ -61,6 +55,7 @@ function Lista(props:any) {
             <td>{element.codigo}</td>
             <td>{element.moto}</td>
             <td>{element.categoria}</td>
+            <td>{<UpdateandDeleteControls id={element._id} recurso={url+props.recurso} />}</td>
           </tr>
         ))}
       </tbody>
