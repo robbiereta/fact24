@@ -48,7 +48,7 @@ function Lista(props:any) {
         {Array.isArray(tableElements) && tableElements.map((element:any) => (
           <tr key={element._id}>
             <td>{element.descripcion}</td>
-            <td>{element.categoria}</td>
+            <td>{element.marca}</td>
             <td>{element.especificaciones}</td>
             <td>{element.compatibilidades}</td>
             <td>{element.precio}</td>

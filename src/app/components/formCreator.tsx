@@ -34,12 +34,13 @@ function FormCreator(props:FormCreatorProps) {
       .catch(function (error) {
         console.log(error);
       });
+      
   }
     return (
     <Form action={onSubmit}>
       {formElements}
       <Button variant="primary" type="submit" >
-        Submit
+        Guardar
       </Button>
     </Form>
   );
