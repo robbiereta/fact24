@@ -13,7 +13,7 @@ function Lista(props:any) {
         try {
             const response = await axios.get(url+props.recurso);
             setTableElements(response.data);
-            console.log(response.data);
+            
             
         } catch (error) {
             console.error(error);
