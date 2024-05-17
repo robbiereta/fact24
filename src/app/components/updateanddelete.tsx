@@ -3,9 +3,11 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 
-
-
-function UpdateandDeleteControls(props) {
+interface UpdateandDeleteControlsProps {
+  recurso: string;
+  id: string;
+}
+function UpdateandDeleteControls(props:UpdateandDeleteControlsProps) {
     
     
 
