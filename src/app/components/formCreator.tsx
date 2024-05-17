@@ -10,19 +10,30 @@ interface FormCreatorProps {
     type: string;
     placeholder: string;
   }[];
-  recurso: string
+  recurso: string,
+  image: boolean
 }
 
 
 function FormCreator(props:FormCreatorProps) {
-    let elements=props.elements
-    let formElements:any[]=[]
-    elements.map((element)=>{
-      formElements.push(<FormGroup controlId={element.name+element.id}>
-        <Form.Label>{element.name}</Form.Label>
-        <Form.Control type={element.type} placeholder={element.placeholder} name={element.name} />  
-      </FormGroup>)
-    })
+
+  function setBlankForm() {
+  let elements=props.elements
+  let formElements:any[]=[]
+  elements.map((element)=>{
+    formElements.push(<FormGroup controlId={element.name+element.id}>
+      <Form.Label>{element.name}</Form.Label>
+      <Form.Control type={element.type} placeholder={element.placeholder} name={element.name} />  
+    </FormGroup>)
+  
+})
+
+  return formElements
+  } 
+  
+
+  let formElements = setBlankForm();
+  
 
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
@@ -34,7 +45,7 @@ function FormCreator(props:FormCreatorProps) {
       .catch(function (error) {
         console.log(error);
       });
-      
+      formElements = setBlankForm();
   }
     return (
     <Form action={onSubmit}>

@@ -180,6 +180,7 @@ export default async function Home() {
           elements={elements} 
           // Pass the URL for the productos resource as a prop
           recurso={url+"/productos"} 
+          image={true}
         />
         {/* Render the list component */}
         
