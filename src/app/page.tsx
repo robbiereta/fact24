@@ -174,13 +174,7 @@ export default async function Home() {
       </div>
       {/* Render the form creator and the list component */}
       <div>
-        {/* Render the form creator */}
-        <FormCreator 
-          // Pass the elements array as a prop
-          elements={elements} 
-          // Pass the URL for the productos resource as a prop
-          recurso={url+"/productos"} 
-        />
+        
         {/* Render the list component */}
         
         <Lista recurso='/productos'  />

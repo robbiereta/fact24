@@ -51,11 +51,10 @@ function Lista(props:any) {
             <td>{element.categoria}</td>
             <td>{element.especificaciones}</td>
             <td>{element.compatibilidades}</td>
-            <td>{element.precio}</td>
+            <td>{element.precio*.80}</td>
             <td>{element.codigo}</td>
             <td>{element.moto}</td>
             <td>{element.categoria}</td>
-            <td>{<UpdateandDeleteControls id={element._id} recurso={url+props.recurso} />}</td>
           </tr>
         ))}
       </tbody>
