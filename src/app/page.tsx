@@ -2,7 +2,7 @@
 import axios from "axios";
 import NavScroll from "./uiComponents/nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Productos from "./productos/productos";
+import Productos from "./dashboard/productos/productos";
  let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {

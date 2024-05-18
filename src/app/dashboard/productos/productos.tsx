@@ -3,8 +3,8 @@ import postgres from 'postgres'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Lista from "../uiComponents/lista";
-import FormCreator from "../uiComponents/formCreator";
+import Lista from "../../uiComponents/lista";
+import FormCreator from "../../uiComponents/formCreator";
  let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
