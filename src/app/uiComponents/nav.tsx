@@ -20,8 +20,8 @@ function NavScroll() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link  className='text-white' href="/productos">Productos</Nav.Link>
-           <Nav.Link  className='text-white' href="/inventario">Inventario</Nav.Link>
+            <Nav.Link  className='text-white' href="/dashboard/productos">Productos</Nav.Link>
+           <Nav.Link  className='text-white' href="/dashboard/inventario">Inventario</Nav.Link>
           </Nav>
           
         </Navbar.Collapse>

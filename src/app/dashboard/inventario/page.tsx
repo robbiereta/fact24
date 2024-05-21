@@ -1,8 +1,10 @@
 'use server'
+import postgres from 'postgres'
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import NavScroll from "./uiComponents/nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Productos from "./dashboard/productos/productos";
+import Lista from "../../uiComponents/lista";
+import FormCreator from "../../uiComponents/formCreator";
  let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
@@ -88,20 +90,40 @@ console.log(hoy,note.name,fechaCreacion,
 
 */
 
-/**
- * Home component is the main component of the application.
- * It renders the navigation bar, the form creator, and the list component.
- * 
- * @returns JSX.Element
- */
-export default async function Home() {
+
+let elements= [{
+  name: "cantidad",
+  id: 1,
+  type: "number",
+  placeholder: "cantidad"
+
+},
+{
+  name: "producto",
+  id: 2,
+  type: "select",
+  placeholder: "producto"
+}  
+
+]
+
+export default async function Inventario() {
   // Render the main container
   return (
-    <main>
-      {/* Render the navigation bar */}
-      {/* Render the form creator and the list component */}
+  
+      <div>
+        {/* Render the form creator */}
+        <FormCreator 
+          // Pass the elements array as a prop
+          elements={elements} 
+          // Pass the URL for the productos resource as a prop
+          recurso={url+"/inventario"} 
+          image={true}
+        />
+        {/* Render the list component */}
+        
+        <Lista recurso='/inventario'  />
+      </div>
     
-        <NavScroll/>
-    </main>
   );
 }
