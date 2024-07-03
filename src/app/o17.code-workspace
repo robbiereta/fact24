@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "o17",
+			"path": "../../../o17"
+		},
+		{
+			"name": "fact24",
+			"path": "../.."
+		},
+		{
+			"name": "express_apis",
+			"path": "../../../express_apis"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"plyconfig.json": "jsonc"
+		}
+	}
+}
