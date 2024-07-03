@@ -1,16 +1,21 @@
 'use client'
 import { FormControl, FormGroup } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
+import getNote from "./getNote";
 function FacturaCliente() {
     
     function onSubmit(formData: FormData) {
         const folio = formData.get("folio");
         console.log(folio);
-        
+        {getNote(folio)}
       }
-      function sendFactura(props: any) {
-        
+
+
+      function sendFactura() {
+
       }
+
+
     return (
         <div>
             <Form action={onSubmit}>
