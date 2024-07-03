@@ -11,6 +11,9 @@
 		{
 			"name": "express_apis",
 			"path": "../../../express_apis"
+		},
+		{
+			"path": "../../../factura_cliente"
 		}
 	],
 	"settings": {
