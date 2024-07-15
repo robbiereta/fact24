@@ -1,9 +1,9 @@
 'use client'
 import { FormControl, FormGroup } from "react-bootstrap";
-import FacturaGlobal from "../facturaglobal/facturaGlobal";
 import Form from 'react-bootstrap/Form';
-import getNotes from "../uiComponents/getNote";
-function FormAddprod() {
+import FacturaGlobalMaker from "./facturaGlobalMaker";
+import getNotes from "../../libComponents/getNotes";
+ function Facturaglobal() {
     
     let  notasPartidas: {
         clave_producto_servicio: string; clave_unidad_de_medida: string; cantidad: number; descripcion: string; valor_unitario: number; total // will use psql environment variables
@@ -42,30 +42,34 @@ function FormAddprod() {
         }
         notasPartidas.push(partida)
       
-      console.log(notasPartidas);
+      console.log("notas:"+notasPartidas);
       return notasPartidas
       }
 
       function getPartidas() {
         // get postgres 
-        getNotes()
-        let importe
-        console.log(importe);
-        addPartida(importe)
-        
+        getNotes().then((notes) => notes.map((note) => {
+          let sec =  Date.now();
+          console.log(sec)
+        }))
+        // let importe
+        // console.log(importe);
+        // addPartida(importe)
+       
       }
 
       function sendFacturaGlobal(notasPartidas: any) {
-        FacturaGlobal(notasPartidas)
+        getPartidas()
+        // FacturaGlobalMaker(notasPartidas)
       }
       
     return (
         <div>
-      <button onClick={() => sendFacturaGlobal(notasPartidas)}>checar factura</button>
+      <button onClick={() => getPartidas()}>checar factura</button>
        
     </div>
     );
   
   }
   
-  export default FormAddprod  
+  export default Facturaglobal

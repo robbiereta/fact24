@@ -1,6 +1,6 @@
-'use client'
+'use server'
 import axios from "axios";
-function FacturaGlobal(notasPartidas : any) {
+function FacturaGlobalMaker(notasPartidas : any) {
     var total3 = 0;
      
       function getTotal()   {
@@ -67,22 +67,11 @@ return total3
    }
   
       console.log(fact)
-      saveFacturaObj(fact)
       }    
-      function saveFacturaObj(fact: any) {
-  
-
-        axios.post('http://localhost:3008/facturas_borradorObject', fact)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        }
+     
       
       
 }
 
 
-export default  FacturaGlobal
+export default  FacturaGlobalMaker

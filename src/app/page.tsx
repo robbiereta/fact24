@@ -2,7 +2,7 @@
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import postgres from "postgres";
-import FacturaCliente from "./uiComponents/cliente/factura_cliente";
+import NavScroll from "./uiComponents/nav";
 let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 
   
@@ -43,7 +43,7 @@ export default async function Home() {
       {/* Render the navigation bar */}
       {/* Render the form creator and the list component */}
       <div>
-       <FacturaCliente/>
+       <NavScroll />
       </div>
     </main>
   );
