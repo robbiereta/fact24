@@ -41,26 +41,27 @@ import getNotes from "../../libComponents/getNotes";
          
         }
         notasPartidas.push(partida)
-      
-      console.log("notas:"+notasPartidas);
       return notasPartidas
       }
 
       function getPartidas() {
         // get postgres 
         getNotes().then((notes) => notes.map((note) => {
-          let sec =  Date.now();
-          console.log(sec)
+          let total =  note.price_subtotal_incl;
+          console.log("total:"+total);
+           notasPartidas=addPartida(total)
+
+          return notasPartidas  
         }))
-        // let importe
-        // console.log(importe);
+        sendFacturaGlobal(notasPartidas)
         // addPartida(importe)
        
       }
 
       function sendFacturaGlobal(notasPartidas: any) {
-        getPartidas()
-        // FacturaGlobalMaker(notasPartidas)
+        console.log(notasPartidas);
+        
+         FacturaGlobalMaker(notasPartidas)
       }
       
     return (
