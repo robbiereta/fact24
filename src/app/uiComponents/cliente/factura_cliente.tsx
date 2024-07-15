@@ -1,7 +1,7 @@
 'use client'
 import { FormControl, FormGroup } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
-import getNote from "./getNote";
+import getNote from "../getNote";
 function FacturaCliente() {
     
     function onSubmit(formData: FormData) {

@@ -2,6 +2,7 @@
 import { FormControl, FormGroup } from "react-bootstrap";
 import FacturaGlobal from "../facturaglobal/facturaGlobal";
 import Form from 'react-bootstrap/Form';
+import getNotes from "../uiComponents/getNote";
 function FormAddprod() {
     
     let  notasPartidas: {
@@ -45,8 +46,10 @@ function FormAddprod() {
       return notasPartidas
       }
 
-      function onSubmit(formData: FormData) {
-        const importe = formData.get("importe");
+      function getPartidas() {
+        // get postgres 
+        getNotes()
+        let importe
         console.log(importe);
         addPartida(importe)
         
@@ -58,16 +61,7 @@ function FormAddprod() {
       
     return (
         <div>
-            <Form action={onSubmit}>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Importe</Form.Label>
-        <Form.Control type="text" placeholder="importe" />
-      </Form.Group>
-     <FormGroup className="mb-3" controlId="exampleForm.ControlInput2">
-      <FormControl type="submit" ></FormControl>
-     </FormGroup>
-    </Form>
-      <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
+      <button onClick={() => sendFacturaGlobal(notasPartidas)}>checar factura</button>
        
     </div>
     );

@@ -2,20 +2,30 @@
 
 import  postgres  from 'postgres'
 const sql = postgres( 'postgres://'+process.env.dba_user+process.env.dba_password+process.env.dba_host+process.env.dba_port+process.env.dba_name) // will use psql environment variables
-function getNote(folio:any) {
+function getNotes(folio:any) {
     
 
       async function getNote( folio:any) {
-        let note = await sql`SELECT *
+        let note = await sql`SELECT uuid,order_id
         FROM public.pos_order WHERE pos_reference = ${folio};
         `
         // notes = Result [{ name: "Walter", age: 80 }, { name: 'Murray', age: 68 }, ...]
-        console.log(note);
-        
+        console.log( note);
         return note
         
       }
-let note = getNote(folio)
+
+      async function getAllNotes( ) {
+        let notes = await sql`SELECT *
+        FROM public.pos_order_line;
+        `
+        // notes = Result [{ name: "Walter", age: 80 }, { name: 'Murray', age: 68 }, ...]
+        console.log(notes);
+        
+        return notes
+      }
+      let note = getNote(folio)
+
     return (
         <div>
             
@@ -24,4 +34,4 @@ let note = getNote(folio)
   
   }
   
-  export default getNote
+  export default getNotes
