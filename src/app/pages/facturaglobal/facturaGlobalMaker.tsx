@@ -18,7 +18,6 @@ function FacturaGlobalMaker(notasPartidas : any) {
  let fact = {
   
        version: "4.0",
-       fecha: '{{now}}',
        tipo: "ingreso",
        Exportacion: "01",
        subtotal: subtotal,
