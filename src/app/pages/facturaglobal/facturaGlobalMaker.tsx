@@ -1,50 +1,22 @@
 'use server'
 import axios from "axios";
+import swConnector from "../../libComponents/swConector"; 
 function FacturaGlobalMaker(notasPartidas : any) {
-    var total3 = 0;
+    let total3 = 0;
      
-      function getTotal()   {
-
-      
-try {
-    
-    notasPartidas.map(
-        function name(nota:{total: number}) {
-           total3 += Number(nota.total)
-           console.log(Number(total3))
-        
-
-}
-)
-return total3
-} 
-    catch (error) {
-    console.error(error);
-    
-}
-}
-      let total= getTotal();
-      if(total!==undefined){
+    function getTotal(notas: any) {
+      notas.map((note:any) => {
+        total3 += Number(note.total)
+        console.log("total3:"+total3);
+      }) 
+      return total3
+    }
+    console.log("notasPartidas:"+notasPartidas)
+    let total: number = getTotal(notasPartidas)
       let iva=total * 0.16
       let subtotal=total - iva
-    
-
  let fact = {
-    emisor: {
-     uuid: "243e2426-7e9e-4362-b22b-141b59bb6107"
-     },
-     receptor: {
-     razon_social: "PUBLICO EN GENERAL",
-     rfc: "XAXX010101000",
-     "email": "robbie.reta67@gmail.com",
-     "metodo_de_pago": "PUE",
-     "forma_de_pago": "01",
-     "uso_de_cfdi": "S01",
-     "cp": "87030",
-     "regimen": "616",
-     },
-    
-     factura: {
+  
        version: "4.0",
        fecha: '{{now}}',
        tipo: "ingreso",
@@ -59,17 +31,33 @@ return total3
        Periodicidad: "Diario",
    Meses: "Enero",
    Anio: "2024"
-       },
-       send_pdf_and_xml_by_mail: true,
-     }
+    
     
    
    }
-  
-      console.log(fact)
-      }    
+  }
+    
+      console.log(fact) 
+      let token = swConnector() 
+     let config = {
+       method: 'post',
+       maxBodyLength: Infinity,
+       url: 'http://services.test.sw.com.mx/v3/cfdi33/issue/json/v4',
+       headers: { 
+         'Authorization': 'Bearer '+token, 
+         'Content-Type': 'application/jsontoxml'
+       },
+       data : fact
+     };
      
-      
+     axios.request(config)
+     .then((response) => {
+       console.log(JSON.stringify(response.data));
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+     
       
 }
 

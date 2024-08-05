@@ -43,30 +43,43 @@ import getNotes from "../../libComponents/getNotes";
         notasPartidas.push(partida)
       return notasPartidas
       }
-
+function init() {
+  //let notas=getPartidas()
+  setPartidasManual()
+  console.log(notasPartidas)
+  sendFacturaGlobal(notasPartidas)
+}
       function getPartidas() {
         // get postgres 
         getNotes().then((notes) => notes.map((note) => {
-          let total =  note.price_subtotal_incl;
+          let total =  Number(note.price_subtotal_incl);
           console.log("total:"+total);
-           notasPartidas=addPartida(total)
+          var notas =addPartida(total)
 
-          return notasPartidas  
-        }))
-        sendFacturaGlobal(notasPartidas)
+
+        })
+         
+      )
+
+      return notasPartidas
+        //sendFacturaGlobal(notasPartidas)
         // addPartida(importe)
-       
       }
-
+   function  setPartidasManual(){
+   const notasManual=[{total:10},{total:20},{total:30}]
+    notasManual.map((partida)=> {
+      addPartida(partida.total)
+    })
+    
+   }
       function sendFacturaGlobal(notasPartidas: any) {
-        console.log(notasPartidas);
         
          FacturaGlobalMaker(notasPartidas)
       }
       
     return (
         <div>
-      <button onClick={() => getPartidas()}>checar factura</button>
+      <button onClick={() => init()}>checar factura</button>
        
     </div>
     );
