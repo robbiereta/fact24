@@ -16,48 +16,39 @@ function FacturaGlobalMaker(notasPartidas : any) {
       let iva=total * 0.16
       let subtotal=total - iva
  let fact = {
-  
-       version: "4.0",
-       tipo: "ingreso",
-       Exportacion: "01",
-       subtotal: subtotal,
-       impuesto_federal: iva,
-       moneda: "MXN",
-       total: total,
-       generacion_automatica: true,
-       conceptos:notasPartidas,
-       InformacionGlobal: {
-       Periodicidad: "Diario",
-   Meses: "Enero",
-   Anio: "2024"
-    
-    
-   
+
+    "Version": "4.0",
+    "FormaPago": "01",
+    "Serie": "SW",
+    "Folio": "1",
+    "MetodoPago": "PUE",
+    "Sello": "",
+    "NoCertificado": "",
+    "Certificado": "",
+    "SubTotal": subtotal,
+    "Moneda": "MXN",
+    "Total": total,
+    "TipoDeComprobante": "I",
+    "Exportacion": "01",
+    "LugarExpedicion": "8700",
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "603"
+    },
+    "Receptor": {
+      "Rfc": "XAXX010101000",
+      "Nombre": "PUBLICO EN GENERAL",
+      "RegimenFiscalReceptor": "616",
+      "UsoCFDI": "S01"
+    },
+    "Conceptos":notasPartidas   
    }
-  }
+
     
       console.log(fact) 
-      let token = swConnector() 
-     let config = {
-       method: 'post',
-       maxBodyLength: Infinity,
-       url: 'http://services.test.sw.com.mx/v3/cfdi33/issue/json/v4',
-       headers: { 
-         'Authorization': 'Bearer '+token, 
-         'Content-Type': 'application/jsontoxml'
-       },
-       data : fact
-     };
-     
-     axios.request(config)
-     .then((response) => {
-       console.log(JSON.stringify(response.data));
-     })
-     .catch((error) => {
-       console.log(error);
-     });
-     
-      
+      let token = swConnector(fact) 
+   
 }
 
 
