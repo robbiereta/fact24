@@ -61,7 +61,7 @@ function FormAddprod() {
             <Form action={onSubmit}>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Importe</Form.Label>
-        <Form.Control type="text" placeholder="importe" />
+        <Form.Control type="text" placeholder="importe" name="importe" />
       </Form.Group>
      <FormGroup className="mb-3" controlId="exampleForm.ControlInput2">
       <FormControl type="submit" ></FormControl>

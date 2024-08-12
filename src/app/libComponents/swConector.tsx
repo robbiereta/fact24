@@ -21,19 +21,18 @@ let callback = (err, data) => {
 		console.log(err)
 	} else{
 		console.log(data)
-		let token = data.token
-		sendFactura(token)
+		sendFactura()
 	}
 };
 
 auth.Token(callback);
- function sendFactura(token){
+function sendFactura(){
 let config = {
 	method: 'post',
 	maxBodyLength: Infinity,
 	url: 'http://services.test.sw.com.mx/v3/cfdi33/issue/json/v4',
 	headers: { 
-	  'Authorization': 'Bearer'+token, 
+	  'Authorization': 'Bearer '+process.env.tokenTest, 
 	  'Content-Type': 'application/jsontoxml'
 	},
 	data : fact
@@ -42,7 +41,8 @@ let config = {
   axios.request(config)
   .then((response) => {
 	console.log(JSON.stringify(response.data));
-  })
+   return response.data
+})
   .catch((error) => {
 	console.log(error);
   });

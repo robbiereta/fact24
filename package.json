@@ -15,6 +15,7 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "cfdi40": "^3.3.6",
+    "jstoxml": "^5.0.2",
     "mdb-react-ui-kit": "^7.2.0",
     "next": "14.1.0",
     "postgres": "^3.4.3",

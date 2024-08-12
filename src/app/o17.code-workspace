@@ -25,6 +25,7 @@
 	"settings": {
 		"files.associations": {
 			"plyconfig.json": "jsonc"
-		}
+		},
+		"dotnet.defaultSolution": "o17/ConsoleApp1.sln"
 	}
 }

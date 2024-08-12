@@ -2,8 +2,9 @@
 import { FormControl, FormGroup } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import FacturaGlobalMaker from "./facturaGlobalMaker";
+import FormAddprod from "@/app/uiComponents/FormAddprod";
 import getNotes from "../../libComponents/getNotes";
- function Facturaglobal() {
+ function Page() {
     
     let  notasPartidas: {
         clave_producto_servicio: string; clave_unidad_de_medida: string; cantidad: number; descripcion: string; valor_unitario: number; total // will use psql environment variables
@@ -18,13 +19,14 @@ import getNotes from "../../libComponents/getNotes";
       
         let partida= {
          
-          clave_producto_servicio: "01010101",
-          clave_unidad_de_medida: "ACT",
-          cantidad: 1,
-          descripcion: "Venta",
-          valor_unitario: Number(importe),
-          total: Number(importe),
-          impuestos: {
+          ClaveProdServ: "01010101",
+          ClaveUnidad: "ACT",
+          Cantidad: 1,
+          Descripcion: "Venta",
+          ValorUnitario: Number(importe),
+          Importe: Number(importe),
+          
+          Impuestos: {
             traslados: {
             traslado: [
             {
@@ -47,7 +49,8 @@ function init() {
   //let notas=getPartidas()
   setPartidasManual()
   console.log(notasPartidas)
-  sendFacturaGlobal(notasPartidas)
+  //sendFacturaGlobal(notasPartidas)
+  
 }
       function getPartidas() {
         // get postgres 
@@ -70,20 +73,22 @@ function init() {
     notasManual.map((partida)=> {
       addPartida(partida.total)
     })
-    
+    sendFacturaGlobal(notasPartidas)
    }
       function sendFacturaGlobal(notasPartidas: any) {
         
          FacturaGlobalMaker(notasPartidas)
       }
+
       
+   init()
     return (
         <div>
-      <button onClick={() => init()}>checar factura</button>
-       
+          
+      <FormAddprod/>
     </div>
     );
   
   }
   
-  export default Facturaglobal
+  export default Page

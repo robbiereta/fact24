@@ -23,6 +23,7 @@ function NavScroll() {
             <Nav.Link  className='text-white' href="/pages/productos">Productos</Nav.Link>
            <Nav.Link  className='text-white' href="/pages/inventario">Inventario</Nav.Link>
           <Nav.Link  className='text-white' href="/pages/facturaglobal">Factura Global</Nav.Link>
+          <Nav.Link  className='text-white' href="/pages/nomina">Nomina</Nav.Link>
           </Nav>
           
         </Navbar.Collapse>
