@@ -67,7 +67,6 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    NominaV1("aldo",entries)
   }
   
   var opt=getRequest("https://express-low5.onrender.com"+"/")  
@@ -75,10 +74,6 @@ function FormCreator(props:FormCreatorProps) {
   return (
     <Form action={onSubmit}>
       {formElements}
-      <select name= "empleado">
-        <option  id="aly" value="aly">aly</option>
-        </select>
-
       <Button variant="primary" type="submit" >
         Guardar
       </Button>

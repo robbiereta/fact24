@@ -32,7 +32,7 @@ let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 
 /**
  * Home component is the main component of the application.
- * It renders the navigation bar, the form creator, and the list component.
+ * It renders the navigation bar
  * 
  * @returns JSX.Element
  */
@@ -41,7 +41,6 @@ export default async function Home() {
   return (
     <main>
       {/* Render the navigation bar */}
-      {/* Render the form creator and the list component */}
       <div>
        <NavScroll />
       </div>

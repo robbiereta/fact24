@@ -11,37 +11,38 @@ import getNotes from "../../libComponents/getNotes";
           : number; impuestos: { traslados: { traslado: { base: any; impuesto: string; tipoFactor: string; tasaOCuota: number; importe: number; tipo: string; }[]; }; };
       }[]=  [];
       
-    function addPartida(importe: any) {
+    function addPartida(ImporteconImpuestos: any) {
      
     
-      let iva = Number(importe) * 0.16
+      let iva = Number(ImporteconImpuestos) * 0.16
       
-      
+     let importeSinimpuestos=ImporteconImpuestos-iva
+      // importe=Number(importeSinimpuestos)
         let partida= {
          
           ClaveProdServ: "01010101",
           ClaveUnidad: "ACT",
           Cantidad: 1,
           Descripcion: "Venta",
-          ValorUnitario: Number(importe),
-          Importe: Number(importe),
-          
-          Impuestos: {
-            traslados: {
-            traslado: [
-            {
-            base: importe,
+          ValorUnitario: Number(importeSinimpuestos),
+          Importe: Number(importeSinimpuestos),
+          ObjetoImp:"02",
+          Impuestos :{
+            traslados:[
+               {
+            
+            base: ImporteconImpuestos,
             impuesto: "002",
             tipoFactor: "Tasa",
-            tasaOCuota: 0.16,
-            importe: Number(importe) - iva,
-            tipo: "Traslado"
+            tasaOCuota: "0.160000",
+            importe: Number(iva),
             }
             ]
+        
             }
-         }
+          
+          }
          
-        }
         notasPartidas.push(partida)
       return notasPartidas
       }
@@ -77,8 +78,9 @@ function init() {
    }
       function sendFacturaGlobal(notasPartidas: any) {
         
-         FacturaGlobalMaker(notasPartidas)
-      }
+      let facturaGlobal = FacturaGlobalMaker(notasPartidas)
+     
+        }
 
       
    init()
