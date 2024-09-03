@@ -13,7 +13,8 @@ function FacturaGlobalMaker(notasPartidas : any) {
     }
     console.log(notasPartidas)
     let totalConImpuestos: number = getTotal(notasPartidas)
-  
+    console.log(totalConImpuestos);
+    
 
       let iva=(totalConImpuestos * 0.16)
       let subtotal=totalConImpuestos.toFixed(2)
@@ -55,14 +56,14 @@ function FacturaGlobalMaker(notasPartidas : any) {
             },
             "Conceptos": notasPartidas,
             "Impuestos": {
-        "TotalImpuestosTrasladados": iva.toFixed(2),  
+        "TotalImpuestosTrasladados": totalConImpuestos.toFixed(2),  
         "Traslados": [
             {
-                "Base": subtotal,
+                "Base": Number(totalConImpuestos+iva).toFixed(2),
                 "Impuesto": "002",
                 "TipoFactor": "Tasa",
                 "TasaOCuota": 0.160000,
-                "Importe": iva.toFixed(2)
+                "Importe": (totalConImpuestos+iva*1.16).toFixed(2)
             }
         ]
     }

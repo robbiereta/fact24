@@ -1,13 +1,13 @@
 'use server'
 import swConnector from "@/app/libComponents/swConector"
 
-function makeNomina(empleado) {
+function makeNomina(empleado,datos) {
     let fecha=new Date();
     let nomina= {
        "Version": "4.0",
        "Serie": "bvic",
        "Folio": ""+empleado.Folio+"",
-       "Fecha":"2024-08-11",
+       "Fecha":""+fecha.toISOString().split('T')[0]+"",
        "Sello": "",
        "NoCertificado": "",
        "Certificado": "",
@@ -52,11 +52,10 @@ function makeNomina(empleado) {
                    "Nomina12:Nomina": {
                        "Version": "1.2",
                        "TipoNomina": "O",
-                       "FechaPago": ""+empleado.Complemento.Nomina12.FechaPago+"",
-                       "FechaInicialPago": ""+empleado.Complemento.Nomina12.FechaInicialPago+"",
-                       "FechaFinalPago": ""+empleado.Complemento.Nomina12.FechaFinalPago+"",
-                       "NumDiasPagados": ""+empleado.Complemento.Nomina12.NumDiasPagados+"",
-                       "TotalPercepciones": ""+empleado.Complemento.Nomina12.TotalPercepciones+"",
+                       "FechaPago": ""+datos.fechaPago+"",
+                       "FechaInicialPago": ""+datos.fechaInicialPago+"",
+                       "FechaFinalPago": ""+datos.fechaFinalPago+"",
+                       "NumDiasPagados": ""+datos.diasTrabajados+"",  "TotalPercepciones": ""+empleado.Complemento.Nomina12.TotalPercepciones+"",
                        "TotalDeducciones": ""+empleado.Complemento.Nomina12.TotalDeducciones+"",
                        "TotalOtrosPagos": ""+empleado.Complemento.Nomina12.TotalOtrosPagos+"",
                        "Emisor": {

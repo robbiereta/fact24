@@ -1,21 +1,12 @@
-import React from 'react';
-
-import AsyncSelect from 'react-select/async';
-import { ColourOption, colourOptions } from './docs/data';
-
-const filterColors = (inputValue: string) => {
-  return colourOptions.filter((i) =>
-    i.label.toLowerCase().includes(inputValue.toLowerCase())
+async function SelectComponent(props) {
+  return(
+    <>
+    <h6> {props.label}</h6>
+    <select name={props.name}>
+      {props.options}
+    </select>
+  </>
+  
   );
-};
-
-const promiseOptions = (inputValue: string) =>
-  new Promise<ColourOption[]>((resolve) => {
-    setTimeout(() => {
-      resolve(filterColors(inputValue));
-    }, 1000);
-  });
-
-export default () => (
-  <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} />
-);
+}
+export default SelectComponent

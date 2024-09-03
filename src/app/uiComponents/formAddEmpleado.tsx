@@ -4,7 +4,8 @@ import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
 import NominaV1 from '../pages/nomina/v1';
-import AsyncSelect from 'react-select/async';
+import SelectComponent from './select';
+import { tipo_contrato } from './data.json';
 
 interface FormCreatorProps {
   elements: {
@@ -13,12 +14,11 @@ interface FormCreatorProps {
     type: string;
     placeholder: string;
   }[];
-  recurso: string,
-  image: boolean
+  recurso: string
 }
 
 
-function FormCreator(props:FormCreatorProps) {
+function FormAddEmpleado(props:FormCreatorProps) {
 
   let elements=props.elements
   let formElements:any[]=[]
@@ -67,13 +67,15 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
+    
   }
-  
-  var opt=getRequest("https://express-low5.onrender.com"+"/")  
-  
+  let optionElements=tipo_contrato.map((element)=>{
+    optionelements.push(<option>{element.Descripcion}</option>) 
+  })
   return (
     <Form action={onSubmit}>
       {formElements}
+      <SelectComponent label="Tipo de Contrato" name="c_TipoContrato" options={optionelements} />
       <Button variant="primary" type="submit" >
         Guardar
       </Button>
@@ -81,4 +83,4 @@ function FormCreator(props:FormCreatorProps) {
   );
 }
 
-export default FormCreator;
+export default FormAddEmpleado;
