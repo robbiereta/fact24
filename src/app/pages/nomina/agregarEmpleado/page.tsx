@@ -94,6 +94,10 @@ let elements= [{
 },
   
 ]
+
+    let empleado={
+      
+    }
 export default async function Nomina  () {
   // Render the main container
   return (

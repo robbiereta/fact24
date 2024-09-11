@@ -56,7 +56,6 @@ function FormAddEmpleado(props:FormCreatorProps) {
     axios.post(url,data)
     .then(function (response) {
       console.log(response);
-      NominaV1("aldo",response)
     })
     .catch(function (error) {
       console.log(error);
@@ -67,15 +66,23 @@ function FormAddEmpleado(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    
+   
   }
-  let optionElements=tipo_contrato.map((element)=>{
+
+
+  let tipo_contrato_options=tipo_contrato.map((element)=>{
     optionelements.push(<option>{element.Descripcion}</option>) 
   })
+
+  let option=tipo_contrato.map((element)=>{
+    optionelements.push(<option>{element.Descripcion}</option>) 
+  })
+
   return (
     <Form action={onSubmit}>
       {formElements}
-      <SelectComponent label="Tipo de Contrato" name="c_TipoContrato" options={optionelements} />
+      <SelectComponent label="Tipo de Contrato" name="c_TipoContrato" options={tipo_contrato_options} />
+      
       <Button variant="primary" type="submit" >
         Guardar
       </Button>

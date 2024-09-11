@@ -1,6 +1,8 @@
 'use client'
 import makeNomina from "./makeNomina";
 import makeNomina_PrimaV from "./makeNomina_PrimaV";
+import makeNominaMan from "./makeNominaMan";
+
 function NominaV1(empleado,datos) {
    
 let fecha=new Date();
@@ -14,7 +16,6 @@ let TotalImpuestosRetenidos=20.66
 //isr
 
 //empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos
-let Antiguedad="P82W"
 let numDiasPagados="7"
 let fechaPago="2024-08-03"
 let FechaInicialPago="2024-07-28"
@@ -47,7 +48,7 @@ let OtrosPagos =  {
    let aly=    {
     "Version": "4.0",
     "Serie": "bvic",
-    "Folio": "29",
+    "Folio": "38",
     "Fecha":fechaActual,
     "Sello": "",
     "NoCertificado": "",
@@ -104,7 +105,7 @@ let OtrosPagos =  {
                         "Curp": "FOZA880125MTSLVL01",
                         "NumSeguridadSocial": "09128814648",
                         "FechaInicioRelLaboral": "2024-02-19",
-                        "Antiguedad": "P25W",
+                        "Antiguedad": "P26W",
                         "TipoContrato": "01",
                         "TipoJornada": "01",
                         "TipoRegimen": "02",
@@ -166,7 +167,7 @@ let OtrosPagos =  {
     let robbie=    {
         "Version": "4.0",
         "Serie": "bvic",
-        "Folio": "30",
+        "Folio": "39",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -223,7 +224,7 @@ let OtrosPagos =  {
                             "Curp": "REOR910628HTSTLB04",
                             "NumSeguridadSocial": "09119123561",
                             "FechaInicioRelLaboral": "2023-01-02",
-                            "Antiguedad": "P85W",     
+                            "Antiguedad": "P86W",     
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -284,7 +285,7 @@ let OtrosPagos =  {
         let kevin=    {
             "Version": "4.0",
             "Serie": "bvic",
-            "Folio": "31",
+            "Folio": "40",
             "Fecha":fechaActual,
             "Sello": "",
             "NoCertificado": "",
@@ -341,7 +342,7 @@ let OtrosPagos =  {
                                 "Curp": "VAMK960929HTSSCV09",
                                 "NumSeguridadSocial": "56169682574",
                                 "FechaInicioRelLaboral": "2022-10-17",         
-                                "Antiguedad": "P96W",     
+                                "Antiguedad": "P97W",     
                                 "TipoContrato": "01",
                                 "TipoJornada": "01",
                                 "TipoRegimen": "02",
@@ -403,7 +404,7 @@ let OtrosPagos =  {
     let aldo=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "32",
+        "Folio": "41",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -457,7 +458,7 @@ let OtrosPagos =  {
                             "Curp": "BALA940807HTSRDL02",
                             "NumSeguridadSocial": "09129497229",
                             "FechaInicioRelLaboral": "2020-11-03",
-                            "Antiguedad": "P197W",
+                            "Antiguedad": "P198W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -521,7 +522,7 @@ let OtrosPagos =  {
      let daniel=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "33",
+        "Folio": "42",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -575,7 +576,7 @@ let OtrosPagos =  {
                             "Curp": "RATJ990125HTSMRN01",
                             "NumSeguridadSocial": "27189918991",
                             "FechaInicioRelLaboral": "2022-09-26",
-                            "Antiguedad": "P99W",
+                            "Antiguedad": "P100W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -638,7 +639,7 @@ let OtrosPagos =  {
      let misael=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "34",
+        "Folio": "43",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -692,7 +693,7 @@ let OtrosPagos =  {
                             "Curp": "PIRM051209HTSTMSA3",
                             "NumSeguridadSocial": "02240563086",     
                             "FechaInicioRelLaboral": "2024-01-15",
-                            "Antiguedad": "P31W",
+                            "Antiguedad": "P32W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -755,7 +756,7 @@ let OtrosPagos =  {
      let fany=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "35",
+        "Folio": "44",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -809,7 +810,7 @@ let OtrosPagos =  {
                             "Curp": "RARS920401MTSMBT04",
                             "NumSeguridadSocial": "09109253790",
                             "FechaInicioRelLaboral": "2024-03-18",
-                            "Antiguedad": "P23W",
+                            "Antiguedad": "P24W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -873,7 +874,7 @@ let OtrosPagos =  {
      let homero= {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "36",
+        "Folio": "45",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -927,7 +928,7 @@ let OtrosPagos =  {
                             "Curp": "SALH901227HTSNPM09",
                             "NumSeguridadSocial": "09099011364",     
                             "FechaInicioRelLaboral": "2020-11-03",
-                            "Antiguedad": "P198W",
+                            "Antiguedad": "P199W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -990,7 +991,7 @@ let OtrosPagos =  {
      let luis= {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "37",
+        "Folio": "46",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -1044,7 +1045,7 @@ let OtrosPagos =  {
                             "Curp": "LOSL890628HDFPNS05 ",
                             "NumSeguridadSocial": "09128930774",
                             "FechaInicioRelLaboral": "2022-08-01",
-                            "Antiguedad": "P107W",
+                            "Antiguedad": "P108W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -1191,7 +1192,9 @@ let OtrosPagos =  {
                     }
                 
         }}
-    makeNomina(luis,datos)
+       
+    makeNomina(kevin,datos)
+    
 return(
     <div>
 

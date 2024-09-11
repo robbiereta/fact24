@@ -6,6 +6,7 @@ import Lista from "../../uiComponents/lista";
 import FormCreator from "../../uiComponents/formCreator";
 import NavScroll from "@/app/uiComponents/nav";
 import NominaV1 from "./v1";
+import getAllEmpleados from "./v2";
 let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 
 let ListaProps= {
@@ -61,6 +62,7 @@ export default async function Nomina  () {
           recurso={"http://localhost:3000/pages/nomina"} 
           image={true}
         />
+        
 
       </div>
     

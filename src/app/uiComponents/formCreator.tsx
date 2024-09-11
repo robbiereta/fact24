@@ -1,10 +1,12 @@
 'use client'
 import Form from 'react-bootstrap/Form';
-import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
+import axios from 'axios';
 import NominaV1 from '../pages/nomina/v1';
+import option from 'react-select';
 import AsyncSelect from 'react-select/async';
+import SelectComponent from './select';
 
 interface FormCreatorProps {
   elements: {
@@ -23,22 +25,7 @@ function FormCreator(props:FormCreatorProps) {
   let elements=props.elements
   let formElements:any[]=[]
   var optionelements:any[]=[]
-  
-
-  let obj:any
-  function getRequest(url:string) {
-    axios.get(url)
-    .then(function (response) {
-         obj= response.data
-         return obj    
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  
-   }
-
- 
+  let options:any[]=[]
     
    elements.map((element)=>{
   formElements.push(
@@ -50,35 +37,59 @@ function FormCreator(props:FormCreatorProps) {
   return formElements
   })
 
- 
-
-   function postRequest(url:string,data:any) {
-    axios.post(url,data)
-    .then(function (response) {
-      console.log(response);
-      NominaV1("aldo",response)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-   }
-  
 
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
     NominaV1("aldo",entries)
   }
-  
-  var opt=getRequest("https://express-low5.onrender.com"+"/")  
-  
-  return (
+  function getOptions(list:any[]) {
+   
+    list.map((element)=>{
+      options.push(<option>+element+</option>)
+    })
+    console.log(options)
+    return options
+  }
+  let obj :any[] =[]  
+  function getRequest(url) {
+    let data = '';
+    
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url:url,
+      headers: { },
+      data : data
+    };
+    
+    axios.request(config)
+    .then((response) => {
+       obj = response.data
+       
+      
+       obj.map((element)=>{
+         options.push(element.Receptor[0].Nombre)
+       })
+      console.log(options) 
+      
+       return options
+       
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    
+     }
+ var opt=getRequest(process.env.urlEmp) 
+    return (
     <Form action={onSubmit}>
       {formElements}
       <select name= "empleado">
-        <option  id="aly" value="aly">aly</option>
+        
         </select>
-
+<SelectComponent label="Empleados" name="empleado" options={options} />
       <Button variant="primary" type="submit" >
         Guardar
       </Button>
