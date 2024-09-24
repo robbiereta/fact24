@@ -1,14 +1,10 @@
 'use server'
 import swConnector from "@/app/libComponents/swConector"
 
-function makeNomina(empleado,datos) {
+function makeNomina_Finiquito(empleado,datos) {
     let fecha=new Date();
-    let percepciones=((empleado.SubTotal/7)*datos.diasTrabajados).toFixed(2)
-    let deducciones= ((empleado.Descuento/7)*datos.diasTrabajados).toFixed(2)
-    let od=((empleado.Complemento.Nomina12.Deducciones.TotalOtrasDeducciones/7)*datos.diasTrabajados)
-    let ir=((empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos/7)*datos.diasTrabajados)
-    let TotalDeducciones=od+ir
-    
+    let percepciones=empleado.Total
+
         let nomina= {
        "Version": "4.0",
        "Serie": "bvic",
@@ -18,9 +14,8 @@ function makeNomina(empleado,datos) {
        "NoCertificado": "",
        "Certificado": "",
        "SubTotal": ""+percepciones+"",
-       "Descuento": ""+TotalDeducciones.toFixed(2)+"",
        "Moneda": "MXN",
-       "Total": ""+(Number(percepciones)-TotalDeducciones).toFixed(2)+"",
+       "Total": ""+percepciones+"",
        "TipoDeComprobante": "N",
        "Exportacion": "01",
        "MetodoPago": "PUE",
@@ -47,7 +42,6 @@ function makeNomina(empleado,datos) {
               "Descripcion": concepto.Descripcion,
               "ValorUnitario": percepciones,
               "Importe": percepciones,
-              "Descuento": TotalDeducciones.toFixed(2),
               "ObjetoImp": concepto.ObjetoImp,
                
           }
@@ -57,13 +51,12 @@ function makeNomina(empleado,datos) {
                {
                    "Nomina12:Nomina": {
                        "Version": "1.2",
-                       "TipoNomina": "O",
+                       "TipoNomina": "E",
                        "FechaPago": ""+datos.fechaPago+"",
                        "FechaInicialPago": ""+datos.fechaInicialPago+"",
                        "FechaFinalPago": ""+datos.fechaFinalPago+"",
                        "NumDiasPagados": ""+datos.diasTrabajados+"", 
                        "TotalPercepciones": ""+percepciones+"",
-                       "TotalDeducciones": ""+TotalDeducciones.toFixed(2)+"",
                        "TotalOtrosPagos": ""+empleado.Complemento.Nomina12.TotalOtrosPagos+"",
                        "Emisor": {
                            "RegistroPatronal": ""+empleado.Complemento.Nomina12.Emisor.RegistroPatronal+"",
@@ -88,8 +81,8 @@ function makeNomina(empleado,datos) {
                            "ClaveEntFed": ""+empleado.Complemento.Nomina12.Receptor.ClaveEntFed+"",
                        },
                        "Percepciones": {
-                           "TotalSueldos": ""+percepciones+"",
-                           "TotalGravado": ""+percepciones+"",
+                           "TotalSueldos": ""+empleado.Complemento.Nomina12.Percepciones.TotalSueldos+"",
+                           "TotalGravado": ""+empleado.Complemento.Nomina12.Percepciones.TotalGravado+"",
                            "TotalExento": ""+empleado.Complemento.Nomina12.Percepciones.TotalExento+"",
                            "Percepcion": 
                            empleado.Complemento.Nomina12.Percepciones.Percepcion.map((percepcion:any) => {
@@ -98,24 +91,11 @@ function makeNomina(empleado,datos) {
                                    "TipoPercepcion": ""+percepcion.TipoPercepcion+"",
                                    "Clave": ""+percepcion.Clave+"",
                                    "Concepto": ""+percepcion.Concepto+"",
-                                   "ImporteGravado": ""+percepciones+"",
+                                   "ImporteGravado": ""+percepcion.ImporteGravado+"",
                                    "ImporteExento": ""+percepcion.ImporteExento+"",    
                                 }
                            })
                            
-                       },
-                       "Deducciones": {
-                           "TotalOtrasDeducciones": ""+od.toFixed(2)+"",
-                           "TotalImpuestosRetenidos":""+ir.toFixed(2)+"",
-                           "Deduccion":
-                           empleado.Complemento.Nomina12.Deducciones.Deduccion.map((deduccion:any) => {
-                               return {
-                                   "TipoDeduccion": ""+deduccion.TipoDeduccion+"",
-                                   "Clave": ""+deduccion.Clave+"",
-                                   "Concepto": ""+deduccion.Concepto+"",
-                                   "Importe": ""+((deduccion.Importe/7)*datos.diasTrabajados).toFixed(2)+"",
-                               }
-                           })
                        },
    
                "OtrosPagos": 
@@ -146,4 +126,4 @@ function makeNomina(empleado,datos) {
                    return token
        } 
 
-       export default makeNomina
+       export default makeNomina_Finiquito

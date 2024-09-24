@@ -105,8 +105,8 @@ export default async function Nomina  () {
         <FormAddEmpleado
           // Pass the elements array as a prop
           elements={elements} 
-          // Pass the URL for the productos resource as a prop
-          recurso={url+"/pages/nomina"} 
+          // Pass the URL for the plproductos resource as a prop
+          recurso={url+"/empleados"} 
         />
       </div>
     

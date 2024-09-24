@@ -1,5 +1,6 @@
 'use client'
 import makeNomina from "./makeNomina";
+import makeNomina_Finiquito from "./makeNomina_finiquito";
 import makeNomina_PrimaV from "./makeNomina_PrimaV";
 function NominaV1(empleado,datos) {
    
@@ -31,7 +32,7 @@ let OtrosPagos =  {
          "TipoOtroPago": "002",
          "Clave": "002",
          "Concepto": "Subsidio",
-         "Importe": "0.0",
+         "Importe": "0.00",
          "SubsidioAlEmpleo": {
            "SubsidioCausado": "89.81"
          }
@@ -47,7 +48,7 @@ let OtrosPagos =  {
    let aly=    {
     "Version": "4.0",
     "Serie": "bvic",
-    "Folio": "29",
+    "Folio": "72",
     "Fecha":fechaActual,
     "Sello": "",
     "NoCertificado": "",
@@ -104,7 +105,7 @@ let OtrosPagos =  {
                         "Curp": "FOZA880125MTSLVL01",
                         "NumSeguridadSocial": "09128814648",
                         "FechaInicioRelLaboral": "2024-02-19",
-                        "Antiguedad": "P25W",
+                        "Antiguedad": "P29W",
                         "TipoContrato": "01",
                         "TipoJornada": "01",
                         "TipoRegimen": "02",
@@ -166,7 +167,7 @@ let OtrosPagos =  {
     let robbie=    {
         "Version": "4.0",
         "Serie": "bvic",
-        "Folio": "30",
+        "Folio": "71",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -223,7 +224,7 @@ let OtrosPagos =  {
                             "Curp": "REOR910628HTSTLB04",
                             "NumSeguridadSocial": "09119123561",
                             "FechaInicioRelLaboral": "2023-01-02",
-                            "Antiguedad": "P85W",     
+                            "Antiguedad": "P89W",     
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -284,19 +285,19 @@ let OtrosPagos =  {
         let kevin=    {
             "Version": "4.0",
             "Serie": "bvic",
-            "Folio": "31",
+            "Folio": "70",
             "Fecha":fechaActual,
             "Sello": "",
             "NoCertificado": "",
             "Certificado": "",
-            "SubTotal": "1820.00",
-            "Descuento": "80.54",
+            "SubTotal": "2000.04",
+            "Descuento": "104.68",
             "Moneda": "MXN",
-            "Total": "1739.46",
+            "Total": "1895.36",
             "TipoDeComprobante": "N",
             "Exportacion": "01",
             "MetodoPago": "PUE",
-            "LugarExpedicion": "87000",
+            "LugarExpedicion": "87030",
             "Emisor": {
                 "Rfc": "RERR6008226N5",
                 "Nombre": "ROBERTO RETA RESENDEZ",
@@ -315,9 +316,9 @@ let OtrosPagos =  {
                     "Cantidad": "1",
                     "ClaveUnidad": "ACT",
                     "Descripcion": "Pago de nómina",
-                    "ValorUnitario": "1820.00",
-                    "Importe": "1820.00",
-                    "Descuento": "80.54",
+                    "ValorUnitario": "2000.04",
+                    "Importe": "2000.04",
+                    "Descuento": "104.68",
                     "ObjetoImp": "01"
                 }
             ],
@@ -329,8 +330,8 @@ let OtrosPagos =  {
                             "FechaInicialPago": "2024-08-05",
                             "FechaFinalPago": "2024-08-11",
                             "NumDiasPagados": "7",
-                            "TotalPercepciones": "1820.00 ",
-                            "TotalDeducciones": "80.54 ",
+                            "TotalPercepciones": "2004.04",
+                            "TotalDeducciones": "104.68",
                             "TotalOtrosPagos": "0.00 ",
                             "Emisor": {
                                 "RegistroPatronal": ""+RegistroPatronal+"",
@@ -341,7 +342,7 @@ let OtrosPagos =  {
                                 "Curp": "VAMK960929HTSSCV09",
                                 "NumSeguridadSocial": "56169682574",
                                 "FechaInicioRelLaboral": "2022-10-17",         
-                                "Antiguedad": "P96W",     
+                                "Antiguedad": "P100W",     
                                 "TipoContrato": "01",
                                 "TipoJornada": "01",
                                 "TipoRegimen": "02",
@@ -350,45 +351,45 @@ let OtrosPagos =  {
                                 "Puesto": "Empleado general",
                                 "RiesgoPuesto": "3",
                                 "PeriodicidadPago": "02",
-                                "SalarioBaseCotApor": "260.00",
-                                "SalarioDiarioIntegrado": "272.82",
+                                "SalarioBaseCotApor": "285.72",
+                                "SalarioDiarioIntegrado": "300.20",
                                 "ClaveEntFed": "TAM"
                             },
                             "Percepciones": {
-                                "TotalSueldos": "1820.00",
-                                "TotalGravado": "1820.00",
+                                "TotalSueldos": "2000.04",
+                                "TotalGravado": "2000.04",
                                 "TotalExento": "0",
                                 "Percepcion": [
                                     {
                                         "TipoPercepcion": "001",
                                         "Clave": "001",
                                         "Concepto": "Sueldo",
-                                        "ImporteGravado": "1820.00",
+                                        "ImporteGravado": "2000.04",
                                         "ImporteExento": "0.00"
                                     }
                                 ]
                             },
                             "Deducciones": {
-                                "TotalOtrasDeducciones": "45.36",
-                                "TotalImpuestosRetenidos":"35.18",
+                                "TotalOtrasDeducciones": "49.91",
+                                "TotalImpuestosRetenidos":"54.77",
                                 "Deduccion": [
                                     {
                                         "TipoDeduccion": "001",
                                         "Clave": "001",
                                         "Concepto": "Seguridad Social",
-                                        "Importe": "23.87"
+                                        "Importe": "26.27"
                                     },
                                     {
                                         "TipoDeduccion": "002",
                                         "Clave": "002",
                                         "Concepto": "ISR",
-                                        "Importe": "35.18"
+                                        "Importe": "54.77"
                                     },
          {
                                         "TipoDeduccion": "003",
                                         "Clave": "003",
                                         "Concepto": "RCV",
-                                        "Importe": "21.49"
+                                        "Importe": "23.64"
                                     }
          
          
@@ -403,7 +404,7 @@ let OtrosPagos =  {
     let aldo=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "32",
+        "Folio": "69",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -457,7 +458,7 @@ let OtrosPagos =  {
                             "Curp": "BALA940807HTSRDL02",
                             "NumSeguridadSocial": "09129497229",
                             "FechaInicioRelLaboral": "2020-11-03",
-                            "Antiguedad": "P197W",
+                            "Antiguedad": "P201W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -521,7 +522,7 @@ let OtrosPagos =  {
      let daniel=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "33",
+        "Folio": "68",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -575,7 +576,7 @@ let OtrosPagos =  {
                             "Curp": "RATJ990125HTSMRN01",
                             "NumSeguridadSocial": "27189918991",
                             "FechaInicioRelLaboral": "2022-09-26",
-                            "Antiguedad": "P99W",
+                            "Antiguedad": "P103W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -638,7 +639,7 @@ let OtrosPagos =  {
      let misael=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "34",
+        "Folio": "67",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -692,7 +693,7 @@ let OtrosPagos =  {
                             "Curp": "PIRM051209HTSTMSA3",
                             "NumSeguridadSocial": "02240563086",     
                             "FechaInicioRelLaboral": "2024-01-15",
-                            "Antiguedad": "P31W",
+                            "Antiguedad": "P35W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -752,18 +753,18 @@ let OtrosPagos =  {
                 
         }
      }
-     let fany=  {
+     let fany_finiquito=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "35",
+        "Folio": "73",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
         "Certificado": "",
-        "SubTotal": "1742.51",
-        "Descuento": "70.18",
+        "SubTotal": "3703.26",
+        "Descuento": "0.00",
         "Moneda": "MXN",
-        "Total": "1672.33",
+        "Total": "3703.26",
         "TipoDeComprobante": "N",
         "Exportacion": "01",
         "MetodoPago": "PUE",
@@ -786,9 +787,9 @@ let OtrosPagos =  {
                 "Cantidad": "1",
                 "ClaveUnidad": "ACT",
                 "Descripcion": "Pago de nómina",
-                "ValorUnitario": "1742.51",
-                "Importe": "1742.51",
-                "Descuento": "70.18",
+                "ValorUnitario": "3703.26",
+                "Importe": "3703.26",
+                "Descuento": "0.00",
                 "ObjetoImp": "01"
             }
         ],
@@ -801,15 +802,14 @@ let OtrosPagos =  {
                         "FechaInicialPago": "2024-07-29",
                         "FechaFinalPago": "2024-08-04",
                         "NumDiasPagados": "7",
-                        "TotalPercepciones": "1742.51",
-                        "TotalDeducciones": "70.18",
+                        "TotalPercepciones": "3703.26",
                         "TotalOtrosPagos": "0.00",
                         "Emisor": emisor.Emisor,
                         "Receptor": {
                             "Curp": "RARS920401MTSMBT04",
                             "NumSeguridadSocial": "09109253790",
                             "FechaInicioRelLaboral": "2024-03-18",
-                            "Antiguedad": "P23W",
+                            "Antiguedad": "P5M28D",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -817,51 +817,38 @@ let OtrosPagos =  {
                             "Departamento": "Ventas",
                             "Puesto": "Empleado general",
                             "RiesgoPuesto": "3",
-                            "PeriodicidadPago": "02",
+                            "PeriodicidadPago": "99",
                             "SalarioBaseCotApor": "248.93",
                             "SalarioDiarioIntegrado": "261.21",
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1742.51",
-                            "TotalGravado": "1742.51",
-                            "TotalExento": "0",
+                            "TotalSueldos": "3703.26",
+                            "TotalGravado": "0.00",
+                            "TotalExento": "3703.26",
                             "Percepcion": [
                                 {
                                     "TipoPercepcion": "001",
                                     "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1742.51",
-                                    "ImporteExento": "0.00"
-                                }
-                            ]
-                        },
-                        "Deducciones": { 
-                            "TotalOtrasDeducciones": "43.43",
-                            "TotalImpuestosRetenidos":"26.75",
-                            "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "22.86"
+                                    "Concepto": "PARTE PROPORCIONAL DE VACACIONES",
+                                    "ImporteGravado": "0.00",
+                                    "ImporteExento": "1481.30"
                                 },
                                 {
-                                    "TipoDeduccion": "002",
+                                    "TipoPercepcion": "002",
                                     "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "26.75"
+                                    "Concepto": "PARTE PROPORCIONAL DE AGUINALDO",
+                                    "ImporteGravado": "0.00",
+                                    "ImporteExento": "1851.63"
                                 },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": "CUOTA OBRERO RCV",
-                                    "Importe": "20.57"
-                                }
-     
-     
+                                {
+                                    "TipoPercepcion": "021",
+                                    "Clave": "021",
+                                    "Concepto": "PARTE PROPORCIONAL PRIMA VACACIONAL",
+                                    "ImporteGravado": "0.00",
+                                    "ImporteExento": "370.33"
+                                },
                             ]
-     
                         },
             "OtrosPagos":OtrosPagos.OtrosPagos
                        
@@ -873,7 +860,7 @@ let OtrosPagos =  {
      let homero= {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "36",
+        "Folio": "66",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -927,7 +914,7 @@ let OtrosPagos =  {
                             "Curp": "SALH901227HTSNPM09",
                             "NumSeguridadSocial": "09099011364",     
                             "FechaInicioRelLaboral": "2020-11-03",
-                            "Antiguedad": "P198W",
+                            "Antiguedad": "P202W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -990,7 +977,7 @@ let OtrosPagos =  {
      let luis= {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "37",
+        "Folio": "65",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -1044,7 +1031,7 @@ let OtrosPagos =  {
                             "Curp": "LOSL890628HDFPNS05 ",
                             "NumSeguridadSocial": "09128930774",
                             "FechaInicioRelLaboral": "2022-08-01",
-                            "Antiguedad": "P107W",
+                            "Antiguedad": "P111W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -1191,7 +1178,16 @@ let OtrosPagos =  {
                     }
                 
         }}
-    makeNomina(luis,datos)
+    
+        let datos2={
+            "fechaPago": "2024-09-21",
+            "fechaInicialPago": "2024-09-15",
+            "fechaFinalPago": "2024-09-22",
+            "diasTrabajados": "7",
+        }
+    
+
+    makeNomina(kevin,datos2)
 return(
     <div>
 
