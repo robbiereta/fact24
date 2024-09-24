@@ -9,7 +9,7 @@ let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 
 
 let elements= [{
-  name: "Nombre Completo",
+  name: "Nombre_Completo",
   id: 1,
   type: "text",
   placeholder: "Nombre Completo",
@@ -27,7 +27,7 @@ let elements= [{
   placeholder: "CURP",
 
 }, {   
-  name: "No. de Seguridad Social",
+  name: "No_deSeguridadSocial",
   id: 4,      
   type: "text",
   placeholder: "No. de Seguridad Social",
@@ -37,21 +37,21 @@ let elements= [{
 
 },
 {
-  name: "Codigo postal",
+  name: "Codigo_postal",
   id: 5,
   type: "text",
   placeholder: "Codigo postal",
 
 },
 {
-  name: "Antiguedad actual",
+  name: "Antiguedad_actual",
   id: 6,
   type: "text",
   placeholder: "Antiguedad actual",
 
 },
 {
-  name: "No. de empleado",
+  name: "No_de_empleado",
   id: 7,
   type: "text",
   placeholder: "No. de empleado",
@@ -72,24 +72,31 @@ let elements= [{
 
 },
 {
-  name: "Codigo postal del receptor",
-  id: 10,
-  type: "text",
-  placeholder: "Codigo postal del receptor",
-
-},
-{
-  name: "Salario diario",
+  name: "Salario_diario",
   id: 11,
   type: "number",
   placeholder: "Salario diario",
 
 },
 {
-  name: "Salario base",
+  name: "Salario_base",
   id: 12,
   type: "number",
   placeholder: "Salario base",
+
+},
+{
+  name: "Importe",
+  id: 13,
+  type: "number",
+  placeholder: "Importe",
+
+},
+{
+  name: "Descuento",
+  id: 14,
+  type: "number",
+  placeholder: "Descuento",
 
 },
   
