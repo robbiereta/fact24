@@ -22,7 +22,10 @@ function NavScroll() {
           >
             <Nav.Link  className='text-white' href="/pages/productos">Productos</Nav.Link>
            <Nav.Link  className='text-white' href="/pages/inventario">Inventario</Nav.Link>
-          <Nav.Link  className='text-white' href="/pages/facturaglobal">Factura Global</Nav.Link>
+          <NavDropdown  className='text-white' title="Facturas" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/pages/facturacliente">Factura a cliente</NavDropdown.Item>
+              <NavDropdown.Item href="/pages/nomina/facturaglobal">Factura Global</NavDropdown.Item>
+            </NavDropdown>
           <NavDropdown  className='text-white' title="Nomina" id="basic-nav-dropdown">
               <NavDropdown.Item href="/pages/nomina">Hacer Nomina</NavDropdown.Item>
               <NavDropdown.Item href="/pages/nomina/agregarEmpleado">Agregar Empleado</NavDropdown.Item>
