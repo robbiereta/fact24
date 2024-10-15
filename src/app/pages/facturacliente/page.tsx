@@ -1,7 +1,6 @@
 'use client'
-import FacturaGlobalMaker from "./facturaGlobalMaker";
 import getNotes from "../../libComponents/getNotes";
-import FormCreator from "@/app/uiComponents/formCreator";
+import FormFactCliente from "@/app/uiComponents/formFactCliente";
 import NavScroll from "@/app/uiComponents/nav";
  function Page() {
     
@@ -30,13 +29,7 @@ import NavScroll from "@/app/uiComponents/nav";
     return (
         <div>
           <NavScroll/>
-          <FormCreator 
-          // Pass the elements array as a prop
-          elements={elements} 
-          // Pass the URL for the productos resource as a prop
-          recurso={""} 
-          image={false}
-        />
+         <FormFactCliente elements={elements} />
 
     </div>
     );

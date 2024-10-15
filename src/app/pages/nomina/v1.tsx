@@ -639,7 +639,7 @@ let OtrosPagos =  {
      let misael=  {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "67",
+        "Folio": "97",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -693,7 +693,7 @@ let OtrosPagos =  {
                             "Curp": "PIRM051209HTSTMSA3",
                             "NumSeguridadSocial": "02240563086",     
                             "FechaInicioRelLaboral": "2024-01-15",
-                            "Antiguedad": "P35W",
+                            "Antiguedad": "P38W",
                             "TipoContrato": "01",
                             "TipoJornada": "01",
                             "TipoRegimen": "02",
@@ -1180,14 +1180,14 @@ let OtrosPagos =  {
         }}
     
         let datos2={
-            "fechaPago": "2024-09-21",
-            "fechaInicialPago": "2024-09-15",
-            "fechaFinalPago": "2024-09-22",
+            "fechaPago": "2024-10-12",
+            "fechaInicialPago": "2024-10-06",
+            "fechaFinalPago": "2024-10-13",
             "diasTrabajados": "7",
         }
     
 
-    makeNomina(kevin,datos2)
+    makeNomina(misael,datos2)
 return(
     <div>
 
