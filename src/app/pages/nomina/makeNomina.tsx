@@ -1,7 +1,7 @@
 'use server'
 import swConnector from "@/app/libComponents/swConector"
 
-function makeNomina(empleado,datos) {
+function makeNomina(empleado:any,datos:any) {
     let fecha=new Date();
     let percepciones=((empleado.SubTotal/7)*datos.diasTrabajados).toFixed(2)
     let deducciones= ((empleado.Descuento/7)*datos.diasTrabajados).toFixed(2)

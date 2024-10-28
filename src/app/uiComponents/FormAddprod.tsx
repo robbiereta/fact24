@@ -67,7 +67,7 @@ function FormAddprod() {
       <FormControl type="submit" ></FormControl>
      </FormGroup>
     </Form>
-      <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
+     
        
     </div>
     );

@@ -1,0 +1,11 @@
+version: "2"
+services:
+  node:
+    image: "node:18"
+    user: "node"
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "3000"
+    command: "npm run dev"

@@ -1,7 +1,7 @@
 'use server'
 import swConnector from "@/app/libComponents/swConector"
 
-function makeNomina_PrimaV(empleado,datos) {
+function makeNomina_PrimaV(empleado:any,datos:any) {
     let fecha=new Date();
     let per=Number((empleado.SubTotal/7)*datos.diasTrabajados)
     let percepciones=per.toFixed(2)

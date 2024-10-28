@@ -1,7 +1,7 @@
 'use server'
 import swConnector from "@/app/libComponents/swConector"
 
-function makeNomina_Finiquito(empleado,datos) {
+function makeNomina_Finiquito(empleado:any,datos:any) {
     let fecha=new Date();
     let percepciones=empleado.Total
 
