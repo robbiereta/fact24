@@ -15,7 +15,7 @@ let config = {
 	maxBodyLength: Infinity,
 	url: 'http://services.test.sw.com.mx/v3/cfdi33/issue/json/v4',
 	headers: { 
-	  'Authorization': 'Bearer '+process.env.tokenTest, 
+	  'Authorization': 'Bearer '+process.env.tokenTestF, 
 	  'Content-Type': 'application/jsontoxml'
 	},
 	data : fact
