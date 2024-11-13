@@ -2,12 +2,7 @@
 import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
-import React from 'react';
-import swConnector from '../libComponents/swConector';
-import facturaGlobalMaker from '../libComponents/facturaGlobalMaker';
-import FacturaGlobalMaker from '../libComponents/facturaGlobalMaker';
-
-
+import ReciboMaker from '../libComponents/ReciboMaker';
 
 interface FormCreatorProps {
   elements: {
@@ -19,7 +14,7 @@ interface FormCreatorProps {
 }
 
 
-function FormFactGlobal(props:FormCreatorProps) {
+function FormPos(props:FormCreatorProps) {
 
 
   let elements=props.elements
@@ -73,9 +68,8 @@ function FormFactGlobal(props:FormCreatorProps) {
      console.log(notasPartidas)
     }
 
-  function onSubmitForFact(obj) {
-    FacturaGlobalMaker(obj)
-  
+  function onSubmitForRecibo(obj) {
+    ReciboMaker(obj)
   }
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
@@ -90,14 +84,14 @@ function FormFactGlobal(props:FormCreatorProps) {
     <Form action={onSubmit}>
       {formElements}
       <Button variant="primary" type="submit" >
-        Guardar
+        Agregar
       </Button>
     </Form>
-    <Button  onClick={onSubmitForFact}>
-     Facturar
+    <Button  onClick={onSubmitForRecibo}>
+     Hacer recibo
       </Button>
     </>
   );
 }
 
-export default FormFactGlobal;
+export default FormPos;

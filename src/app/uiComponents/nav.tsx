@@ -20,6 +20,7 @@ function NavScroll() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
+         <Nav.Link  className='text-white' href="/pages/pos">Punto de venta</Nav.Link>
             <Nav.Link  className='text-white' href="/pages/productos">Productos</Nav.Link>
            <Nav.Link  className='text-white' href="/pages/inventario">Inventario</Nav.Link>
           <NavDropdown  className='text-white' title="Facturas" id="basic-nav-dropdown">

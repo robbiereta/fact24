@@ -1,5 +1,5 @@
 'use client'
-import getNotes from "../../libComponents/getNotes";
+import getNotes from "../../libComponents/getNotesFromO";
 import FormFactCliente from "@/app/uiComponents/formFactCliente";
 import NavScroll from "@/app/uiComponents/nav";
  function Page() {

@@ -1,6 +1,6 @@
 'use client'
-import swConnector from "../../libComponents/swConector";
-function FacturaGlobalMaker(notasPartidas : any) {
+import swConnector from "./swConector";
+function ReciboMaker(notasPartidas : any) {
     let total3 = 0;
      
     function getTotal(notas: any) {
@@ -15,17 +15,11 @@ function FacturaGlobalMaker(notasPartidas : any) {
     }
     let totalConImpuestos: number = getTotal(notasPartidas)
     console.log(totalConImpuestos);
-    
 
-      let iva=(totalConImpuestos * 0.16)
-      let subtotal=(totalConImpuestos-iva)
     let fecha = new Date();
-      let facturaGlobal={
-            "Version": "4.0",
-            "Serie": "BVIC-G",
-            "Folio": "2",
-            "Fecha": ""+fecha.toISOString(),
-            "Sello": "",
+      let recibo={
+            "Folio": "1",
+            "Fecha": "2024-11-04",
             "FormaPago": 99,
             "FormaPagoSpecified": true,
             "NoCertificado": "",
@@ -40,7 +34,7 @@ function FacturaGlobalMaker(notasPartidas : any) {
             "LugarExpedicion": "87000",
             "InformacionGlobal": {
               "Periodicidad": "04",
-              "Meses": "09",
+              "Meses": "10",
               "Año": "2024"
             },
             "Emisor": {
@@ -77,4 +71,4 @@ function FacturaGlobalMaker(notasPartidas : any) {
 }
 
 
-export default  FacturaGlobalMaker
+export default  ReciboMaker
