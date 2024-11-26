@@ -1,5 +1,6 @@
 'use client'
 import postRequest from "./postRequest";
+import getRequest from "./getRequest"; 
 function ReciboMaker(notasPartidas : any) {
     let total3 = 0;
      
@@ -15,8 +16,9 @@ function ReciboMaker(notasPartidas : any) {
     }
     let totalConImpuestos: number = getTotal(notasPartidas)
     console.log(totalConImpuestos);
-
-    let fecha = new Date();
+   let notas_venta= getRequest("https://express-low5.onrender.com/notas_venta","")
+   console.log(notas_venta) 
+   let fecha = new Date();
       let recibo={
             'folio_venta' : "1",
 	'fecha' : fecha.toISOString().split('T')[0],
