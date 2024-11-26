@@ -5,7 +5,6 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Lista from "../../uiComponents/lista";
 import FormCreator from "../../uiComponents/formCreator";
- let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
       let notes = await sql`SELECT id,partner_id, fiscal_position_id, payment_term_id, pricelist_id, create_uid, write_uid, name, state, client_order_ref, origin, reference, signed_by, invoice_status, validity_date, note, currency_rate, amount_untaxed, amount_tax, amount_total, amount_to_invoice, locked, require_signature, require_payment, create_date, commitment_date, date_order, signed_on, write_date, prepayment_percent, sale_order_template_id
@@ -89,71 +88,6 @@ console.log(hoy,note.name,fechaCreacion,
 )
 
 */
-let ListaProps= {
-  // Define the properties and their types here
-  'precio' : String,
-  'categoria' : String,
-  'descripcion' : String,
-  'marca' : String,
-  'especificaciones' : String,
-  'codigo' : String,
-  'moto' : String,
-  'compatibilidades' : [],
-  'recurso' : String
-}
-
-let elements= [{
-  name: "precio",
-  id: 1,
-  type: "text",
-  placeholder: "precio"
-
-} ,
-{
-  name: "categoria",
-  id: 2,
-  type: "text",
-  placeholder: "categoria"
-},
-{
-  name: "descripcion",
-  id: 3,
-  type: "text",
-  placeholder: "descripcion"
-},
-
-{
-  name: "marca",
-  id: 4,
-  type: "text",
-  placeholder: "marca"
-},
-{
-  name: "especificaciones",
-  id: 5,
-  type: "text",
-  placeholder: "especificaciones"
-},
-{
-  name: "codigo",
-  id: 6,
-  type: "text",
-  placeholder: "codigo"
-},
-{
-  name: "moto",
-  id: 7,
-  type: "text",
-  placeholder: "moto"
-},
-
-{
-  name: "compatibilidades",
-  id: 8,
-  type: "text",
-  placeholder: "compatibilidades"
-}
-]
 
 export default async function Productos() {
   // Render the main container
@@ -161,16 +95,7 @@ export default async function Productos() {
   
       <div>
         {/* Render the form creator */}
-        <FormCreator 
-          // Pass the elements array as a prop
-          elements={elements} 
-          // Pass the URL for the productos resource as a prop
-          recurso={url+"/productos"} 
-          image={true}
-        />
-        {/* Render the list component */}
-        
-        <Lista recurso='/productos'  />
+      
       </div>
     
   );

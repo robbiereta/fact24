@@ -3,8 +3,8 @@ import postgres from 'postgres'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Lista from "../uiComponents/lista";
-import FormCreator from "../uiComponents/formCreator";
+import Lista from "../../uiComponents/lista";
+import FormCreator from "../../uiComponents/formCreator";
  let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
@@ -89,40 +89,88 @@ console.log(hoy,note.name,fechaCreacion,
 )
 
 */
-
+let ListaProps= {
+  // Define the properties and their types here
+  'precio' : String,
+  'categoria' : String,
+  'descripcion' : String,
+  'marca' : String,
+  'especificaciones' : String,
+  'codigo' : String,
+  'moto' : String,
+  'compatibilidades' : [],
+  'recurso' : String
+}
 
 let elements= [{
-  name: "cantidad",
+  name: "precio",
   id: 1,
-  type: "number",
-  placeholder: "cantidad"
+  type: "text",
+  placeholder: "precio"
 
+} ,
+{
+  name: "categoria",
+  id: 2,
+  type: "text",
+  placeholder: "categoria"
 },
 {
-  name: "producto",
-  id: 2,
-  type: "select",
-  placeholder: "producto"
-}  
+  name: "descripcion",
+  id: 3,
+  type: "text",
+  placeholder: "descripcion"
+},
 
+{
+  name: "marca",
+  id: 4,
+  type: "text",
+  placeholder: "marca"
+},
+{
+  name: "especificaciones",
+  id: 5,
+  type: "text",
+  placeholder: "especificaciones"
+},
+{
+  name: "codigo",
+  id: 6,
+  type: "text",
+  placeholder: "codigo"
+},
+{
+  name: "moto",
+  id: 7,
+  type: "text",
+  placeholder: "moto"
+},
+
+{
+  name: "compatibilidades",
+  id: 8,
+  type: "text",
+  placeholder: "compatibilidades"
+}
 ]
-
-export default async function Inventario() {
+export default async function Productos() {
   // Render the main container
   return (
   
       <div>
+        
         {/* Render the form creator */}
         <FormCreator 
           // Pass the elements array as a prop
           elements={elements} 
           // Pass the URL for the productos resource as a prop
-          recurso={url+"/inventario"} 
+          recurso={url+"/productos"} 
           image={true}
         />
         {/* Render the list component */}
         
-        <Lista recurso='/inventario'  />
+        <Lista recurso='/productos'  />
       </div>
     
   );

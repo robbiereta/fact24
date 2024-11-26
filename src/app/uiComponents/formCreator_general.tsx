@@ -1,8 +1,8 @@
 'use client'
 import Form from 'react-bootstrap/Form';
+import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
-import postRequest from '../libComponents/postRequest';
 import AsyncSelect from 'react-select/async';
 
 interface FormCreatorProps {
@@ -12,7 +12,6 @@ interface FormCreatorProps {
     type: string;
     placeholder: string;
   }[];
-  recurso: string,
 }
 
 
@@ -21,9 +20,7 @@ function FormCreator(props:FormCreatorProps) {
   let elements=props.elements
   let formElements:any[]=[]
   var optionelements:any[]=[]
-  
 
-  let obj:any  
    elements.map((element)=>{
   formElements.push(
     <Form.Group className="mb-3" controlId={element.name+element.id}>
@@ -40,15 +37,14 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    postRequest(props.recurso,entries)
+
   }
-    
   
   return (
     <Form action={onSubmit}>
       {formElements}
-      <Button variant="primary" type="submit" >
-        Guardar
+     <Button variant="primary" type="submit" >
+        Enviar
       </Button>
     </Form>
   );

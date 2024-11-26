@@ -1,4 +1,4 @@
-'use server'
+'use client'
 import postgres from 'postgres'
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -154,8 +154,7 @@ let elements= [{
   placeholder: "compatibilidades"
 }
 ]
-
-export default async function Productos() {
+export default function Productos() {
   // Render the main container
   return (
   
@@ -166,7 +165,6 @@ export default async function Productos() {
           elements={elements} 
           // Pass the URL for the productos resource as a prop
           recurso={url+"/productos"} 
-          image={true}
         />
         {/* Render the list component */}
         

@@ -12,7 +12,7 @@ function NavScroll() {
     <Navbar   expand="lg" 
     className="navbar navbar-expand-lg navbar-light bg-primary" >
       <Container fluid>
-        <Navbar.Brand  className='text-white' href="#">Bici-Vic</Navbar.Brand>
+        <Navbar.Brand  className='text-white' href="#">Rally ERP</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,8 +20,18 @@ function NavScroll() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link  className='text-white' href="/dashboard/productos">Productos</Nav.Link>
-           <Nav.Link  className='text-white' href="/dashboard/inventario">Inventario</Nav.Link>
+         <Nav.Link  className='text-white' href="/pages/pos">Punto de venta</Nav.Link>
+            <Nav.Link  className='text-white' href="/pages/productos">Productos</Nav.Link>
+           <Nav.Link  className='text-white' href="/pages/inventario">Inventario</Nav.Link>
+          <NavDropdown  className='text-white' title="Facturas" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/pages/facturacliente">Factura a cliente</NavDropdown.Item>
+              <NavDropdown.Item href="/pages/nomina/facturaglobal">Factura Global</NavDropdown.Item>
+            </NavDropdown>
+          <NavDropdown  className='text-white' title="Nomina" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/pages/nomina">Hacer Nomina</NavDropdown.Item>
+              <NavDropdown.Item href="/pages/nomina/agregarEmpleado">Agregar Empleado</NavDropdown.Item>
+            </NavDropdown>
+          <Nav.Link  className='text-white' href="/pages/datosnegocio">Datos Del Negocio</Nav.Link>
           </Nav>
           
         </Navbar.Collapse>

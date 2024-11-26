@@ -1,6 +1,6 @@
 'use client'
 import { FormControl, FormGroup } from "react-bootstrap";
-import FacturaGlobal from "../facturaGlobal";
+import FacturaGlobal from "../libComponents/facturaGlobalMaker";
 import Form from 'react-bootstrap/Form';
 function FormAddprod() {
     
@@ -61,13 +61,13 @@ function FormAddprod() {
             <Form action={onSubmit}>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Importe</Form.Label>
-        <Form.Control type="text" placeholder="importe" />
+        <Form.Control type="text" placeholder="importe" name="importe" />
       </Form.Group>
      <FormGroup className="mb-3" controlId="exampleForm.ControlInput2">
       <FormControl type="submit" ></FormControl>
      </FormGroup>
     </Form>
-      <button onClick={() => sendFacturaGlobal(notasPartidas)}>Facturar</button>
+     
        
     </div>
     );

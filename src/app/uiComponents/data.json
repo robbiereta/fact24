@@ -1,0 +1,7 @@
+{
+
+    
+        "tipo_contrato": 
+                    [{"c_TipoContrato":"01","Descripcion":"Contrato de trabajo por tiempo indeterminado","":""},{"c_TipoContrato":"02","Descripcion":"Contrato de trabajo para obra determinada","":""},{"c_TipoContrato":"03","Descripcion":"Contrato de trabajo por tiempo determinado","":""},{"c_TipoContrato":"04","Descripcion":"Contrato de trabajo por temporada","":""},{"c_TipoContrato":"05","Descripcion":"Contrato de trabajo sujeto a prueba","":""},{"c_TipoContrato":"06","Descripcion":"Contrato de trabajo con capacitacion inicial","":""},{"c_TipoContrato":"07","Descripcion":"Modalidad de contratacion por pago de hora laborada","":""},{"c_TipoContrato":"08","Descripcion":"Modalidad de trabajo por comision laboral","":""},{"c_TipoContrato":"09","Descripcion":"Modalidades de contratacion donde no existe relacion de trabajo","":""},{"c_TipoContrato":10,"Descripcion":"Jubilacion, pension, retiro.","":""},{"c_TipoContrato":99,"Descripcion":"Otro contrato","":""}]
+
+}

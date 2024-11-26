@@ -2,9 +2,7 @@
 import Form from 'react-bootstrap/Form';
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
-import postRequest from '../libComponents/postRequest';
-import AsyncSelect from 'react-select/async';
-
+import NominaV1 from '../pages/nomina/v1';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -12,11 +10,10 @@ interface FormCreatorProps {
     type: string;
     placeholder: string;
   }[];
-  recurso: string,
 }
 
 
-function FormCreator(props:FormCreatorProps) {
+function FormNom(props:FormCreatorProps) {
 
   let elements=props.elements
   let formElements:any[]=[]
@@ -40,7 +37,7 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    postRequest(props.recurso,entries)
+    NominaV1(entries,"")
   }
     
   
@@ -54,4 +51,4 @@ function FormCreator(props:FormCreatorProps) {
   );
 }
 
-export default FormCreator;
+export default FormNom;
