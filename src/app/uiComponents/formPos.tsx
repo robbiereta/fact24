@@ -3,8 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { FormGroup, Button } from 'react-bootstrap';
 import ReciboMaker from '../libComponents/ReciboMaker';
 import  {useState} from 'react';
-import {Modal} from 'react-bootstrap'
-import Ticket from './ticket';
+import {Modal} from 'react-bootstrap';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -17,11 +16,13 @@ interface FormCreatorProps {
 
 function FormPos(props:FormCreatorProps) {
   const [show, setShow] = useState(false);
+  const [ticketContent, setTicketContent] = useState('');
 
+  const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
+  let ticket:any;
   let elements=props.elements
   let formElements:any[]=[]
   var optionelements:any[]=[]
@@ -74,8 +75,8 @@ function FormPos(props:FormCreatorProps) {
     }
 
   function onSubmitForRecibo(obj) {
-    ReciboMaker(obj) 
-    
+    ticket=ReciboMaker(obj) 
+    handleTicketContent()
   }
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
@@ -84,7 +85,7 @@ function FormPos(props:FormCreatorProps) {
 
   }
   
-   var ticketContent=Ticket()
+   
   return (
     <>
     <Form action={onSubmit}>
@@ -98,7 +99,7 @@ function FormPos(props:FormCreatorProps) {
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Total</Modal.Title>
+          <Modal.Title>Ticket</Modal.Title>
         </Modal.Header>
         <Modal.Body>{ticketContent}</Modal.Body>
         <Modal.Footer>

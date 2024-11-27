@@ -1,6 +1,6 @@
 'use client'
 const receipt = require("receipt");
-function Ticket(folio) {
+function Ticket(folio,fechaActual) {
          
   const output = receipt.create([
     { type: 'text', value: [
@@ -11,8 +11,8 @@ function Ticket(folio) {
     ], align: 'center' },
     { type: 'empty' },
     { type: 'properties', lines: [
-        { name: 'No. de Folio', value: props.folio },
-        { name: 'Date', value: 'XX/XX/XXXX XX:XX' }
+        { name: 'No. de Folio', value: folio },
+        { name: 'Fecha', value: fechaActual }
     ] },
     { type: 'table', lines: [
         { item: 'Product 1', qty: 1, cost: 1000 },

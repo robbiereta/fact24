@@ -19,10 +19,11 @@ function ReciboMaker(notasPartidas : any) {
     console.log(totalConImpuestos);
 
    let fecha = new Date();
-   const id = orderid.generate();
+   let fechaActual = fecha.toISOString();
+   const folio = orderid.generate();
       let recibo={
-            'folio_venta' : id,
-	'fecha' : fecha.toISOString().split('T')[0],
+            'folio_venta' : folio,
+	'fecha' : fechaActual,
 	'cliente' : "Cliente",
 	'lineas_venta' : notasPartidas,
   'total:' : totalConImpuestos,
@@ -31,11 +32,11 @@ function ReciboMaker(notasPartidas : any) {
 	'observaciones' : "observaciones"
                   }
 
- Ticket(id)
+  let ticketContent=Ticket(folio,fechaActual)
   
 
  postRequest("https://express-low5.onrender.com/notas_venta",recibo)
-          
+  return ticketContent       
 }
 
 
