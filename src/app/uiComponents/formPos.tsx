@@ -1,9 +1,10 @@
 'use client'
 import Form from 'react-bootstrap/Form';
-import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import ReciboMaker from '../libComponents/ReciboMaker';
-
+import  {useState} from 'react';
+import {Modal} from 'react-bootstrap'
+import Ticket from './ticket';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -15,6 +16,10 @@ interface FormCreatorProps {
 
 
 function FormPos(props:FormCreatorProps) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
   let elements=props.elements
@@ -70,6 +75,7 @@ function FormPos(props:FormCreatorProps) {
 
   function onSubmitForRecibo(obj) {
     ReciboMaker(obj) 
+    
   }
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
@@ -78,7 +84,7 @@ function FormPos(props:FormCreatorProps) {
 
   }
   
-  
+   var ticketContent=Ticket()
   return (
     <>
     <Form action={onSubmit}>
@@ -87,9 +93,23 @@ function FormPos(props:FormCreatorProps) {
         Agregar
       </Button>
     </Form>
-    <button  onClick={() =>onSubmitForRecibo(notasPartidas)}>
+    <Button  onClick={() =>{onSubmitForRecibo(notasPartidas);handleShow();}}>
      Hacer recibo
-      </button>
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Total</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{ticketContent}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
