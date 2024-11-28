@@ -16,15 +16,15 @@ function ReciboMaker(notasPartidas : any) {
       return total3
     }
     let totalConImpuestos: number = getTotal(notasPartidas)
-    console.log(totalConImpuestos);
-
+    let iva = totalConImpuestos * 0.16
+    let subtotal=totalConImpuestos-iva
    let fecha = new Date();
    let fechaActual = fecha.toISOString();
    const folio = orderid.generate();
       let recibo={
             'folio_venta' : folio,
 	'fecha' : fechaActual,
-	'cliente' : "Cliente",
+	'cliente' : "Publico en general",
 	'lineas_venta' : notasPartidas,
   'total:' : totalConImpuestos,
 	'estatus' : "pagado",
@@ -32,7 +32,7 @@ function ReciboMaker(notasPartidas : any) {
 	'observaciones' : "observaciones"
                   }
 
-  let ticketContent=Ticket(folio,fechaActual)
+  let ticketContent=Ticket(folio,fechaActual,notasPartidas,iva,subtotal,totalConImpuestos)
   
 
  postRequest("https://express-low5.onrender.com/notas_venta",recibo)

@@ -39,26 +39,27 @@ function FormPos(props:FormCreatorProps) {
   })
 
   let notasPartidas:any[]=[]
-  function addPartida(importe:any) {
+  function addPartida(pu:any,cantidad) {
      
-    
-    let iva = Number(importe) * 0.16
-    let impdeConcepto=Number(importe-iva)
+    let importeConImp=pu*cantidad
+    let iva = Number(importeConImp) * 0.16
+    let impSinImp=Number(importeConImp-iva)
+    let puSinImp=Number(pu-iva)
     // importe=Number(importeSinimpuestos)
       let partida= {
         ClaveProdServ: "01010101",
         ClaveUnidad: "ACT",
         Unidad: "Actividad",
-        Cantidad: "1",
+        Cantidad: cantidad,
         Descripcion: "Venta",
-        ValorUnitario: ""+impdeConcepto+"",
-        Importe: ""+impdeConcepto+"",
-        ImporteRealConImp:"" +Number(importe) +"",
+        ValorUnitario: ""+puSinImp+"",
+        Importe: ""+impSinImp+"",
+        ImporteRealConImp:"" +Number(importeConImp) +"",
         ObjetoImp:"02",
         Impuestos :{
           Traslados:[
              {
-          Base: ""+importe+"",
+          Base: ""+importeConImp+"",
           Impuesto: "002",
           TipoFactor: "Tasa",
           TasaOCuota: "0.160000",
@@ -81,7 +82,7 @@ function FormPos(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    addPartida(entries.importe)
+    addPartida(entries.importe,entries.cantidad)
 
   }
   
@@ -94,7 +95,7 @@ function FormPos(props:FormCreatorProps) {
         Agregar
       </Button>
     </Form>
-    <Button  onClick={() =>{onSubmitForRecibo(notasPartidas);handleShow();}}>
+    <Button  onClick={() =>onSubmitForRecibo(notasPartidas)}>
      Hacer recibo
       </Button>
       <Modal show={show} onHide={handleClose}>
