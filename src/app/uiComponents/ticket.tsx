@@ -20,9 +20,7 @@ function Ticket(folio,fechaActual,notasPartidas,iva,subtotal,total) {
         { name: 'Fecha', value: fechaActual }
     ] },
     { type: 'table', lines:lineas },
-    { type: 'empty' },
-    { type: 'text', value: 'Some extra information to add to the footer of this docket.', align: 'center' },
-    { type: 'empty' },
+     { type: 'empty' },
     { type: 'properties', lines: [
         { name: 'IVA (16%)', value: iva },
         { name: 'Subtotal:', value: subtotal },
@@ -32,10 +30,7 @@ function Ticket(folio,fechaActual,notasPartidas,iva,subtotal,total) {
     { type: 'properties', lines: [
         { name: 'Recibido:', value: '0.00' },
         { name: 'Cambio:', value: '0.00' }
-    ] },
-    { type: 'empty' },
-    { type: 'text', value: 'Final bits of text at the very base of a docket. This text wraps around as well!', align: 'center', padding: 5 }
-  ]); 
+    ] }  ]); 
   
   return output
 }

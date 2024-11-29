@@ -20,7 +20,7 @@ function ReciboMaker(notasPartidas : any) {
     let subtotal=totalConImpuestos-iva
    let fecha = new Date();
    let fechaActual = fecha.toISOString();
-   const folio = orderid.generate();
+   let folio = orderid.generate();
       let recibo={
             'folio_venta' : folio,
 	'fecha' : fechaActual,
