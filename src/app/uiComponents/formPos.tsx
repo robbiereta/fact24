@@ -88,8 +88,439 @@ function FormPos(props:FormCreatorProps) {
     
       document.body.innerHTML = originalContents;
     }
+  function arrayToPartidas(array){
+    let impsConvertidos=[]
+    array.map((imp:any)=>{
+      addPartida(imp.importe,1)
+    })
+    impsConvertidos=notasPartidas
+
+    return impsConvertidos
+  }
+
+  let imps_unoaldieciocho=[
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "75.6",
+        "Importe": "75.6",
+        "ImporteRealConImp": "90",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "90",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "14.4"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "159.6",
+        "Importe": "159.6",
+        "ImporteRealConImp": "190",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "190",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "30.400000000000002"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "60.480000000000004",
+        "Importe": "60.480000000000004",
+        "ImporteRealConImp": "72",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "72",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "11.52"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "105.84",
+        "Importe": "105.84",
+        "ImporteRealConImp": "126",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "126",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "20.16"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "204.12",
+        "Importe": "204.12",
+        "ImporteRealConImp": "243",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "243",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "38.88"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "25.2",
+        "Importe": "25.2",
+        "ImporteRealConImp": "30",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "30",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "4.8"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "315",
+        "Importe": "315",
+        "ImporteRealConImp": "375",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "375",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "60"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "134.4",
+        "Importe": "134.4",
+        "ImporteRealConImp": "160",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "160",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "25.6"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "92.4",
+        "Importe": "92.4",
+        "ImporteRealConImp": "110",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "110",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "17.6"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "117.6",
+        "Importe": "117.6",
+        "ImporteRealConImp": "140",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "140",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "22.400000000000002"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "84",
+        "Importe": "84",
+        "ImporteRealConImp": "100",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "100",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "16"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "252",
+        "Importe": "252",
+        "ImporteRealConImp": "300",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "300",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "48"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "25.2",
+        "Importe": "25.2",
+        "ImporteRealConImp": "30",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "30",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "4.8"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "151.2",
+        "Importe": "151.2",
+        "ImporteRealConImp": "180",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "180",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "28.8"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "50.4",
+        "Importe": "50.4",
+        "ImporteRealConImp": "60",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "60",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "9.6"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "185.64",
+        "Importe": "185.64",
+        "ImporteRealConImp": "221",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "221",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "35.36"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "283.08",
+        "Importe": "283.08",
+        "ImporteRealConImp": "337",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "337",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "53.92"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "92.4",
+        "Importe": "92.4",
+        "ImporteRealConImp": "110",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "110",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "17.6"
+                }
+            ]
+        }
+    },
+    {
+        "ClaveProdServ": "01010101",
+        "ClaveUnidad": "ACT",
+        "Unidad": "Actividad",
+        "Cantidad": 1,
+        "Descripcion": "Venta",
+        "ValorUnitario": "144.48",
+        "Importe": "144.48",
+        "ImporteRealConImp": "172",
+        "ObjetoImp": "02",
+        "Impuestos": {
+            "Traslados": [
+                {
+                    "Base": "172",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "27.52"
+                }
+            ]
+        }
+    }
+]
+   
   
-    function onSubmitForRecibo(FormData: FormData) {
+  function onSubmitForRecibo(FormData: FormData) {
     ticket=ReciboMaker(notasPartidas) 
     handleTicketContent()
     handleShow()
@@ -98,10 +529,7 @@ function FormPos(props:FormCreatorProps) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
     //addPartida(entries.importe,entries.Cantidad)
-    let imps=[100,200]
-    imps.map((imp:any)=>{
-      addPartida(imp,1)  
-    })
+    
 
   }
  
