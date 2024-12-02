@@ -97,23 +97,14 @@ function FormPos(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    addPartida(entries.importe,entries.Cantidad)
+    //addPartida(entries.importe,entries.Cantidad)
+    let imps=[100,200]
+    imps.map((imp:any)=>{
+      addPartida(imp,1)  
+    })
 
   }
-  const getData = async () => {
-    try {
-        const response = axios.get(JSON.stringify(notasPartidas))
-        setTableTicketElements(response);
-           
-        
-    } catch (error) {
-        console.error(error);
-    }
-};  
-
-useEffect(() => {
-    getData();
-});
+ 
 
    
   return (
@@ -137,15 +128,14 @@ useEffect(() => {
         </tr>
       </thead>
       <tbody>
-        { Array.isArray(ta tableTicketElements.map((element:any) => (
+        {/* { Array.isArray(tableTicketElements.map((element:any) => (
           <tr key={element._id}>
             <td>{element.Cantidad}</td>
             <td>{element.Descripcion}</td>
             <td>{(element.ImporteRealConImp/element.Cantidad)}</td>
             <td>{element.ImporteRealConImp}</td>
-            {/* <td>{<UpdateandDeleteControls id={element._id} recurso={props.recurso} />}</td> */}
           </tr>
-        ))}
+        )))} */}
       </tbody>
     </Table>
     <Button variant="success" type="submit" >
