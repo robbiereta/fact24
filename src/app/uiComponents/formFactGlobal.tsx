@@ -73,8 +73,8 @@ function FormFactGlobal(props:FormCreatorProps) {
      console.log(notasPartidas)
     }
 
-  function onSubmitForFact(obj) {
-    FacturaGlobalMaker(obj)
+  function onSubmitForFact() {
+    FacturaGlobalMaker(data.data)
   
   }
   function onSubmit(formData: FormData) {

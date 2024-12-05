@@ -8,6 +8,7 @@ import ListaTicket from './lista_ticket';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import UpdateandDeleteControls from './updateanddelete';
+import FacturaGlobalMaker from '../libComponents/facturaGlobalMaker';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -77,7 +78,7 @@ function FormPos(props:FormCreatorProps) {
         }
        
       notasPartidas.push(partida)
-     console.log(notasPartidas)
+
     }
     function print(ticket) {
       var printContents = document.getElementById("ticket").innerHTML;
@@ -91,14 +92,39 @@ function FormPos(props:FormCreatorProps) {
   function arrayToPartidas(array){
     let impsConvertidos=[]
     array.map((imp:any)=>{
-      addPartida(imp.importe,1)
+      addPartida(imp,1)
     })
     impsConvertidos=notasPartidas
 
     return impsConvertidos
   }
+let dos_dic=[50,50,60,55,35,50,145,70,15,48,298,340,36,36,10,15,98,195,80,20,10,18,220,15,10,10,110,30,90,7,12,225,2629,75,50,54]
+//let uno_dic_partidas=arrayToPartidas(uno_dic)  
+let tres_dic=[180,170,50,310,135,45,160,180,12,60,180,125,175,80,45]
+//let fact=ReciboMaker(uno_dic_partidas)
 
-  let imps_unoaldieciocho=[
+
+
+var dia19=[50,75,55,60,15,15,20,15,205,45,45,60,60,50,15,75,25,250]
+var dia20=[86,6,120,1500,155,195,195,70]
+let veintiuno_nov=[65,675,150,60,150,450,45,35,200,40,75,10,10,150,5,40,10,40,7,40,20,15,21,18,45,150,410,40,85]
+let veintidos_nov=[167,60,75,50,10,15,36,15,205,80,45,34,92,45,45,75,50,50,10,95,20,80]
+let veintitres_nov=[139,120,12,30,705,220,70,30,40,377,75]
+let nov25=[240,80,45,35,25,120,30,70,120,75,40,50,340,900,15,385,120,135,65,180,120,300,260]
+let nov26=[85,400,160,130,540,92,160,120,20,12,140,120,540,465,80,15,160,175,8,45,40,45,795,70,50,52,600,36,36,40,40,500]
+let nov27=[360,172,65,95,30,45,90,45,219,75,95,8,135,25,10,30,30,540,540,100] 
+let nov28=[60,85,330,330,220,105,105,45,45,105,15,45,500,75,80,40,130]
+let nov29=[220,60,45,45,50,95,7,70,21,55,30,75,30,10,80]
+let nov30=[340,50,10,7,160,50,35,36,40,55,75,30,110,80,20,80,85]
+let nov_pedidos=[1500,600,1000,2000,180,430,250,1450]
+let nov=dia19.concat(dia20,veintiuno_nov,veintidos_nov,veintitres_nov,nov25,nov26,nov27,nov28,nov29,nov30,nov_pedidos)
+
+
+let conv=arrayToPartidas(nov)
+
+//let fact=ReciboMaker(conv)
+
+let imps_unoaldieciocho=[
     {
         "ClaveProdServ": "01010101",
         "ClaveUnidad": "ACT",
@@ -519,9 +545,13 @@ function FormPos(props:FormCreatorProps) {
     }
 ]
    
-  
+let nov_notas=imps_unoaldieciocho.concat(conv)
+ 
+
+
+
   function onSubmitForRecibo(FormData: FormData) {
-    ticket=ReciboMaker(notasPartidas) 
+    ticket=ReciboMaker(nov_notas) 
     handleTicketContent()
     handleShow()
   }
