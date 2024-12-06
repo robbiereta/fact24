@@ -164,7 +164,7 @@ let imps_unoaldieciocho=[
                     "Impuesto": "002",
                     "TipoFactor": "Tasa",
                     "TasaOCuota": "0.160000",
-                    "Importe": "30.400000000000002"
+                    "Importe": "30.40"
                 }
             ]
         }
@@ -175,8 +175,8 @@ let imps_unoaldieciocho=[
         "Unidad": "Actividad",
         "Cantidad": 1,
         "Descripcion": "Venta",
-        "ValorUnitario": "60.480000000000004",
-        "Importe": "60.480000000000004",
+        "ValorUnitario": "60.48",
+        "Importe": "60.48",
         "ImporteRealConImp": "72",
         "ObjetoImp": "02",
         "Impuestos": {
@@ -340,7 +340,7 @@ let imps_unoaldieciocho=[
                     "Impuesto": "002",
                     "TipoFactor": "Tasa",
                     "TasaOCuota": "0.160000",
-                    "Importe": "22.400000000000002"
+                    "Importe": "22.40"
                 }
             ]
         }
