@@ -1270,11 +1270,11 @@ let OtrosPagos =  {
             "fechaPago": "2024-11-30",
             "fechaInicialPago": "2024-11-25",
             "fechaFinalPago": "2024-12-01",
-            "diasTrabajados": "7",
+            "diasTrabajados": "6",
         }
         
 
-   let res= makeNomina(robbie,datos2)
+   let res= makeNomina(luis,datos2)
    console.log(res)
 
 return(
