@@ -102,16 +102,11 @@ let dos_dic=[50,50,60,55,35,50,145,70,15,48,298,340,36,36,10,15,98,195,80,20,10,
 //let uno_dic_partidas=arrayToPartidas(uno_dic)  
 let tres_dic=[180,170,50,310,135,45,160,180,12,60,180,125,175,80,45,110,130,75,1250,160,65,75]
 let cuatro_dic=[30,20,70,90,90]
-
-
-
-
 let cinco_dic=[55,260,260,60,60,20,290,715,585,60,20,30,85,225,52,75,25,100,50,70]
-
-
 let seis_dic=[20,90,60,66,6,6,15,18,110,75,95,20,318,30,50,125,12,75,75,120,90]
-
-let siete_dic=[40,200,30,55,30,10,152,45,936,220]
+let siete_dic=[40,200,30,55,30,10,152,45,936,220,70,28,30]
+let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
+let imps_unoal7=arrayToPartidas(unoal7)
 
 //let fact=ReciboMaker(uno_dic_partidas)
 
@@ -121,7 +116,7 @@ let siete_dic=[40,200,30,55,30,10,152,45,936,220]
 
 
   function onSubmitForRecibo(FormData: FormData) {
-    ticket=ReciboMaker(nov_notas) 
+    ReciboMaker(imps_unoal7) 
     handleTicketContent()
     handleShow()
   }
@@ -129,7 +124,7 @@ let siete_dic=[40,200,30,55,30,10,152,45,936,220]
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
     //addPartida(entries.importe,entries.Cantidad)
-    
+
 
   }
  

@@ -17,8 +17,8 @@ function ReciboMaker(notasPartidas : any) {
       return total3
     }
     let totalConImpuestos: number = getTotal(notasPartidas)
-    let iva = totalConImpuestos * 0.16
-    let subtotal=totalConImpuestos-iva
+    let iva : number = totalConImpuestos * 0.16
+    let subtotal: number =totalConImpuestos-iva
    let fecha = new Date();
    let fechaActual = fecha.toISOString();
    let folio = orderid.generate();
@@ -27,8 +27,8 @@ function ReciboMaker(notasPartidas : any) {
    let facturaGlobal={
     "Version": "4.0",
     "Serie": "BVIC-G",
-    "Folio": "5",
-    "Fecha": "2024-12-03",
+    "Folio": "6",
+    "Fecha": fechaActual,
     "Sello": "",
     "FormaPago": 99,
     "FormaPagoSpecified": true,
@@ -43,8 +43,8 @@ function ReciboMaker(notasPartidas : any) {
     "MetodoPagoSpecified": true,
     "LugarExpedicion": "87000",
     "InformacionGlobal": {
-      "Periodicidad": "04",
-      "Meses": "11",
+      "Periodicidad": "02",
+      "Meses": "12",
       "Año": "2024"
     },
     "Emisor": {
@@ -73,7 +73,7 @@ function ReciboMaker(notasPartidas : any) {
 ]
 }
       }
-      console.log("fact"+facturaGlobal)
+      console.log(facturaGlobal)
       swConnector(facturaGlobal)
 
 
