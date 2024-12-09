@@ -30,7 +30,7 @@ function FormPos(props:FormCreatorProps) {
   const [ticketContent, setTicketContent] = useState('');
   const [amountPaid, setAmountPaid] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
-
+  const [notasPartidas, setNotasPartidas] = useState<any[]>([]);
   const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -62,7 +62,6 @@ function FormPos(props:FormCreatorProps) {
   return formElements
   })
 
-  let notasPartidas:any[]=[]
   function addPartida(pu:any,cantidad:any) {
      
     let importeConImp=pu*cantidad
@@ -76,7 +75,7 @@ function FormPos(props:FormCreatorProps) {
         Unidad: "Actividad",
         Cantidad: cantidad,
         Descripcion: "Venta",
-        ValorUnitario: ""+puSinImp+"",
+        ValorUnitario: ""+pu+"",
         Importe: ""+impSinImp+"",
         ImporteRealConImp:"" +Number(importeConImp) +"",
         ObjetoImp:"02",
@@ -96,7 +95,7 @@ function FormPos(props:FormCreatorProps) {
         }
        
       notasPartidas.push(partida)
-
+      setNotasPartidas([...notasPartidas])
 
     }
     function print() {
@@ -144,16 +143,14 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
 
 
   function onSubmitForRecibo(FormData: FormData) {
-    ticket=ReciboMaker(notasPartidas) 
-    handleTicketContent()
-    handleShow()
+   
   }
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
     addPartida(entries.importe,entries.Cantidad)
-
-
+    //send to state
+    setNotasPartidas([...notasPartidas]);
   }
  
 
@@ -246,6 +243,9 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
     <Button variant="success" type="submit" style={{ width: '100%', marginBottom: '10px' }} onClick={(e) => {
       e.preventDefault();
       handleChangeModalShow();
+      ticket=ReciboMaker(notasPartidas) 
+      handleTicketContent()
+      handleShow()
     }}>
     Crear Ticket
     </Button>
