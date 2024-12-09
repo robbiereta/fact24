@@ -34,7 +34,13 @@ function FormPos(props:FormCreatorProps) {
   const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleChangeModalClose = () => setShowChangeModal(false);
+  const handleChangeModalClose = () => {
+    
+    setShowChangeModal(false);
+    ticket=ReciboMaker(notasPartidas) 
+    handleTicketContent()
+    handleShow()
+  }
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
     const newTotal = notasPartidas.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0);
@@ -142,9 +148,6 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
 
 
 
-  function onSubmitForRecibo(FormData: FormData) {
-   
-  }
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
@@ -238,14 +241,11 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
           </Table>
         </div>
 
-        <Form action={onSubmitForRecibo}>   
+        <Form >   
     <div style={{ borderTop: '2px dashed #ccc', marginTop: '15px', paddingTop: '15px', textAlign: 'center' }}>
     <Button variant="success" type="submit" style={{ width: '100%', marginBottom: '10px' }} onClick={(e) => {
       e.preventDefault();
       handleChangeModalShow();
-      ticket=ReciboMaker(notasPartidas) 
-      handleTicketContent()
-      handleShow()
     }}>
     Crear Ticket
     </Button>
