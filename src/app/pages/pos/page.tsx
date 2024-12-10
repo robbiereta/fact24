@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormPos from "@/app/uiComponents/formPos";
 import NavScroll from "@/app/uiComponents/nav";
- function Page() {
+import TabsComponent from "@/app/uiComponents/TabsComponent";
+function Page() {
         
         let elements =
         [
@@ -28,7 +29,8 @@ import NavScroll from "@/app/uiComponents/nav";
     return (
         <div>
           <NavScroll />
-          <FormPos elements={elements} />
+      <TabsComponent elements={elements} />
+       
     </div>
     );
   

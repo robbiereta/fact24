@@ -1,48 +1,117 @@
 'use client'
 
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import axios from 'axios';
 import UpdateandDeleteControls from './updateanddelete';
+import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
+import Pagination from 'react-bootstrap/Pagination';
 
 function ListaTicket(props:any) {
-  
-    const [tableElements, setTableElements] = useState([]);
-   
+  let url = axios.defaults.baseURL = 'https://express-low5.onrender.com'
+  const [tableElements, setTableElements] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
-    
-    return (
-    <>
-      <Form action={onSubmitForRecibo}>
-    <ListaTicket recurso="" />
-  <Button variant="success" type="submit" >
-    Crear Ticket
-    </Button>
-   </Form>
-    <Table striped>
-      <thead>
-        <tr>
-          <th>Cantidad</th>
-          <th>Desc.</th>
-          <th>P.U.</th>
-          <th>Importe</th>
-        </tr>
-      </thead>
-      <tbody>
-      { Array.isArray(tableElements) && tableElements.map((element:any) => (
-          <tr key={element._id}>
-            <td>{element.Cantidad}</td>
-            <td>{element.Descripcion}</td>
-            <td>{(element.ImporteRealConImp/element.Cantidad)}</td>
-            <td>{element.ImporteRealConImp}</td>
-          <td>{<UpdateandDeleteControls id={element._id} recurso={props.recurso} />}</td>
+  const getData = async () => {
+    try {
+      const response = await axios.get(url+props.recurso);
+      // Ensure we're setting an array, even if empty
+      const data = response.data && Array.isArray(response.data) ? response.data : [];
+      setTableElements(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setTableElements([]);
+    }
+  };  
+
+  useEffect(() => {
+    getData();
+  }, [props.recurso]); // Re-fetch when recurso changes
+
+  if (!Array.isArray(tableElements) || tableElements.length === 0) {
+    return <div className="text-center p-4">No hay registros disponibles.</div>;
+  }
+
+  // Get current items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = tableElements.slice(indexOfFirstItem, indexOfLastItem);
+  console.log(tableElements);
+  
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(tableElements.length / itemsPerPage);
+
+  // Generate page items
+  let items = [];
+  for (let number = 1; number <= totalPages; number++) {
+    items.push(
+      <Pagination.Item 
+        key={number} 
+        active={number === currentPage}
+        onClick={() => paginate(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  return (
+    <div className="p-3">
+      <Table striped hover>
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Importe</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
-  </>
+        </thead>
+        <tbody>
+          {currentItems.map((element:any) => (
+            <tr key={element.folio_venta}>
+              <td>{element.folio_venta}</td>
+              <td>{element.fecha}</td>
+              <td>{element.cliente}</td>
+              <td></td>
+              <td>
+                <UpdateandDeleteControls id={element._id} recurso={url+props.recurso} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      <div className="d-flex justify-content-center mt-4">
+        <Pagination>
+          <Pagination.First 
+            onClick={() => paginate(1)} 
+            disabled={currentPage === 1}
+          />
+          <Pagination.Prev 
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {items}
+          <Pagination.Next 
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          />
+          <Pagination.Last 
+            onClick={() => paginate(totalPages)}
+            disabled={currentPage === totalPages}
+          />
+        </Pagination>
+      </div>
+
+      <div className="text-muted text-center mt-2">
+        Mostrando {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, tableElements.length)} de {tableElements.length} registros
+      </div>
+    </div>
   );
 }
 

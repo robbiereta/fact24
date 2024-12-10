@@ -114,7 +114,7 @@ function FormPos(props:FormCreatorProps) {
         window.print();
     
         document.body.innerHTML = originalContents;
-      
+        window.location.reload();
       } else {
         console.error("Ticket element not found");
         // Optionally, you could show a user-friendly error message
@@ -277,7 +277,7 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
         </Modal.Header>
         <Modal.Body>
           <p>Total: ${total.toFixed(2)}</p>
-          <p>Cantidad pagada: <input type="number" value={amountPaid} onChange={(e) => setAmountPaid(Number(e.target.value))} /></p>
+          <p>Cantidad pagada: <input type="number"   value={amountPaid} onChange={(e) => setAmountPaid(Number(e.target.value))} /></p>
           <p>Cambio: ${calculateChange().toFixed(2)}</p>
         </Modal.Body>
         <Modal.Footer>
