@@ -38,8 +38,15 @@ function ListaTicket(props:any) {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = tableElements.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(tableElements);
-  
+
+  function getTotal(notas: any[]) {
+    return notas.reduce((total, note) => {
+      return total + note.lineas_venta.reduce((subtotal: number, linea: any) => {
+        return subtotal + Number(linea.ImporteRealConImp);
+      }, 0);
+    }, 0);
+  }
+
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -77,7 +84,7 @@ function ListaTicket(props:any) {
               <td>{element.folio_venta}</td>
               <td>{element.fecha}</td>
               <td>{element.cliente}</td>
-              <td></td>
+              <td>{getTotal([element])}</td>
               <td>
                 <UpdateandDeleteControls id={element._id} recurso={url+props.recurso} />
               </td>
