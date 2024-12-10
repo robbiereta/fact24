@@ -20,7 +20,7 @@ function ReciboMaker(notasPartidas : any) {
     let iva : number = totalConImpuestos * 0.16
     let subtotal: number =totalConImpuestos-iva
    let fecha = new Date();
-   let fechaActual = fecha.toISOString();
+   let fechaActual = fecha.toLocaleDateString();
    let folio = orderid.generate();
 
 

@@ -237,6 +237,14 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
                   <td style={{ padding: '12px 15px' }}>${Number(item.ImporteRealConImp).toFixed(2)}</td>
                 </tr>
               ))}
+              <tr style={{ 
+                borderTop: '2px solid #dee2e6',
+                backgroundColor: '#f8f9fa',
+                fontWeight: 'bold'
+              }}>
+                <td colSpan={3} style={{ padding: '12px 15px', textAlign: 'right' }}>Total:</td>
+                <td style={{ padding: '12px 15px' }}>${notasPartidas.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0).toFixed(2)}</td>
+              </tr>
             </tbody>
           </Table>
         </div>
