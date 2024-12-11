@@ -61,7 +61,7 @@ function FormPos(props:FormCreatorProps) {
   formElements.push(
     <Form.Group className="mb-3" controlId={element.name+element.id} key={element.id+"key1"}>
     <Form.Label key={element.id+"key2"}>{element.placeholder}</Form.Label>
-    <Form.Control  key={element.id+"key3"}type={element.type} name={element.name} placeholder={element.placeholder} />
+    <Form.Control required key={element.id+"key3"}type={element.type} name={element.name} placeholder={element.placeholder} />
   
   </Form.Group>
   )
