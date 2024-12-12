@@ -22,6 +22,7 @@ function UpdateandDeleteControls(props:UpdateandDeleteControlsProps) {
       .catch(function (error) {
         console.log(error);
       });
+
   }
     return (
     <Form action={onSubmitForDelete}>

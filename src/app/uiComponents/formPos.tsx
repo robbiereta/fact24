@@ -12,7 +12,7 @@ import FacturaGlobalMaker from '../libComponents/facturaGlobalMaker';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import Receipt58mm from './receipt58mm';
 
 interface FormCreatorProps {
   elements: {
@@ -35,11 +35,9 @@ function FormPos(props:FormCreatorProps) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleChangeModalClose = () => {
-    
+    const change = amountPaid - total;
     setShowChangeModal(false);
-    ticket=ReciboMaker(notasPartidas) 
-    handleTicketContent()
-    handleShow()
+    ReciboMaker(notasPartidas) 
   }
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
@@ -68,7 +66,7 @@ function FormPos(props:FormCreatorProps) {
   return formElements
   })
 
-  function addPartida(pu:any,cantidad:any) {
+  function addPartida(pu:any,cantidad:any,Descripcion) {
      
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
@@ -80,7 +78,7 @@ function FormPos(props:FormCreatorProps) {
         ClaveUnidad: "ACT",
         Unidad: "Actividad",
         Cantidad: cantidad,
-        Descripcion: "Venta",
+        Descripcion:Descripcion ,
         ValorUnitario: ""+pu+"",
         Importe: ""+impSinImp+"",
         ImporteRealConImp:"" +Number(importeConImp) +"",
@@ -105,20 +103,48 @@ function FormPos(props:FormCreatorProps) {
 
     }
     function print() {
-      const ticketElement = document.getElementById("ticket");
-      if (ticketElement) {
-        var printContents = ticketElement.innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-    
-        window.print();
-    
-        document.body.innerHTML = originalContents;
-        window.location.reload();
-      } else {
-        console.error("Ticket element not found");
-        // Optionally, you could show a user-friendly error message
-        alert("Unable to print: Ticket element not found");
+      const receiptElement = document.getElementById('receipt-to-print');
+      if (receiptElement) {
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+          printWindow.document.write(`
+            <html>
+              <head>
+                <title>Ticket de Venta</title>
+                <style>
+                  @media print {
+                    body {
+                      margin: 0;
+                      padding: 0;
+                    }
+                    #print-content {
+                      width: 58mm;
+                      margin: 0 auto;
+                    }
+                    @page {
+                      size: 58mm auto;
+                      margin: 0;
+                    }
+                  }
+                </style>
+              </head>
+              <body>
+                <div id="print-content">
+                  ${receiptElement.innerHTML}
+                </div>
+                <script>
+                  window.onload = function() {
+                    window.print();
+                    window.onafterprint = function() {
+                      window.close();
+                    };
+                  };
+                </script>
+              </body>
+            </html>
+          `);
+          printWindow.document.close();
+        }
       }
     }
   function arrayToPartidas(array){
@@ -151,7 +177,7 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    addPartida(entries.importe,entries.Cantidad)
+    addPartida(entries.importe,entries.Cantidad,entries.Descripcion)
     //send to state
     setNotasPartidas([...notasPartidas]);
   }
@@ -259,38 +285,53 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
     </Button>
     </div>
     </Form>
+   
         </div>
         </Col>
       </Row>
     </Container>
        
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Ticket</Modal.Title>
-        </Modal.Header>
-        <Modal.Body id='ticket'>{ticketContent}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-          <Button variant="success" onClick={print}>
-            Imprimir
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      
 
       <Modal show={showChangeModal} onHide={handleChangeModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Cambio</Modal.Title>
+          <Modal.Title>Pago</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Total: ${total.toFixed(2)}</p>
-          <p>Cantidad pagada: <input type="number"   value={amountPaid} onChange={(e) => setAmountPaid(Number(e.target.value))} /></p>
-          <p>Cambio: ${calculateChange().toFixed(2)}</p>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Total a pagar</Form.Label>
+              <Form.Control
+                type="number"
+                value={total}
+                readOnly
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Cantidad pagada</Form.Label>
+              <Form.Control
+                type="number"
+                value={amountPaid}
+                onChange={(e) => setAmountPaid(Number(e.target.value))}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Cambio</Form.Label>
+              <Form.Control
+                type="number"
+                value={amountPaid - total}
+                readOnly
+              />
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleChangeModalClose}>
+          <Button variant="secondary" onClick={() => setShowChangeModal(false)}>
             Cerrar
+          </Button>
+          <Button variant="primary" onClick={handleChangeModalClose}>
+            Imprimir
           </Button>
         </Modal.Footer>
       </Modal>

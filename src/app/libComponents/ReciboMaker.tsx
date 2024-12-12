@@ -1,7 +1,7 @@
 'use client'
 import postRequest from "./postRequest";
 const orderid = require('order-id')('key');
-import Ticket from "../uiComponents/ticket";
+
 import swConnector from "./swConector";
 function ReciboMaker(notasPartidas : any) {
     let total3 = 0;
@@ -88,11 +88,10 @@ function ReciboMaker(notasPartidas : any) {
 	'observaciones' : "observaciones"
                   }
 
- let ticketContent=Ticket(folio,fechaActual,notasPartidas,iva,subtotal,totalConImpuestos)
   
 
  postRequest("https://express-low5.onrender.com/notas_venta",recibo)
- return ticketContent       
+     
 }
 
 

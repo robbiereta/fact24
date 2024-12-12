@@ -30,7 +30,6 @@
     "react-hook-form": "^7.50.1",
     "react-select": "^5.8.0",
     "react-select-search": "^4.1.7",
-    "receipt": "^1.4.0",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
     "sw-sdk-nodejs": "^1.1.4"
