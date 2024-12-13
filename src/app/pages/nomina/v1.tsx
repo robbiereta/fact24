@@ -1,5 +1,6 @@
 'use client'
-import makeNomina from "./makeNomina";
+import makeNomina from "./makeNomina_agui";
+//import makeNomina from "./makeNomina";
 import makeNomina_Finiquito from "./makeNomina_finiquito";
 import makeNomina_PrimaV from "./makeNomina_PrimaV";
 function NominaV1(empleado:any,datos:any) {
@@ -45,6 +46,25 @@ let OtrosPagos =  {
                         "RfcPatronOrigen": ""+RfcPatronOrigen+"",
                         "Curp": ""+curpPatron+"",            
                     },}
+
+
+
+                    let agui=
+                    {"Percepcion": 
+            {
+                "TipoPercepcion": "002",
+                "Clave": "00500",
+                "Concepto": "Gratificación Anual (Aguinaldo)",
+                "ImporteGravado": "4242.90",
+                "ImporteExento": "3257.10"
+            }
+        ,
+        "Deduccion": {
+            
+            "isr": "27.57"
+        }
+
+    }
    let aly=    {
     "Version": "4.0",
     "Serie": "bvic",
@@ -167,7 +187,7 @@ let OtrosPagos =  {
     let robbie=    {
         "Version": "4.0",
         "Serie": "bvic",
-        "Folio": "148",
+        "Folio": "154",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
@@ -179,7 +199,7 @@ let OtrosPagos =  {
         "TipoDeComprobante": "N",
         "Exportacion": "01",
         "MetodoPago": "PUE",
-        "LugarExpedicion": "87000",
+        "LugarExpedicion": "87030",
         "Emisor": {
             "Rfc": "RERR6008226N5",
             "Nombre": "ROBERTO RETA RESENDEZ",
@@ -207,7 +227,7 @@ let OtrosPagos =  {
         "Complemento": {
                     "Nomina12": {
                         "Version": "1.2",
-                        "TipoNomina": "O",
+                        "TipoNomina": "E",
                         "FechaPago": "2024-08-10",
                         "FechaInicialPago": "2024-08-05",
                         "FechaFinalPago": "2024-08-11",
@@ -240,44 +260,20 @@ let OtrosPagos =  {
                         "Percepciones": {
                             "TotalSueldos": "1750.00",
                             "TotalGravado": "1750.00",
-                            "TotalExento": "0",
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "Sueldo",
-                                    "ImporteGravado": "1750.00",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
                         "Deducciones": {
-                            "TotalOtrasDeducciones": "43.61",
-                            "TotalImpuestosRetenidos":"27.57",
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.isr,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "Seguridad Social",
-                                    "Importe": "22.95"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "ISR",
-                                    "Importe": "27.57"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": "RCV",
-                                    "Importe": "20.66"
-                                }
+                             agui.Deduccion
      
      
                             ]
-                        },
-                        "OtrosPagos": OtrosPagos.OtrosPagos
+                        }
                        
                     }
                 }
@@ -1267,14 +1263,14 @@ let OtrosPagos =  {
         }}
     
         let datos2={
-            "fechaPago": "2024-12-07",
-            "fechaInicialPago": "2024-12-02",
-            "fechaFinalPago": "2024-12-08",
-            "diasTrabajados": "7",
+            "fechaPago": "2024-12-12",
+            "fechaInicialPago": "2024-01-01",
+            "fechaFinalPago": "2024-12-31",
+            "diasTrabajados": "30",
         }
         
 
-   let res= makeNomina(homero,datos2)
+   let res= makeNomina(robbie,datos2)
    console.log(res)
 
 return(
