@@ -60,8 +60,10 @@ let OtrosPagos =  {
             }
         ,
         "Deduccion": {
-            
-            "isr": "27.57"
+            "TipoDeduccion": "002",
+            "Clave": "002",
+            "Concepto": "ISR",
+            "Importe": "888.35"
         }
 
     }
