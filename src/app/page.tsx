@@ -42,7 +42,6 @@ export default async function Home() {
     <main>
       {/* Render the navigation bar */}
       <div>
-       <NavScroll />
       </div>
     </main>
   );

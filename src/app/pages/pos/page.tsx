@@ -1,8 +1,6 @@
 'use client'
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FormPos from "@/app/uiComponents/formPos";
-import NavScroll from "@/app/uiComponents/nav";
 import TabsComponent from "@/app/uiComponents/TabsComponent";
 function Page() {
         
@@ -28,7 +26,6 @@ function Page() {
       
     return (
         <div>
-          <NavScroll />
       <TabsComponent elements={elements} />
        
     </div>
