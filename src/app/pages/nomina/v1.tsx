@@ -35,7 +35,7 @@ let OtrosPagos =  {
          "Concepto": "Subsidio",
          "Importe": "0.00",
          "SubsidioAlEmpleo": {
-           "SubsidioCausado": "89.81"
+           "SubsidioCausado": "0.00"
          }
        }
      ]
@@ -53,7 +53,7 @@ let OtrosPagos =  {
                     {"Percepcion": 
             {
                 "TipoPercepcion": "002",
-                "Clave": "00500",
+                "Clave": "002",
                 "Concepto": "Gratificación Anual (Aguinaldo)",
                 "ImporteGravado": "4242.90",
                 "ImporteExento": "3257.10"
@@ -260,8 +260,8 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1750.00",
-                            "TotalGravado": "1750.00",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
                             "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
                              agui.Percepcion
@@ -269,13 +269,15 @@ let OtrosPagos =  {
                         },
                         "Deducciones": {
                             "TotalOtrasDeducciones": "0.00",
-                            "TotalImpuestosRetenidos":agui.Deduccion.isr,
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
                              agui.Deduccion
      
      
                             ]
-                        }
+                        },
+                        "OtrosPagos": OtrosPagos.OtrosPagos
+                           
                        
                     }
                 }
@@ -352,49 +354,24 @@ let OtrosPagos =  {
                                 "SalarioBaseCotApor": "285.72",
                                 "SalarioDiarioIntegrado": "300.20",
                                 "ClaveEntFed": "TAM"
-                            },
-                            "Percepciones": {
-                                "TotalSueldos": "2000.04",
-                                "TotalGravado": "2000.04",
-                                "TotalExento": "0",
+                            }, "Percepciones": {
+                                "TotalSueldos": agui.Percepcion.ImporteExento,
+                                "TotalGravado": agui.Percepcion.ImporteGravado,
+                                "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                                 "Percepcion": [
-                                    {
-                                        "TipoPercepcion": "001",
-                                        "Clave": "001",
-                                        "Concepto": "Sueldo",
-                                        "ImporteGravado": "2000.04",
-                                        "ImporteExento": "0.00"
-                                    }
+                                 agui.Percepcion
                                 ]
                             },
                             "Deducciones": {
-                                "TotalOtrasDeducciones": "49.91",
-                                "TotalImpuestosRetenidos":"54.77",
+                                "TotalOtrasDeducciones": "0.00",
+                                "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                                 "Deduccion": [
-                                    {
-                                        "TipoDeduccion": "001",
-                                        "Clave": "001",
-                                        "Concepto": "Seguridad Social",
-                                        "Importe": "26.27"
-                                    },
-                                    {
-                                        "TipoDeduccion": "002",
-                                        "Clave": "002",
-                                        "Concepto": "ISR",
-                                        "Importe": "54.77"
-                                    },
-         {
-                                        "TipoDeduccion": "003",
-                                        "Clave": "003",
-                                        "Concepto": "RCV",
-                                        "Importe": "23.64"
-                                    }
+                                 agui.Deduccion
          
          
                                 ]
                             },
                             "OtrosPagos": OtrosPagos.OtrosPagos
-                           
                         }
                     }
             }
@@ -470,47 +447,23 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1925.00",
-                            "TotalGravado": "1925.00",
-                            "TotalExento": "0",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1925.00",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
                         "Deducciones": {
-                            "TotalOtrasDeducciones": "48.10",
-                            "TotalImpuestosRetenidos":"46.61  ",
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "25.32"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "46.61"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": " CUOTA OBRERO RCV",
-                                    "Importe": "22.78"
-                                }
+                             agui.Deduccion
      
      
                             ]
                         },
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
+                        "OtrosPagos": OtrosPagos.OtrosPagos     
                     }
                 
         }
@@ -588,46 +541,23 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1750.00",
-                            "TotalGravado": "1750.00",
-                            "TotalExento": "0",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1750.00",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
                         "Deducciones": {
-                            "TotalOtrasDeducciones": "43.61",
-                            "TotalImpuestosRetenidos":"27.57  ",
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "22.95"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "27.57"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": " CUOTA OBRERO RCV",
-                                    "Importe": "20.66"
-                                }
+                             agui.Deduccion
      
      
                             ]
                         },
-            "OtrosPagos":OtrosPagos.OtrosPagos
+                        "OtrosPagos": OtrosPagos.OtrosPagos
                        
                     }
                 
@@ -792,48 +722,23 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1742.51",
-                            "TotalGravado": "1742.51",
-                            "TotalExento": "0",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1742.51",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
-                        "Deducciones": { 
-                            "TotalOtrasDeducciones": "43.43",
-                            "TotalImpuestosRetenidos":"26.75",
+                        "Deducciones": {
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "22.86"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "26.75"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": " CUOTA OBRERO RCV",
-                                    "Importe": "20.57"
-                                }
+                             agui.Deduccion
      
      
                             ]
-     
                         },
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
+                        "OtrosPagos": OtrosPagos.OtrosPagos         
                     }
                 
         }
@@ -1013,48 +918,23 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1925.00",
-                            "TotalGravado": "1925.00",
-                            "TotalExento": "0",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1925.00",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
-                        "Deducciones": { 
-                            "TotalOtrasDeducciones": "48.10",
-                            "TotalImpuestosRetenidos":"46.61",
+                        "Deducciones": {
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "25.32"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "46.61"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": " CUOTA OBRERO RCV",
-                                    "Importe": "22.78"
-                                }
+                             agui.Deduccion
      
      
                             ]
-     
                         },
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
+                        "OtrosPagos": OtrosPagos.OtrosPagos 
                     }
                 
         }
@@ -1130,48 +1010,23 @@ let OtrosPagos =  {
                             "ClaveEntFed": "TAM"
                         },
                         "Percepciones": {
-                            "TotalSueldos": "1750.00",
-                            "TotalGravado": "1750.00",
-                            "TotalExento": "0",
+                            "TotalSueldos": agui.Percepcion.ImporteExento,
+                            "TotalGravado": agui.Percepcion.ImporteGravado,
+                            "TotalExento": ""+agui.Percepcion.ImporteExento+"",
                             "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "SUELDO",
-                                    "ImporteGravado": "1750.00",
-                                    "ImporteExento": "0.00"
-                                }
+                             agui.Percepcion
                             ]
                         },
-                        "Deducciones": { 
-                            "TotalOtrasDeducciones": "43.61",
-                            "TotalImpuestosRetenidos":"27.57",
+                        "Deducciones": {
+                            "TotalOtrasDeducciones": "0.00",
+                            "TotalImpuestosRetenidos":agui.Deduccion.Importe,
                             "Deduccion": [
-                                {
-                                    "TipoDeduccion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "CUOTA OBRERO IMSS",
-                                    "Importe": "22.95"
-                                },
-                                {
-                                    "TipoDeduccion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "RETENCION ISR",
-                                    "Importe": "27.57"
-                                },
-     {
-                                    "TipoDeduccion": "003",
-                                    "Clave": "003",
-                                    "Concepto": " CUOTA OBRERO RCV",
-                                    "Importe": "20.66"
-                                }
+                             agui.Deduccion
      
      
                             ]
-     
                         },
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
+                        "OtrosPagos": OtrosPagos.OtrosPagos
                     }
                 
         }
@@ -1272,7 +1127,7 @@ let OtrosPagos =  {
         }
         
 
-   let res= makeNomina(robbie,datos2)
+   let res= makeNomina(daniel,datos2)
    console.log(res)
 
 return(

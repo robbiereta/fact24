@@ -7,7 +7,7 @@ function makeNomina(empleado:any,datos:any) {
     let deducciones= ((empleado.Descuento/7)*datos.diasTrabajados).toFixed(2)
     let od=((empleado.Complemento.Nomina12.Deducciones.TotalOtrasDeducciones/7)*datos.diasTrabajados)
     let ir=((empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos/7)*datos.diasTrabajados)
-    let TotalDeducciones=od+ir
+    let TotalDeducciones=888.35
     
         let nomina= {
        "Version": "4.0",
@@ -63,7 +63,8 @@ function makeNomina(empleado:any,datos:any) {
                        "FechaFinalPago": ""+datos.fechaFinalPago+"",
                        "NumDiasPagados": ""+datos.diasTrabajados+"", 
                        "TotalPercepciones": ""+percepciones+"",
-                       "TotalDeducciones": ""+TotalDeducciones.toFixed(2)+"",
+                       "TotalDeducciones": "888.35",
+                       "TotalOtrosPagos": "0",
                        "Emisor": {
                            "RegistroPatronal": ""+empleado.Complemento.Nomina12.Emisor.RegistroPatronal+"",
                            "RfcPatronOrigen": ""+empleado.Complemento.Nomina12.Emisor.RfcPatronOrigen+"",
@@ -88,7 +89,7 @@ function makeNomina(empleado:any,datos:any) {
                        },
                        "Percepciones": {
                            "TotalSueldos": ""+percepciones+"",
-                           "TotalGravado": ""+percepciones+"",
+                           "TotalGravado": ""+empleado.Complemento.Nomina12.Percepciones.TotalGravado+"",
                            "TotalExento": ""+empleado.Complemento.Nomina12.Percepciones.TotalExento+"",
                            "Percepcion": 
                            empleado.Complemento.Nomina12.Percepciones.Percepcion.map((percepcion:any) => {
@@ -97,25 +98,39 @@ function makeNomina(empleado:any,datos:any) {
                                    "TipoPercepcion": ""+percepcion.TipoPercepcion+"",
                                    "Clave": ""+percepcion.Clave+"",
                                    "Concepto": ""+percepcion.Concepto+"",
-                                   "ImporteGravado": ""+percepciones+"",
+                                   "ImporteGravado": ""+percepcion.ImporteGravado+"",
                                    "ImporteExento": ""+percepcion.ImporteExento+"",    
                                 }
                            })
                            
                        },
                        "Deducciones": {
-                           "TotalOtrasDeducciones": ""+od.toFixed(2)+"",
-                           "TotalImpuestosRetenidos":""+ir.toFixed(2)+"",
+                           "TotalOtrasDeducciones": "0.00",
+                           "TotalImpuestosRetenidos":"888.35",
                            "Deduccion":
                            empleado.Complemento.Nomina12.Deducciones.Deduccion.map((deduccion:any) => {
                                return {
                                    "TipoDeduccion": ""+deduccion.TipoDeduccion+"",
                                    "Clave": ""+deduccion.Clave+"",
                                    "Concepto": ""+deduccion.Concepto+"",
-                                   "Importe": ""+((deduccion.Importe/7)*datos.diasTrabajados).toFixed(2)+"",
+                                   "Importe": ""+deduccion.Importe+"",
                                }
                            })
-                       }               
+                       }     ,
+                         "OtrosPagos": 
+                   empleado.Complemento.Nomina12.OtrosPagos.map((otro:any) => {
+                       return {
+                           "TipoOtroPago": ""+otro.TipoOtroPago+"",
+                           "Clave": ""+otro.Clave+"",
+                           "Concepto": ""+otro.Concepto+"",
+                           "Importe": ""+otro.Importe+"",
+                       "SubsidioAlEmpleo": {
+                           "SubsidioCausado": ""+otro.SubsidioAlEmpleo.SubsidioCausado+"",
+                       } ,
+                        }
+                   }),
+                   
+
                    }
                }
            ]
