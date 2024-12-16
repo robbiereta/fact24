@@ -167,9 +167,10 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
 let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14)
 
 let quince=ocho.concat(unoal7)
- let imps=arrayToPartidas(quince)
+let dieciseis=[75,50,50,120,65,50,115,35,75,36,5,10,80,360,7,15,440,40,36,215,60,140,45]
+let imps=arrayToPartidas(dieciseis)
 
-//let fact=ReciboMaker(imps)
+let fact=ReciboMaker(imps)
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)
  
