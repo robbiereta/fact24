@@ -31,7 +31,7 @@ function FormPos(props:FormCreatorProps) {
   const [amountPaid, setAmountPaid] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
   const [notasPartidas, setNotasPartidas] = useState<any[]>([]);
-  const handleTicketContent = () => setTicketContent(ticket)
+  //const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleChangeModalClose = () => {
@@ -90,7 +90,7 @@ function FormPos(props:FormCreatorProps) {
           Impuesto: "002",
           TipoFactor: "Tasa",
           TasaOCuota: "0.160000",
-          Importe: ""+iva+"",
+          Importe: ""+iva.toFixed(2)+"",
           }
           ]
       
@@ -99,7 +99,7 @@ function FormPos(props:FormCreatorProps) {
         }
        
       notasPartidas.push(partida)
-      setNotasPartidas([...notasPartidas])
+      //setNotasPartidas([...notasPartidas])
 
     }
     function print() {
@@ -167,9 +167,9 @@ let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
 let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14)
 
 let quince=ocho.concat(unoal7)
-// let imps=arrayToPartidas(quince)
+ let imps=arrayToPartidas(quince)
 
-// let fact=ReciboMaker(imps)
+//let fact=ReciboMaker(imps)
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)
  

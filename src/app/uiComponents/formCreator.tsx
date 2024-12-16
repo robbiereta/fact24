@@ -40,7 +40,8 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    postRequest(props.recurso,entries)
+    
+    
   }
     
   

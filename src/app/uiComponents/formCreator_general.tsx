@@ -4,7 +4,7 @@ import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
 import AsyncSelect from 'react-select/async';
-
+import ReciboMaker from '../libComponents/ReciboMaker';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -37,7 +37,7 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-
+    ReciboMaker(entries.folio)
   }
   
   return (
