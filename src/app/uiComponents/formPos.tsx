@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Receipt58mm from './receipt58mm';
-
+import dias from './data.json'
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -150,7 +150,7 @@ function FormPos(props:FormCreatorProps) {
   function arrayToPartidas(array){
     let impsConvertidos=[]
     array.map((imp:any)=>{
-      addPartida(imp,1)
+      addPartida(imp,1,"Venta")
     })
     impsConvertidos=notasPartidas
 
@@ -164,10 +164,12 @@ let cinco_dic=[55,260,260,60,60,20,290,715,585,60,20,30,85,225,52,75,25,100,50,7
 let seis_dic=[20,90,60,66,6,6,15,18,110,75,95,20,318,30,50,125,12,75,75,120,90]
 let siete_dic=[40,200,30,55,30,10,152,45,936,220,70,28,30]
 let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
+let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14)
 
-//let imps_unoal7=arrayToPartidas(unoal7)
+let quince=ocho.concat(unoal7)
+// let imps=arrayToPartidas(quince)
 
-//let fact=ReciboMaker(uno_dic_partidas)
+// let fact=ReciboMaker(imps)
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)
  

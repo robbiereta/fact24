@@ -1,43 +1,68 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { compare } from "bcryptjs"
+import dbConnect from "@/lib/mongodb"
+import { User } from "@/models/User"
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Add your own authentication logic here
-        // This is where you would typically validate against your database
-        if (credentials?.username === "admin" && credentials?.password === "password") {
-          return {
-            id: "1",
-            name: "Admin",
-            email: "admin@example.com",
-          }
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Invalid credentials");
         }
-        return null
+
+        await dbConnect();
+        
+        const user = await User.findOne({ email: credentials.email });
+
+        if (!user || !user.password) {
+          throw new Error("Invalid credentials");
+        }
+
+        const isPasswordValid = await compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isPasswordValid) {
+          throw new Error("Invalid credentials");
+        }
+
+        return {
+          id: user._id.toString(),
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
       }
     })
   ],
   pages: {
     signIn: '/auth/signin',
-    // signOut: '/auth/signout',
-    // error: '/auth/error',
   },
   session: {
     strategy: "jwt",
   },
   callbacks: {
     async jwt({ token, user }) {
-      return { ...token, ...user }
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
+      return token;
     },
     async session({ session, token }) {
-      session.user = token as any
-      return session
+      if (token) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+      }
+      return session;
     },
   },
 })
