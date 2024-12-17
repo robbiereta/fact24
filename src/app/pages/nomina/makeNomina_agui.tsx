@@ -7,7 +7,7 @@ function makeNomina(empleado:any,datos:any) {
     let deducciones= ((empleado.Descuento/7)*datos.diasTrabajados).toFixed(2)
     let od=((empleado.Complemento.Nomina12.Deducciones.TotalOtrasDeducciones/7)*datos.diasTrabajados)
     let ir=((empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos/7)*datos.diasTrabajados)
-    let TotalDeducciones=888.35
+    let TotalDeducciones=832.16
     
         let nomina= {
        "Version": "4.0",
@@ -63,7 +63,7 @@ function makeNomina(empleado:any,datos:any) {
                        "FechaFinalPago": ""+datos.fechaFinalPago+"",
                        "NumDiasPagados": ""+datos.diasTrabajados+"", 
                        "TotalPercepciones": ""+percepciones+"",
-                       "TotalDeducciones": "888.35",
+                       "TotalDeducciones": ""+TotalDeducciones.toFixed(2)+"",
                        "TotalOtrosPagos": "0",
                        "Emisor": {
                            "RegistroPatronal": ""+empleado.Complemento.Nomina12.Emisor.RegistroPatronal+"",
@@ -106,7 +106,7 @@ function makeNomina(empleado:any,datos:any) {
                        },
                        "Deducciones": {
                            "TotalOtrasDeducciones": "0.00",
-                           "TotalImpuestosRetenidos":"888.35",
+                           "TotalImpuestosRetenidos":""+TotalDeducciones,
                            "Deduccion":
                            empleado.Complemento.Nomina12.Deducciones.Deduccion.map((deduccion:any) => {
                                return {

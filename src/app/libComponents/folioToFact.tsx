@@ -1,4 +1,5 @@
 'use client'
+import axios from "axios";
 import getRequest from "./getRequest";
 import postRequest from "./postRequest";
 const orderid = require('order-id')('key');
@@ -6,12 +7,30 @@ const orderid = require('order-id')('key');
 import swConnector from "./swConector";
 function folioToFact(folio:any) {
     
-  let nota=getRequest("https://express-low5.onrender.com/notas_venta/",folio)
+  let nota;
+  const axios = require('axios');
+
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://express-low5.onrender.com/notas_venta/?folio=7896-647385-0053',
+    headers: { }
+  };
+  
+  axios.request(config)
+  .then((response) => {
+  nota=response.data;
+  console.log(nota);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
   let total3 = 0;
      
-    function getTotal(notas: any) {
-      notas.map((note:any) => {
-        total3 += Number(note.ImporteRealConImp)
+    function getTotal(nota: any) {
+      nota.lineas_venta.map((linea:any) => {
+        total3 += Number(linea.importeRealConImp);
         console.log("total3:"+total3);
       
       })
@@ -19,7 +38,7 @@ function folioToFact(folio:any) {
 
       return total3
     }
-    let totalConImpuestos: number = getTotal(notasPartidas)
+    let totalConImpuestos: number = getTotal(nota)
     let iva : number = totalConImpuestos * 0.16
     let subtotal: number =totalConImpuestos-iva
    let fecha = new Date();
