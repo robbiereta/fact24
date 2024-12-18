@@ -5,7 +5,6 @@ import React from 'react';
 import postRequest from '../libComponents/postRequest';
 import NominaV1 from '../pages/nomina/v1';
 import SelectComponent from './select';
-import { tipo_contrato } from './data.json';
 
 interface FormCreatorProps {
   elements: {
@@ -69,9 +68,7 @@ function FormAddEmpleado(props:FormCreatorProps) {
   }
     //postRequest(props.recurso,obj)
   }
-  let optionElements=tipo_contrato.map((element)=>{
-    optionelements.push(<option>{element.Descripcion}</option>) 
-  })
+  
 
   return (
     <Form action={onSubmit}>

@@ -3,7 +3,7 @@ import swConnector from "@/app/libComponents/swConector"
 
 function makeNomina(empleado:any,datos:any) {
     let fecha=new Date();
-    let percepciones=((empleado.SubTotal/7)*datos.diasTrabajados).toFixed(2)
+    let percepciones=7159.23
     let deducciones= ((empleado.Descuento/7)*datos.diasTrabajados).toFixed(2)
     let od=((empleado.Complemento.Nomina12.Deducciones.TotalOtrasDeducciones/7)*datos.diasTrabajados)
     let ir=((empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos/7)*datos.diasTrabajados)
