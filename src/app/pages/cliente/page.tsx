@@ -1,7 +1,7 @@
 'use client'
 import FormCreator from "@/app/uiComponents/formCreator_general";
 import getNote from "../../uiComponents/getNote";
-
+import folioToFact from "../../libComponents/folioToFact";
 function FacturaCliente() {
     
 
@@ -9,7 +9,7 @@ function FacturaCliente() {
     function onSubmit(formData: FormData) {
         const folio = formData.get("folio");
         console.log(folio);
-        {getNote(folio)}
+        folioToFact(folio)
       }
 
 let elements =

@@ -1,6 +1,6 @@
 import axios from "axios";
-function getRequest(url:any,data:any) {
-    axios.get(url+data)
+function getRequest(url:any) {
+    axios.get(url)
     .then(function (response) {
       console.log(response.data);
       return response.data
