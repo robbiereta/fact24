@@ -1,4 +1,5 @@
 'use client'
+import axios from "axios";
 import getRequest from "./getRequest";
 import postRequest from "./postRequest";
 const orderid = require('order-id')('key');
@@ -16,7 +17,8 @@ function folioToFact(folio:string) {
   
   axios.request(config)
   .then((response) => {
-    nota=(response.data));
+  nota=response.data;
+  console.log(nota);
   })
   .catch((error) => {
     console.log(error);
@@ -25,8 +27,8 @@ function folioToFact(folio:string) {
   let total3 = 0;
      
     function getTotal(nota: any) {
-      nota.map((note:any) => {
-        total3 += Number(note.lineas_venta.ImporteRealConImp)
+      nota.lineas_venta.map((linea:any) => {
+        total3 += Number(linea.importeRealConImp);
         console.log("total3:"+total3);
       
       })
@@ -34,7 +36,7 @@ function folioToFact(folio:string) {
 
       return total3
     }
-   let totalConImpuestos: number = getTotal(nota)
+    let totalConImpuestos: number = getTotal(nota)
     let iva : number = totalConImpuestos * 0.16
     let subtotal: number =totalConImpuestos-iva
    let fecha = new Date();

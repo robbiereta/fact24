@@ -55,7 +55,7 @@ let OtrosPagos =  {
                 "TipoPercepcion": "002",
                 "Clave": "002",
                 "Concepto": "Gratificación Anual (Aguinaldo)",
-                "ImporteGravado": "4242.90",
+                "ImporteGravado": "3902.13",
                 "ImporteExento": "3257.10"
             }
         ,
@@ -63,7 +63,7 @@ let OtrosPagos =  {
             "TipoDeduccion": "002",
             "Clave": "002",
             "Concepto": "ISR",
-            "Importe": "888.35"
+            "Importe": "832.16"
         }
 
     }
@@ -1121,13 +1121,13 @@ let OtrosPagos =  {
     
         let datos2={
             "fechaPago": "2024-12-12",
-            "fechaInicialPago": "2024-01-01",
+            "fechaInicialPago": "2024-01-15",
             "fechaFinalPago": "2024-12-31",
-            "diasTrabajados": "30",
+            "diasTrabajados": "29",
         }
         
 
-   let res= makeNomina(daniel,datos2)
+   let res= makeNomina(misael,datos2)
    console.log(res)
 
 return(

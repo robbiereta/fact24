@@ -3,7 +3,8 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
-import folioToFact from '../libComponents/folioToFact';
+import AsyncSelect from 'react-select/async';
+import ReciboMaker from '../libComponents/ReciboMaker';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -36,7 +37,7 @@ function FormCreator(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    folioToFact(entries.Folio instanceof File ? entries.Folio.name : entries.Folio)
+    ReciboMaker(entries.folio)
   }
   
   return (

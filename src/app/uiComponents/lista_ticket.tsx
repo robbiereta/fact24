@@ -8,15 +8,31 @@ import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
 import Pagination from 'react-bootstrap/Pagination';
 
-function ListaTicket(props:any) {
+interface LineaVenta {
+  ImporteRealConImp: string | number;
+}
+
+interface Nota {
+  folio_venta: string;
+  fecha: string;
+  cliente: string;
+  lineas_venta: LineaVenta[];
+  _id: string;
+}
+
+interface ListaTicketProps {
+  recurso: string;
+}
+
+function ListaTicket({ recurso }: ListaTicketProps) {
   let url = axios.defaults.baseURL = 'https://express-low5.onrender.com'
-  const [tableElements, setTableElements] = useState<any[]>([]);
+  const [tableElements, setTableElements] = useState<Nota[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
   const getData = async () => {
     try {
-      const response = await axios.get(url+props.recurso);
+      const response = await axios.get<Nota[]>(url + recurso);
       // Ensure we're setting an array, even if empty
       const data = response.data && Array.isArray(response.data) ? response.data : [];
       setTableElements(data);
@@ -28,7 +44,7 @@ function ListaTicket(props:any) {
 
   useEffect(() => {
     getData();
-  }, [props.recurso]); // Re-fetch when recurso changes
+  }, [recurso]); // Re-fetch when recurso changes
 
   if (!Array.isArray(tableElements) || tableElements.length === 0) {
     return <div className="text-center p-4">No hay registros disponibles.</div>;
@@ -39,9 +55,9 @@ function ListaTicket(props:any) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = tableElements.slice(indexOfFirstItem, indexOfLastItem);
 
-  function getTotal(notas: any[]) {
+  function getTotal(notas: Nota[]) {
     return notas.reduce((total, note) => {
-      return total + note.lineas_venta.reduce((subtotal: number, linea: any) => {
+      return total + note.lineas_venta.reduce((subtotal: number, linea: LineaVenta) => {
         return subtotal + Number(linea.ImporteRealConImp);
       }, 0);
     }, 0);
@@ -79,14 +95,14 @@ function ListaTicket(props:any) {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((element:any) => (
+          {currentItems.map((element: Nota) => (
             <tr key={element.folio_venta}>
               <td>{element.folio_venta}</td>
               <td>{element.fecha}</td>
               <td>{element.cliente}</td>
               <td>{getTotal([element])}</td>
               <td>
-                <UpdateandDeleteControls id={element._id} recurso={url+props.recurso} />
+                <UpdateandDeleteControls id={element._id} recurso={url+recurso} />
               </td>
             </tr>
           ))}
