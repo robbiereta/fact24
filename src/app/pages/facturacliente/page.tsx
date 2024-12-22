@@ -28,7 +28,6 @@ import NavScroll from "@/app/uiComponents/nav";
   ]
     return (
         <div>
-          <NavScroll/>
          <FormFactCliente elements={elements} />
 
     </div>

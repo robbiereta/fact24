@@ -23,7 +23,7 @@ let FechaFinalPago="2024-08-04"
 let totalOtrosPagos="0"
 let curpPatron="RERR600822HTSTSB01"
 let RfcPatronOrigen="RERR6008226N5"
-let fechaActual=fecha.toISOString().split('T')[0]
+let fechaActual="2024-12-20"
 
 let OtrosPagos =  { 
 
@@ -214,7 +214,7 @@ let OtrosPagos =  {
                         "NumDiasPagados": "7",
                         "TotalPercepciones": "1750.00 ",
                         "TotalDeducciones": "71.18 ",
-                        "TotalOtrosPagos": "0.00 ",
+                        "TotalOtrosPagos": "0.00",
                         "Emisor": {
                             "RegistroPatronal": ""+RegistroPatronal+"",
                             "RfcPatronOrigen": ""+RfcPatronOrigen+"",
@@ -240,7 +240,7 @@ let OtrosPagos =  {
                         "Percepciones": {
                             "TotalSueldos": "1750.00",
                             "TotalGravado": "1750.00",
-                            "TotalExento": "0",
+                            "TotalExento": "0.00",
                             "Percepcion": [
                                 {
                                     "TipoPercepcion": "001",

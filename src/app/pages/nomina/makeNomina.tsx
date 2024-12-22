@@ -13,7 +13,7 @@ function makeNomina(empleado:any,datos:any) {
        "Version": "4.0",
        "Serie": "bvic",
        "Folio": ""+empleado.Folio+"",
-       "Fecha":""+fecha.toISOString().split('T')[0]+"",
+       "Fecha":""+fecha.toLocaleDateString()+"",
        "Sello": "",
        "NoCertificado": "",
        "Certificado": "",

@@ -24,10 +24,10 @@ function FormFactCliente(props:FormCreatorProps) {
 }
 
 let rerr={
-  "Rfc": "RERR6008226N5",
-  "Nombre": "ROBERTO RETA RESENDEZ",
-  "DomicilioFiscalReceptor": "87000",
-  "RegimenFiscalReceptor": "612",
+  "Rfc": "JCE171003UI5",
+  "Nombre": "JAKTUR CONSORCIO EMPRESARIAL",
+  "DomicilioFiscalReceptor": "89460",
+  "RegimenFiscalReceptor": "601",
   "UsoCFDI": "G01"
 }
 
@@ -58,19 +58,20 @@ let rerr={
         ClaveProdServ: claveprodserv,
         ClaveUnidad: "H87",
         Unidad: "Pieza",
-        Cantidad: "1",
+        Cantidad: "1.0",
         Descripcion: Descripcion,
-        ValorUnitario: ""+impdeConcepto+"",
-        Importe: ""+impdeConcepto+"",
+        ValorUnitario: ""+impdeConcepto+"0",
+        Importe: ""+impdeConcepto+"0",
+        ImporteRealConImp:"" +importe +"",
         ObjetoImp:"02",
         Impuestos :{
           Traslados:[
              {
-          Base: ""+importe+"",
+          Base: ""+importe+".00",
+          Importe: ""+iva.toFixed(2)+"",
           Impuesto: "002",
           TipoFactor: "Tasa",
           TasaOCuota: "0.160000",
-          Importe: ""+iva+"",
           }
           ]
       
@@ -89,7 +90,7 @@ let rerr={
        
       function getTotal(notas: any) {
         notas.map((note:any) => {
-          total3 += Number(note.Importe)
+          total3 += Number(note.ImporteRealConImp)
           console.log("total3:"+total3);
         }) 
         return total3
@@ -103,10 +104,10 @@ let rerr={
       let fecha = new Date();
         let factura={
     "Version": "4.0",
-    "FormaPago": "03",
+    "FormaPago": "01",
     "Serie": "RL",
-    "Folio": "2",
-    "Fecha": ""+fecha.toLocaleDateString()+"",
+    "Folio": "7",
+    "Fecha": "2024-12-21",
     "MetodoPago": "PUE",
     "Sello": "",
     "NoCertificado": "",
@@ -119,16 +120,16 @@ let rerr={
     "LugarExpedicion": "87000",
               "Emisor": foza,
               "Receptor": rerr,
-              "Conceptos": notasPartidas,
+              "Conceptos":notasPartidas.map(({ImporteRealConImp, ...rest}) => rest),
               "Impuestos": {
           "TotalImpuestosTrasladados": iva.toFixed(2),  
           "Traslados": [
               {
                   "Base": Number(totalConImpuestos).toFixed(2),
+                  "Importe": Number(iva).toFixed(2),
                   "Impuesto": "002",
                   "TipoFactor": "Tasa",
                   "TasaOCuota": "0.160000",
-                  "Importe": iva.toFixed(2)
               }
           ]
       }
