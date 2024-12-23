@@ -13,6 +13,7 @@
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@signati/saxon": "^0.0.4",
     "@types/bcryptjs": "^2.4.6",
+    "@types/mongoose": "^5.11.96",
     "axios": "^1.6.7",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",

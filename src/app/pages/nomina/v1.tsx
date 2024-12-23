@@ -2,8 +2,10 @@
 import makeNomina from "./makeNomina";
 import makeNomina_Finiquito from "./makeNomina_finiquito";
 import makeNomina_PrimaV from "./makeNomina_PrimaV";
+
 function NominaV1(empleado:any,datos:any) {
-   
+ 
+  
 let fecha=new Date();
 let RegistroPatronal= "F0546946107"       
 
@@ -212,8 +214,8 @@ let OtrosPagos =  {
                         "FechaInicialPago": "2024-08-05",
                         "FechaFinalPago": "2024-08-11",
                         "NumDiasPagados": "7",
-                        "TotalPercepciones": "1750.00 ",
-                        "TotalDeducciones": "71.18 ",
+                        "TotalPercepciones": "1750.00",
+                        "TotalDeducciones": "71.18",
                         "TotalOtrosPagos": "0.00",
                         "Emisor": {
                             "RegistroPatronal": ""+RegistroPatronal+"",
@@ -1267,14 +1269,14 @@ let OtrosPagos =  {
         }}
     
         let datos2={
-            "fechaPago": "2024-12-14",
-            "fechaInicialPago": "2024- 12-09",
-            "fechaFinalPago": "2024-12-15",
+            "fechaPago": "2024-12-21",
+            "fechaInicialPago": "2024- 12-16",
+            "fechaFinalPago": "2024-12-22",
             "diasTrabajados": "7",
         }
         
         
-   let res= makeNomina(misael,datos2)
+   let res= makeNomina(homero,datos2)
    console.log(res)
 
 return(
