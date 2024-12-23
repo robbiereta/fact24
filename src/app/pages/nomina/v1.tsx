@@ -285,7 +285,7 @@ let OtrosPagos =  {
         let kevin=    {
             "Version": "4.0",
             "Serie": "bvic",
-            "Folio": "161",
+            "Folio": "167",
             "Fecha":fechaActual,
             "Sello": "",
             "NoCertificado": "",
@@ -1274,7 +1274,7 @@ let OtrosPagos =  {
         }
         
         
-   let res= makeNomina(robbie,datos2)
+   let res= makeNomina(misael,datos2)
    console.log(res)
 
 return(

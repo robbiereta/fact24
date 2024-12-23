@@ -13,7 +13,7 @@ function makeNomina(empleado:any,datos:any) {
        "Version": "4.0",
        "Serie": "bvic",
        "Folio": ""+empleado.Folio+"",
-       "Fecha":""+fecha.toLocaleDateString()+"",
+       "Fecha":""+fecha.toISOString().split('T')[0]+"",
        "Sello": "",
        "NoCertificado": "",
        "Certificado": "",
@@ -143,7 +143,8 @@ function makeNomina(empleado:any,datos:any) {
      
    
         let response = swConnector(nomina) 
-                   return response
+                       
+        return response
        } 
 
        export default makeNomina
