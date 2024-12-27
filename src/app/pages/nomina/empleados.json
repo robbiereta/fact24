@@ -1,24 +1,887 @@
  
  {
     "empleados": [
-       {"nombre":"robbie",
-       "datos_agui":   {
 
-        "Folio": "148",
-        "Percepcion": 
-            {
-                "TipoPercepcion": "002",
-                "Clave": "00500",
-                "Concepto": "Gratificación Anual (Aguinaldo)",
-                "ImporteGravado": "",
-                "ImporteExento": "3257.10"
+        {
+            
+            "Version": "4.0",
+            "Serie": "bvic",
+            "Folio": "168",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1750.00",
+            "Descuento": "71.18",
+            "Moneda": "MXN",
+            "Total": "1678.82",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "REOR9106285FA",
+                "Nombre": "ROBERTO ANTONIO RETA OLVERA",
+                "DomicilioFiscalReceptor": "87030",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1750.00",
+                    "Importe": "1750.00",
+                    "Descuento": "71.18",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-10",
+                    "FechaInicialPago": "2024-08-05",
+                    "FechaFinalPago": "2024-08-11",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1750.00",
+                    "TotalDeducciones": "71.18",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "REOR910628HTSTLB04",
+                        "NumSeguridadSocial": "09119123561",
+                        "FechaInicioRelLaboral": "2023-01-02",
+                        "Antiguedad": "P99W",
+                        "P":"P",
+                        "Weeks":"99",
+                        "W":"W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "10",
+                        "Departamento": "Ventas",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "250.00",
+                        "SalarioDiarioIntegrado": "262.33",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1750.00",
+                        "TotalGravado": "1750.00",
+                        "TotalExento": "0.00",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "Sueldo",
+                                "ImporteGravado": "1750.00",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "43.61",
+                        "TotalImpuestosRetenidos": "27.57",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "Seguridad Social",
+                                "Importe": "22.95"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "ISR",
+                                "Importe": "27.57"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": "RCV",
+                                "Importe": "20.66"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
             }
-        
-
-       }
-    
-    }
-]
+        },
+        {
+            "Version": "4.0",
+            "Serie": "bvic",
+            "Folio": "169",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "2000.04",
+            "Descuento": "104.68",
+            "Moneda": "MXN",
+            "Total": "1895.36",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "VAMK960929H23",
+                "Nombre": "KEVIN ALEJANDRO VASQUEZ MACIAS",
+                "DomicilioFiscalReceptor": "87100",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "2000.04",
+                    "Importe": "2000.04",
+                    "Descuento": "104.68",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-10",
+                    "FechaInicialPago": "2024-08-05",
+                    "FechaFinalPago": "2024-08-11",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "2004.04",
+                    "TotalDeducciones": "104.68",
+                    "TotalOtrosPagos": "0.00 ",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "VAMK960929HTSSCV09",
+                        "NumSeguridadSocial": "56169682574",
+                        "FechaInicioRelLaboral": "2022-10-17",
+                        "Antiguedad": "P110W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "8",
+                        "Departamento": "Ventas",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "285.72",
+                        "SalarioDiarioIntegrado": "300.20",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "2000.04",
+                        "TotalGravado": "2000.04",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "Sueldo",
+                                "ImporteGravado": "2000.04",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "49.91",
+                        "TotalImpuestosRetenidos": "54.77",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "Seguridad Social",
+                                "Importe": "26.27"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "ISR",
+                                "Importe": "54.77"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": "RCV",
+                                "Importe": "23.64"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "Version": "4.0",
+            "Serie": "Bvic",
+            "Folio": "170",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1925.00",
+            "Descuento": "94.71",
+            "Moneda": "MXN",
+            "Total": "1830.29",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "BALA9408074K1",
+                "Nombre": "ALDO ANGEL BARRON LADRON DE GUEVARA",
+                "DomicilioFiscalReceptor": "87080",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1925.00",
+                    "Importe": "1925.00",
+                    "Descuento": "94.71",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-03",
+                    "FechaInicialPago": "2024-07-29",
+                    "FechaFinalPago": "2024-08-04",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1925.00",
+                    "TotalDeducciones": "94.71",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "BALA940807HTSRDL02",
+                        "NumSeguridadSocial": "09129497229",
+                        "FechaInicioRelLaboral": "2020-11-03",
+                        "Antiguedad": "P211W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "3",
+                        "Departamento": "SERVICIO",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "275.00 ",
+                        "SalarioDiarioIntegrado": "289.32 ",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1925.00",
+                        "TotalGravado": "1925.00",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "SUELDO",
+                                "ImporteGravado": "1925.00",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "48.10",
+                        "TotalImpuestosRetenidos": "46.61  ",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "CUOTA OBRERO IMSS",
+                                "Importe": "25.32"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "RETENCION ISR",
+                                "Importe": "46.61"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": " CUOTA OBRERO RCV",
+                                "Importe": "22.78"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "Version": "4.0",
+            "Serie": "Bvic",
+            "Folio": "171",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1750.00",
+            "Descuento": "71.18",
+            "Moneda": "MXN",
+            "Total": "1678.82",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "RATJ990125TS1",
+                "Nombre": "JUAN DANIEL RAMIREZ TREJO",
+                "DomicilioFiscalReceptor": "87930",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1750.00",
+                    "Importe": "1750.00",
+                    "Descuento": "71.18",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-03",
+                    "FechaInicialPago": "2024-07-29",
+                    "FechaFinalPago": "2024-08-04",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1750.00",
+                    "TotalDeducciones": "71.18",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "RATJ990125HTSMRN01",
+                        "NumSeguridadSocial": "27189918991",
+                        "FechaInicioRelLaboral": "2022-09-26",
+                        "Antiguedad": "P113W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "3",
+                        "Departamento": "Ventas",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "250.00",
+                        "SalarioDiarioIntegrado": "262.33",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1750.00",
+                        "TotalGravado": "1750.00",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "SUELDO",
+                                "ImporteGravado": "1750.00",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "43.61",
+                        "TotalImpuestosRetenidos": "27.57  ",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "CUOTA OBRERO IMSS",
+                                "Importe": "22.95"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "RETENCION ISR",
+                                "Importe": "27.57"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": " CUOTA OBRERO RCV",
+                                "Importe": "20.66"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "Version": "4.0",
+            "Serie": "Bvic",
+            "Folio": "172",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1742.51",
+            "Descuento": "70.18",
+            "Moneda": "MXN",
+            "Total": "1672.33",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "PIRM051209167",
+                "Nombre": "MISAEL ALEXANDER PITONES RAMOS",
+                "DomicilioFiscalReceptor": "87048",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1742.51",
+                    "Importe": "1742.51",
+                    "Descuento": "70.18",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-03",
+                    "FechaInicialPago": "2024-07-29",
+                    "FechaFinalPago": "2024-08-04",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1742.51",
+                    "TotalDeducciones": "70.18",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "PIRM051209HTSTMSA3",
+                        "NumSeguridadSocial": "02240563086",
+                        "FechaInicioRelLaboral": "2024-01-15",
+                        "Antiguedad": "P48W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "12",
+                        "Departamento": "Ventas",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "248.93",
+                        "SalarioDiarioIntegrado": "261.21",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1742.51",
+                        "TotalGravado": "1742.51",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "SUELDO",
+                                "ImporteGravado": "1742.51",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "43.43",
+                        "TotalImpuestosRetenidos": "26.75",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "CUOTA OBRERO IMSS",
+                                "Importe": "22.86"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "RETENCION ISR",
+                                "Importe": "26.75"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": " CUOTA OBRERO RCV",
+                                "Importe": "20.57"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "Version": "4.0",
+            "Serie": "Bvic",
+            "Folio": "173",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1925.00",
+            "Descuento": "94.71",
+            "Moneda": "MXN",
+            "Total": "1830.29",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "SALH901227U20",
+                "Nombre": "HOMERO SANCHEZ LOPEZ",
+                "DomicilioFiscalReceptor": "87100",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1925.00",
+                    "Importe": "1925.00",
+                    "Descuento": "94.71",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-03",
+                    "FechaInicialPago": "2024-07-29",
+                    "FechaFinalPago": "2024-08-04",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1925.00",
+                    "TotalDeducciones": "94.71",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "SALH901227HTSNPM09",
+                        "NumSeguridadSocial": "09099011364",
+                        "FechaInicioRelLaboral": "2020-11-03",
+                        "Antiguedad": "P212W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "2",
+                        "Departamento": "SERVICIO",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "289.32",
+                        "SalarioDiarioIntegrado": "275.00",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1925.00",
+                        "TotalGravado": "1925.00",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "SUELDO",
+                                "ImporteGravado": "1925.00",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "48.10",
+                        "TotalImpuestosRetenidos": "46.61",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "CUOTA OBRERO IMSS",
+                                "Importe": "25.32"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "RETENCION ISR",
+                                "Importe": "46.61"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": " CUOTA OBRERO RCV",
+                                "Importe": "22.78"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "Version": "4.0",
+            "Serie": "Bvic",
+            "Folio": "174",
+            "Fecha": "2024-12-20",
+            "Sello": "",
+            "NoCertificado": "",
+            "Certificado": "",
+            "SubTotal": "1750.00",
+            "Descuento": "71.18",
+            "Moneda": "MXN",
+            "Total": "1678.82",
+            "TipoDeComprobante": "N",
+            "Exportacion": "01",
+            "MetodoPago": "PUE",
+            "LugarExpedicion": "87030",
+            "Emisor": {
+                "Rfc": "RERR6008226N5",
+                "Nombre": "ROBERTO RETA RESENDEZ",
+                "RegimenFiscal": "612"
+            },
+            "Receptor": {
+                "Rfc": "LOSL890628U96",
+                "Nombre": "LUIS ANGEL LOPEZ SANCHEZ",
+                "DomicilioFiscalReceptor": "87037",
+                "RegimenFiscalReceptor": "605",
+                "UsoCFDI": "CN01"
+            },
+            "Conceptos": [
+                {
+                    "ClaveProdServ": "84111505",
+                    "Cantidad": "1",
+                    "ClaveUnidad": "ACT",
+                    "Descripcion": "Pago de nómina",
+                    "ValorUnitario": "1750.00",
+                    "Importe": "1750.00",
+                    "Descuento": "71.18",
+                    "ObjetoImp": "01"
+                }
+            ],
+            "Complemento": {
+                "Nomina12": {
+                    "Version": "1.2",
+                    "TipoNomina": "O",
+                    "FechaPago": "2024-08-03",
+                    "FechaInicialPago": "2024-07-29",
+                    "FechaFinalPago": "2024-08-04",
+                    "NumDiasPagados": "7",
+                    "TotalPercepciones": "1750.00",
+                    "TotalDeducciones": "71.18",
+                    "TotalOtrosPagos": "0.00",
+                    "Emisor": {
+                        "RegistroPatronal": "F0546946107",
+                        "RfcPatronOrigen": "RERR6008226N5",
+                        "Curp": "RERR600822HTSTSB01"
+                    },
+                    "Receptor": {
+                        "Curp": "LOSL890628HDFPNS05 ",
+                        "NumSeguridadSocial": "09128930774",
+                        "FechaInicioRelLaboral": "2022-08-01",
+                        "Antiguedad": "P121W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "5",
+                        "Departamento": "SERVICIO",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "250.00",
+                        "SalarioDiarioIntegrado": "262.33",
+                        "ClaveEntFed": "TAM"
+                    },
+                    "Percepciones": {
+                        "TotalSueldos": "1750.00",
+                        "TotalGravado": "1750.00",
+                        "TotalExento": "0",
+                        "Percepcion": [
+                            {
+                                "TipoPercepcion": "001",
+                                "Clave": "001",
+                                "Concepto": "SUELDO",
+                                "ImporteGravado": "1750.00",
+                                "ImporteExento": "0.00"
+                            }
+                        ]
+                    },
+                    "Deducciones": {
+                        "TotalOtrasDeducciones": "43.61",
+                        "TotalImpuestosRetenidos": "27.57",
+                        "Deduccion": [
+                            {
+                                "TipoDeduccion": "001",
+                                "Clave": "001",
+                                "Concepto": "CUOTA OBRERO IMSS",
+                                "Importe": "22.95"
+                            },
+                            {
+                                "TipoDeduccion": "002",
+                                "Clave": "002",
+                                "Concepto": "RETENCION ISR",
+                                "Importe": "27.57"
+                            },
+                            {
+                                "TipoDeduccion": "003",
+                                "Clave": "003",
+                                "Concepto": " CUOTA OBRERO RCV",
+                                "Importe": "20.66"
+                            }
+                        ]
+                    },
+                    "OtrosPagos": [
+                        {
+                            "TipoOtroPago": "002",
+                            "Clave": "002",
+                            "Concepto": "Subsidio",
+                            "Importe": "0.00",
+                            "SubsidioAlEmpleo": {
+                                "SubsidioCausado": "89.81"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
  }
  
  
