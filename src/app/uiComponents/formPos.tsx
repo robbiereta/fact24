@@ -168,7 +168,21 @@ let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14
 
 let quince=ocho.concat(unoal7)
 let dieciseis=[75,50,50,120,65,50,115,35,75,36,5,10,80,360,7,15,440,40,36,215,60,140,45]
-let imps=arrayToPartidas(dieciseis)
+let diecisiete=[]
+let dia18=[]
+let dia19=[]
+let dia20=[]
+let dia21=[]
+let dia23=[]
+let dia24=[]
+let dia25=[]
+let dia26=[]
+let dia27=[]
+let dia28=[]
+let dia30=[]
+
+let conv=quince.concat(dieciseis)
+let imps=arrayToPartidas(conv)
 
 let fact=ReciboMaker(imps)
 
