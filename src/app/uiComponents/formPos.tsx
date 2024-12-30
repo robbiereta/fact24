@@ -181,10 +181,10 @@ let dia27=[]
 let dia28=[]
 let dia30=[]
 
-let conv=quince.concat(dieciseis)
-let imps=arrayToPartidas(conv)
+//let conv=quince.concat(dieciseis
+// let imps=arrayToPartidas(conv)
 
-let fact=ReciboMaker(imps)
+//let fact=ReciboMaker(imps)
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)
  

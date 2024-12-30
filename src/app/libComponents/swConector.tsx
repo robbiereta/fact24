@@ -15,7 +15,7 @@ let config = {
 	maxBodyLength: Infinity,
 	url: 'http://services.sw.com.mx/v3/cfdi33/issue/json/v4',
 	headers: { 
-	  'Authorization': 'Bearer '+process.env.tokenPro,
+	  'Authorization': 'Bearer '+process.env.tokenProdB,
 	  'Content-Type': 'application/jsontoxml'
 	},
 	data : fact
@@ -23,7 +23,7 @@ let config = {
   
   axios.request(config)
   .then((response) => {
-   return response.data
+   return response
 })
   .catch((error) => {
 	console.log(error);

@@ -152,17 +152,17 @@ let OtrosPagos =  {
         }
      }
  
-     let luis_PrimaV= {
+     let PrimaV= {
         "Version": "4.0",
         "Serie": "Bvic",
-        "Folio": "28",
+        "Folio": "181",
         "Fecha":fechaActual,
         "Sello": "",
         "NoCertificado": "",
         "Certificado": "",
-        "SubTotal": "962.50",
+        "SubTotal": "1237.50",
         "Moneda": "MXN",
-        "Total": "962.50",
+        "Total": "1237.50",
         "TipoDeComprobante": "N",
         "Exportacion": "01",
         "MetodoPago": "PUE",
@@ -172,10 +172,10 @@ let OtrosPagos =  {
             "Nombre": "ROBERTO RETA RESENDEZ",
             "RegimenFiscal": "612"
         },
-        "Receptor":  {
-            "Rfc": "LOSL890628U96",
-            "Nombre": "LUIS ANGEL LOPEZ SANCHEZ",
-            "DomicilioFiscalReceptor": "87037",
+        "Receptor": {
+            "Rfc": "BALA9408074K1",
+            "Nombre": "ALDO ANGEL BARRON LADRON DE GUEVARA",
+            "DomicilioFiscalReceptor": "87080",
             "RegimenFiscalReceptor": "605",
             "UsoCFDI": "CN01"
         },
@@ -185,8 +185,8 @@ let OtrosPagos =  {
                 "Cantidad": "1",
                 "ClaveUnidad": "ACT",
                 "Descripcion": "Pago de nómina",
-                "ValorUnitario": "962.50",
-                "Importe": "962.50",
+                "ValorUnitario": "1237.50",
+                "Importe": "1237.50",
                 "ObjetoImp": "01"
             }
         ],
@@ -199,37 +199,37 @@ let OtrosPagos =  {
                         "FechaInicialPago": "2024-07-29",
                         "FechaFinalPago": "2024-08-04",
                         "NumDiasPagados": "7",
-                        "TotalPercepciones": "962.50",
+                        "TotalPercepciones": "1237.50",
                         "TotalOtrosPagos": "0.00",
                         "Emisor": emisor.Emisor,
-                        "Receptor": {
-                            "Curp": "LOSL890628HDFPNS05 ",
-                            "NumSeguridadSocial": "09128930774",
-                            "FechaInicioRelLaboral": "2022-08-01",
-                            "Antiguedad": "P2Y26D",
-                            "TipoContrato": "01",
-                            "TipoJornada": "01",
-                            "TipoRegimen": "02",
-                            "NumEmpleado": "5",
-                            "Departamento": "SERVICIO",
-                            "Puesto": "Empleado general",
-                            "RiesgoPuesto": "3",
-                            "PeriodicidadPago": "99",
-                            "SalarioBaseCotApor": "250.00",
-                            "SalarioDiarioIntegrado": "262.33",
-                            "ClaveEntFed": "TAM"
-                        },
+                      "Receptor": {
+                        "Curp": "BALA940807HTSRDL02",
+                        "NumSeguridadSocial": "09129497229",
+                        "FechaInicioRelLaboral": "2020-11-03",
+                        "Antiguedad": "P212W",
+                        "TipoContrato": "01",
+                        "TipoJornada": "01",
+                        "TipoRegimen": "02",
+                        "NumEmpleado": "3",
+                        "Departamento": "SERVICIO",
+                        "Puesto": "Empleado general",
+                        "RiesgoPuesto": "3",
+                        "PeriodicidadPago": "02",
+                        "SalarioBaseCotApor": "275.00 ",
+                        "SalarioDiarioIntegrado": "289.32 ",
+                        "ClaveEntFed": "TAM"
+                    },
                         "Percepciones": {
-                            "TotalSueldos": "962.50",
+                            "TotalSueldos": "1237.50",
                             "TotalGravado": "0",
-                            "TotalExento": "962.50",
+                            "TotalExento": "1237.50",
                             "Percepcion": [
                                 {
                                     "TipoPercepcion": "021",
                                     "Clave": "021",
                                     "Concepto"  : "PRIMA VACACIONAL",
                                     "ImporteGravado": "0.00",
-                                    "ImporteExento": "962.50"
+                                    "ImporteExento": "1237.50"
                                 }
                             ]
                         },
@@ -242,15 +242,14 @@ let OtrosPagos =  {
     
         let datos2={
             "fechaPago": "2024-12-21",
-            "fechaInicialPago": "2024- 12-16",
-            "fechaFinalPago": "2024-12-22",
-            "diasTrabajados": "7",
+            "fechaInicialPago": "2024-12-23",
+            "fechaFinalPago": "2025-01-13",
+            "diasTrabajados": "18",
         }
         
-     
-    let res= makeNomina(empleados.empleados[6],datos2)
-  console.log(res)
-
+     makeNomina_PrimaV(PrimaV,datos2)
+  //  let res= makeNomina(empleados.empleados[6],datos2)
+  
 return(
     <div>
 
