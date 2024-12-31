@@ -1,0 +1,37 @@
+function addPartida(pu:any,cantidad:any,Descripcion) {
+     
+    let importeConImp=pu*cantidad
+    let iva = Number(importeConImp) * 0.16
+    let impSinImp=Number(importeConImp-iva)
+    let puSinImp=Number(pu-iva)/cantidad
+    // importe=Number(importeSinimpuestos)
+      let partida= {
+        ClaveProdServ: "01010101",
+        ClaveUnidad: "ACT",
+        Unidad: "Actividad",
+        Cantidad: cantidad,
+        Descripcion:Descripcion ,
+        ValorUnitario: ""+pu+"",
+        Importe: ""+impSinImp+"",
+        ImporteRealConImp:"" +Number(importeConImp) +"",
+        ObjetoImp:"02",
+        Impuestos :{
+          Traslados:[
+             {
+          Base: ""+importeConImp+"",
+          Impuesto: "002",
+          TipoFactor: "Tasa",
+          TasaOCuota: "0.160000",
+          Importe: ""+iva.toFixed(2)+"",
+          }
+          ]
+      
+          }
+        
+        }
+       
+      notasPartidas.push(partida)
+      //setNotasPartidas([...notasPartidas])
+
+    }
+    

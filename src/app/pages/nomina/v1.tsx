@@ -214,7 +214,7 @@ let OtrosPagos =  {
                         "Departamento": "SERVICIO",
                         "Puesto": "Empleado general",
                         "RiesgoPuesto": "3",
-                        "PeriodicidadPago": "02",
+                        "PeriodicidadPago": "99",
                         "SalarioBaseCotApor": "275.00 ",
                         "SalarioDiarioIntegrado": "289.32 ",
                         "ClaveEntFed": "TAM"

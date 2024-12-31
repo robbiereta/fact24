@@ -37,7 +37,8 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-    ReciboMaker(notasPartidas) 
+   // ReciboMaker(notasPartidas) 
+  print()
   }
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
@@ -168,19 +169,18 @@ let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14
 
 let quince=ocho.concat(unoal7)
 let dieciseis=[75,50,50,120,65,50,115,35,75,36,5,10,80,360,7,15,440,40,36,215,60,140,45]
-let diecisiete=[]
-let dia18=[]
-let dia19=[]
-let dia20=[]
-let dia21=[]
-let dia23=[]
-let dia24=[]
-let dia25=[]
-let dia26=[]
-let dia27=[]
-let dia28=[]
-let dia30=[]
-
+let diecisiete=[45,25,35,20,24,72,72,300,214,70,75,200,67,64,35,48,160,48,40,50,60]
+let dia18=[50,50,45,45,85,345,20,100,122,25,30,95,70,125,30,240,2250]
+let dia19=[150,230,150,16,14,30,150,20,35,15,2100]
+let dia20=[50,1500,50,240,130,250,135,20,75,5,125,410,25,98,98,120]
+let dia21=[585,260,170,645,125,35,15,50,20,70]
+let dia23=[450,7000,2250,3550,210,170,30,145,50,130,98,90,90,90,150,7,125,125]
+let dia24=[48,110,450,90,135,15,240,110,735,400]
+let dia26=[120,50,530,80,90,105,85,15,110,90,90,90,130,50,785,350,340,455,250,200,25,50,225,160,30,110,16,603]
+let dia27=[50,86,20,110,85,775,75,50,7,70,950,210,115,80,1355,24,140]
+let dia28=[140,135,55,220,150,30,340,50,48,750,25,110,108,155,95,50,8]
+let dia30=[14,40,235,100,120,270,190,70,50,50,190,25,180,120,70,235,105,5,525,170,160,75,100,250,42,180,45,180,79,120,390,285,7,150,170,98,15,265]
+let dia31=80,75,25,100,500,330,24,70
 //let conv=quince.concat(dieciseis
 // let imps=arrayToPartidas(conv)
 
