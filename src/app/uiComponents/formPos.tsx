@@ -100,6 +100,7 @@ function FormPos(props:FormCreatorProps) {
         }
        
       notasPartidas.push(partida)
+ 
       //setNotasPartidas([...notasPartidas])
 
     }
@@ -154,6 +155,7 @@ function FormPos(props:FormCreatorProps) {
       addPartida(imp,1,"Venta")
     })
     impsConvertidos=notasPartidas
+    
 
     return impsConvertidos
   }
@@ -180,11 +182,11 @@ let dia26=[120,50,530,80,90,105,85,15,110,90,90,90,130,50,785,350,340,455,250,20
 let dia27=[50,86,20,110,85,775,75,50,7,70,950,210,115,80,1355,24,140]
 let dia28=[140,135,55,220,150,30,340,50,48,750,25,110,108,155,95,50,8]
 let dia30=[14,40,235,100,120,270,190,70,50,50,190,25,180,120,70,235,105,5,525,170,160,75,100,250,42,180,45,180,79,120,390,285,7,150,170,98,15,265]
-let dia31=80,75,25,100,500,330,24,70,85,65,50,19,190,8
-//let conv=quince.concat(dieciseis
-// let imps=arrayToPartidas(conv)
+let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
+let conv=quince.concat(dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
+let imps=arrayToPartidas(conv)
+console.log(imps);
 
-//let fact=ReciboMaker(imps)
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)
  
