@@ -14,6 +14,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Receipt58mm from './receipt58mm';
 import dias from './data.json'
+import postRequest from "../libComponents/postRequest";
+const orderid = require('order-id')('key');
+import ventas from './ventas_diciembre.json' 
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -37,7 +40,8 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-   // ReciboMaker(notasPartidas) 
+   let Fact_ventas= ReciboMaker(ventas.ventas.diciembre) 
+   console.log(Fact_ventas)
   print()
   }
   const handleChangeModalShow = () => {
@@ -68,7 +72,7 @@ function FormPos(props:FormCreatorProps) {
   })
 
   function addPartida(pu:any,cantidad:any,Descripcion) {
-     
+    let folio = orderid.generate(); 
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
     let impSinImp=Number(importeConImp-iva)
@@ -77,11 +81,12 @@ function FormPos(props:FormCreatorProps) {
       let partida= {
         ClaveProdServ: "01010101",
         ClaveUnidad: "ACT",
+        NoIdentificacion: ""+folio+"",
         Unidad: "Actividad",
         Cantidad: cantidad,
         Descripcion:Descripcion ,
         ValorUnitario: ""+pu+"",
-        Importe: ""+impSinImp+"",
+        Importe: ""+impSinImp.toFixed(2)+"",
         ImporteRealConImp:"" +Number(importeConImp) +"",
         ObjetoImp:"02",
         Impuestos :{
@@ -183,9 +188,10 @@ let dia27=[50,86,20,110,85,775,75,50,7,70,950,210,115,80,1355,24,140]
 let dia28=[140,135,55,220,150,30,340,50,48,750,25,110,108,155,95,50,8]
 let dia30=[14,40,235,100,120,270,190,70,50,50,190,25,180,120,70,235,105,5,525,170,160,75,100,250,42,180,45,180,79,120,390,285,7,150,170,98,15,265]
 let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
-let conv=quince.concat(dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
-let imps=arrayToPartidas(conv)
-console.log(imps);
+let conv=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic,dias.dia9,dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14,dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
+// let imps=arrayToPartidas(conv)
+//  console.log(imps)
+
 
 
 //let nov_notas=imps_unoaldieciocho.concat(conv)

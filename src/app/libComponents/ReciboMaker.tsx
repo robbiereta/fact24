@@ -1,8 +1,8 @@
-'use client'
-import postRequest from "./postRequest";
+'use server'
+import postRequest from "../libComponents/postRequest";
 const orderid = require('order-id')('key');
 
-import swConnector from "./swConector";
+import swConnector from "../libComponents/swConector";
 function ReciboMaker(notasPartidas : any) {
     let total3 = 0;
      
@@ -43,7 +43,7 @@ function ReciboMaker(notasPartidas : any) {
     "MetodoPagoSpecified": true,
     "LugarExpedicion": "87000",
     "InformacionGlobal": {
-      "Periodicidad": "03",
+      "Periodicidad": "04",
       "Meses": "12",
       "Año": "2024"
     },
@@ -73,8 +73,8 @@ function ReciboMaker(notasPartidas : any) {
       ]
     }
   }
-  // console.log(facturaGlobal)
-  // swConnector(facturaGlobal)
+  //  console.log(facturaGlobal)
+  //swConnector(facturaGlobal)
 
 
       let recibo={
@@ -88,9 +88,9 @@ function ReciboMaker(notasPartidas : any) {
 	'observaciones' : "observaciones"
                   }
 
-  
+  return facturaGlobal
 
- postRequest("https://express-low5.onrender.com/notas_venta",recibo)
+//  postRequest("https://express-low5.onrender.com/notas_venta",recibo)
      
 }
 
