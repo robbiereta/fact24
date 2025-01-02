@@ -73,7 +73,7 @@ function ReciboMaker(notasPartidas : any) {
       ]
     }
   }
-  //  console.log(facturaGlobal)
+   console.log(facturaGlobal)
   //swConnector(facturaGlobal)
 
 
@@ -90,7 +90,7 @@ function ReciboMaker(notasPartidas : any) {
 
   return facturaGlobal
 
-//  postRequest("https://express-low5.onrender.com/notas_venta",recibo)
+ postRequest("https://express-low5.onrender.com/notas_venta",recibo)
      
 }
 

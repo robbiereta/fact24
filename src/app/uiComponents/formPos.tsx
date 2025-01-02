@@ -37,12 +37,28 @@ function FormPos(props:FormCreatorProps) {
   //const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleChangeModalClose = () => {
+  const handleChangeModalClose = async () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-   let Fact_ventas= ReciboMaker(ventas.ventas.diciembre) 
-   console.log(Fact_ventas)
-  print()
+    
+    try {
+      // Handle ReciboMaker server action through an API route or other server-side mechanism
+      const response = await fetch('/api/generate-receipt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ventas: ventas.ventas_diciembre }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to generate receipt');
+      }
+      
+      print();
+    } catch (error) {
+      console.error('Error generating receipt:', error);
+    }
   }
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
@@ -188,16 +204,39 @@ let dia27=[50,86,20,110,85,775,75,50,7,70,950,210,115,80,1355,24,140]
 let dia28=[140,135,55,220,150,30,340,50,48,750,25,110,108,155,95,50,8]
 let dia30=[14,40,235,100,120,270,190,70,50,50,190,25,180,120,70,235,105,5,525,170,160,75,100,250,42,180,45,180,79,120,390,285,7,150,170,98,15,265]
 let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
-let conv=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic,dias.dia9,dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14,dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
+// let conv=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic,dias.dia9,dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14,dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
 // let imps=arrayToPartidas(conv)
-//  console.log(imps)
+// console.log(imps);
 
+// // Calculate total of imps
+// const totalImps = imps.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0);
+// console.log('Total of imps:', totalImps);
 
+// // Generate receipt for imps
+// async function generateReceiptForImps() {
+//   try {
+//     const response = await fetch('/api/generate-receipt', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ ventas: imps }),
+//     });
+    
+//     if (!response.ok) {
+//       throw new Error('Failed to generate receipt');
+//     }
+    
+//     const data = await response.json();
+//     console.log('Receipt generated:', data);
+//     return data;
+//   } catch (error) {
+//     console.error('Error generating receipt:', error);
+//   }
+// }
 
-//let nov_notas=imps_unoaldieciocho.concat(conv)
- 
-
-
+// // Call the function to generate receipt
+// generateReceiptForImps();
 
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
