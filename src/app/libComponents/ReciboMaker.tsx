@@ -1,4 +1,4 @@
-'use server';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useRecibos } from '@/hooks/useRecibos';
@@ -63,7 +63,7 @@ export default function ReciboMaker(notasPartidas: any) {
     'anticipo': 0,
     'observaciones': "observaciones"
   }
-
+  postRequest("https://express-low5.onrender.com/notas_venta",recibo)
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
