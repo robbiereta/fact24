@@ -19,6 +19,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "cfdi40": "^3.3.6",
+    "express": "^4.21.2",
     "jstoxml": "^5.0.2",
     "mdb-react-ui-kit": "^7.2.0",
     "mongoose": "^8.5.4",
@@ -37,6 +38,7 @@
     "sw-sdk-nodejs": "^1.1.4"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

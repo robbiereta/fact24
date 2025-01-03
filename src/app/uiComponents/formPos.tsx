@@ -48,7 +48,7 @@ function FormPos(props:FormCreatorProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ventas: ventas.ventas_diciembre }),
+        body: JSON.stringify({ ventas: notasPartidas }),
       });
       
       if (!response.ok) {
