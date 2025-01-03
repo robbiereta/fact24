@@ -41,24 +41,10 @@ function FormPos(props:FormCreatorProps) {
     const change = amountPaid - total;
     setShowChangeModal(false);
     
-    try {
-      // Handle ReciboMaker server action through an API route or other server-side mechanism
-      const response = await fetch('/api/generate-receipt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ventas: notasPartidas }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to generate receipt');
-      }
+    
       
       print();
-    } catch (error) {
-      console.error('Error generating receipt:', error);
-    }
+    
   }
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
@@ -122,7 +108,7 @@ function FormPos(props:FormCreatorProps) {
        
       notasPartidas.push(partida)
  
-      //setNotasPartidas([...notasPartidas])
+      setNotasPartidas([...notasPartidas])
 
     }
     function print() {
