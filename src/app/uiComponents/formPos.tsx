@@ -15,8 +15,8 @@ import Col from 'react-bootstrap/Col';
 import Receipt58mm from './receipt58mm';
 import dias from './data.json'
 import postRequest from "../libComponents/postRequest";
-const orderid = require('order-id')('key');
-import ventas from './ventas_diciembre.json' 
+import orderid from 'order-id'; // Import orderid
+const orderidKey = 'key';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -40,7 +40,7 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = async () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-    
+    ReciboMaker(notasPartidas)
     
       
       print();
@@ -74,7 +74,7 @@ function FormPos(props:FormCreatorProps) {
   })
 
   function addPartida(pu:any,cantidad:any,Descripcion) {
-    let folio = orderid.generate(); 
+    let folio = orderid.generate(orderidKey); 
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
     let impSinImp=Number(importeConImp-iva)
@@ -112,7 +112,8 @@ function FormPos(props:FormCreatorProps) {
 
     }
     function print() {
-      const receiptElement = document.getElementById('receipt-to-print');
+      const receiptElement = document.getElementById('ticket-div');
+      const folio  ; // Generate folio directly in the print function
       if (receiptElement) {
         const printWindow = window.open('', '_blank');
         if (printWindow) {
@@ -121,25 +122,77 @@ function FormPos(props:FormCreatorProps) {
               <head>
                 <title>Ticket de Venta</title>
                 <style>
+                  @page {
+                    size: 80mm auto;
+                    margin: 0;
+                  }
+                  body {
+                    font-family: 'Arial', sans-serif;
+                    width: 80mm;
+                    margin: 0;
+                    padding: 10px;
+                  }
+                  #print-content {
+                    text-align: center;
+                  }
+                  .header {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                  }
+                  .company-name {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                  }
+                  .info {
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                  }
+                  .divider {
+                    border-top: 1px dashed #000;
+                    margin: 10px 0;
+                  }
+                  .item {
+                    text-align: left;
+                    font-size: 12px;
+                    margin: 5px 0;
+                  }
+                  .totals {
+                    text-align: right;
+                    font-size: 12px;
+                    margin-top: 10px;
+                  }
+                  .footer {
+                    font-size: 12px;
+                    text-align: center;
+                    margin-top: 10px;
+                  }
                   @media print {
-                    body {
-                      margin: 0;
-                      padding: 0;
-                    }
-                    #print-content {
-                      width: 58mm;
-                      margin: 0 auto;
-                    }
-                    @page {
-                      size: 58mm auto;
-                      margin: 0;
+                    .no-print {
+                      display: none;
                     }
                   }
                 </style>
               </head>
               <body>
                 <div id="print-content">
+                  <div class="company-name">Mi Empresa</div>
+                  <div class="header">
+                    <div class="info">RFC: XXXX000000XXX</div>
+                    <div class="info">Dirección: Calle Principal #123</div>
+                    <div class="info">Tel: (123) 456-7890</div>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="info">Ticket #: ${folio}</div>
+                  <div class="info">Fecha: ${new Date().toLocaleString()}</div>
+                  <div class="divider"></div>
                   ${receiptElement.innerHTML}
+                  <div class="divider"></div>
+                  <div class="footer">
+                    ¡Gracias por su compra!
+                    <br>
+                    Conserve su ticket
+                  </div>
                 </div>
                 <script>
                   window.onload = function() {
@@ -166,63 +219,7 @@ function FormPos(props:FormCreatorProps) {
 
     return impsConvertidos
   }
-let dos_dic=[50,50,60,55,35,50,145,70,15,48,298,340,36,36,10,15,98,195,80,20,10,18,220,15,10,10,110,30,90,7,12,225,2629,75,50,54]
-//let uno_dic_partidas=arrayToPartidas(uno_dic)  
-let tres_dic=[180,170,50,310,135,45,160,180,12,60,180,125,175,80,45,110,130,75,1250,160,65,75]
-let cuatro_dic=[30,20,70,90,90]
-let cinco_dic=[55,260,260,60,60,20,290,715,585,60,20,30,85,225,52,75,25,100,50,70]
-let seis_dic=[20,90,60,66,6,6,15,18,110,75,95,20,318,30,50,125,12,75,75,120,90]
-let siete_dic=[40,200,30,55,30,10,152,45,936,220,70,28,30]
-let unoal7=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic)
-let ocho=dias.dia9.concat(dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14)
 
-let quince=ocho.concat(unoal7)
-let dieciseis=[75,50,50,120,65,50,115,35,75,36,5,10,80,360,7,15,440,40,36,215,60,140,45]
-let diecisiete=[45,25,35,20,24,72,72,300,214,70,75,200,67,64,35,48,160,48,40,50,60]
-let dia18=[50,50,45,45,85,345,20,100,122,25,30,95,70,125,30,240,2250]
-let dia19=[150,230,150,16,14,30,150,20,35,15,2100]
-let dia20=[50,1500,50,240,130,250,135,20,75,5,125,410,25,98,98,120]
-let dia21=[585,260,170,645,125,35,15,50,20,70]
-let dia23=[450,7000,2250,3550,210,170,30,145,50,130,98,90,90,90,150,7,125,125]
-let dia24=[48,110,450,90,135,15,240,110,735,400]
-let dia26=[120,50,530,80,90,105,85,15,110,90,90,90,130,50,785,350,340,455,250,200,25,50,225,160,30,110,16,603]
-let dia27=[50,86,20,110,85,775,75,50,7,70,950,210,115,80,1355,24,140]
-let dia28=[140,135,55,220,150,30,340,50,48,750,25,110,108,155,95,50,8]
-let dia30=[14,40,235,100,120,270,190,70,50,50,190,25,180,120,70,235,105,5,525,170,160,75,100,250,42,180,45,180,79,120,390,285,7,150,170,98,15,265]
-let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
-// let conv=dos_dic.concat(tres_dic,cuatro_dic,cinco_dic,seis_dic,siete_dic,dias.dia9,dias.dia10,dias.dia11,dias.dia12,dias.dia13,dias.dia14,dieciseis,diecisiete,dia18,dia19,dia20,dia21,dia23,dia24,dia26,dia27,dia28,dia30,dia31)
-// let imps=arrayToPartidas(conv)
-// console.log(imps);
-
-// // Calculate total of imps
-// const totalImps = imps.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0);
-// console.log('Total of imps:', totalImps);
-
-// // Generate receipt for imps
-// async function generateReceiptForImps() {
-//   try {
-//     const response = await fetch('/api/generate-receipt', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ ventas: imps }),
-//     });
-    
-//     if (!response.ok) {
-//       throw new Error('Failed to generate receipt');
-//     }
-    
-//     const data = await response.json();
-//     console.log('Receipt generated:', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Error generating receipt:', error);
-//   }
-// }
-
-// // Call the function to generate receipt
-// generateReceiptForImps();
 
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
@@ -274,7 +271,7 @@ let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
           margin: '20px 0',
           border: '1px solid #f0f0f0'
-        }}>
+        }} >
         <h3 style={{ 
           color: '#2d3748',
           marginBottom: '20px',
@@ -282,7 +279,7 @@ let dia31=[80,75,25,100,500,330,24,70,85,65,50,19,190,8]
           fontWeight: '600'
         }}>Ticket</h3>
 
-        <div style={{ overflowX: 'auto' }}>
+        <div style={{ overflowX: 'auto' }} id='ticket-div'>
           <Table hover style={{ 
             fontSize: '0.9em',
             backgroundColor: 'white',
