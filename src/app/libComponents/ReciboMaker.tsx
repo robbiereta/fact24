@@ -1,7 +1,7 @@
 'use client';
 import postRequest from "./postRequest";
 const orderid = require('order-id')('key');
-export default function ReciboMaker(notasPartidas: any) {
+export default function ReciboMaker(notasPartidas: any,folio) {
 
   let total3 = 0;
   function getTotal(notas: any) {
@@ -16,7 +16,7 @@ export default function ReciboMaker(notasPartidas: any) {
   let subtotal: number = totalConImpuestos - iva
   let fecha = new Date();
   let fechaActual = fecha.toLocaleDateString();
-  let folio =  orderid.generate();
+
 
   let recibo = {
     'folio_venta': folio,

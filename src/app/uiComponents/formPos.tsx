@@ -15,8 +15,7 @@ import Col from 'react-bootstrap/Col';
 import Receipt58mm from './receipt58mm';
 import dias from './data.json'
 import postRequest from "../libComponents/postRequest";
-import orderid from 'order-id'; // Import orderid
-const orderidKey = 'key';
+const  orderID = require('order-id')('key');
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -40,7 +39,7 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = async () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-    ReciboMaker(notasPartidas)
+    ReciboMaker(notasPartidas,folio)
     
       
       print();
@@ -56,7 +55,7 @@ function FormPos(props:FormCreatorProps) {
   const calculateChange = () => {
     return amountPaid - total;
   };
-
+let folio
   let ticket:any;
   let elements=props.elements
   let formElements:any[]=[]
@@ -74,7 +73,7 @@ function FormPos(props:FormCreatorProps) {
   })
 
   function addPartida(pu:any,cantidad:any,Descripcion) {
-    let folio = orderid.generate(orderidKey); 
+     folio = orderID.generate(); 
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
     let impSinImp=Number(importeConImp-iva)
@@ -113,7 +112,7 @@ function FormPos(props:FormCreatorProps) {
     }
     function print() {
       const receiptElement = document.getElementById('ticket-div');
-      const folio  ; // Generate folio directly in the print function
+         // Generate folio directly in the print function
       if (receiptElement) {
         const printWindow = window.open('', '_blank');
         if (printWindow) {
