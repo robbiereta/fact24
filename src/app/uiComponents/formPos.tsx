@@ -72,7 +72,7 @@ let  folio = orderID.generate();
   return formElements
   })
 
-  function addPartida(pu:any,cantidad:any,Descripcion) {
+  function addPartida(pu:any,cantidad:any,Descripcion:any) {
   
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
@@ -209,7 +209,7 @@ let  folio = orderID.generate();
         }
       }
     }
-  function arrayToPartidas(array){
+  function arrayToPartidas(array:[]){
     let impsConvertidos=[]
     array.map((imp:any)=>{
       addPartida(imp,1,"Venta")

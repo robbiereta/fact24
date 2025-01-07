@@ -1,70 +1,141 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+interface LineaVenta {
+  ClaveProdServ: string;
+  ClaveUnidad: string;
+  NoIdentificacion: string;
+  Unidad: string;
+  Cantidad: number;
+  Descripcion: string;
+  ValorUnitario: string;
+  Importe: string;
+  ImporteRealConImp: number;
+  ObjetoImp: string;
+  Impuestos: {
+    Traslados: Array<{
+      Base: string;
+      Impuesto: string;
+      TipoFactor: string;
+      TasaOCuota: string;
+      Importe: string;
+    }>;
+  };
+}
+
 export interface IRecibo extends Document {
-  fecha: Date;
+  folio_venta: string;
+  fecha: string;
   cliente: string;
-  items: Array<{
-    descripcion: string;
-    cantidad: number;
-    precioUnitario: number;
-    subtotal: number;
-  }>;
+  lineas_venta: LineaVenta[];
   total: number;
-  metodoPago: string;
-  estado: string;
+  estatus: 'pagado' | 'pendiente' | 'cancelado';
+  anticipo: number;
+  observaciones: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
 const ReciboSchema: Schema = new Schema({
-  fecha: {
-    type: Date,
+  folio_venta: {
+    type: String,
     required: true,
-    default: Date.now
+    unique: true
+  },
+  fecha: {
+    type: String,
+    required: true
   },
   cliente: {
     type: String,
     required: true
   },
-  items: [{
-    descripcion: {
+  lineas_venta: [{
+    ClaveProdServ: {
       type: String,
       required: true
     },
-    cantidad: {
-      type: Number,
-      required: true,
-      min: 0
+    ClaveUnidad: {
+      type: String,
+      required: true
     },
-    precioUnitario: {
-      type: Number,
-      required: true,
-      min: 0
+    NoIdentificacion: {
+      type: String,
+      required: true
     },
-    subtotal: {
+    Unidad: {
+      type: String,
+      required: true
+    },
+    Cantidad: {
       type: Number,
-      required: true,
-      min: 0
+      required: true
+    },
+    Descripcion: {
+      type: String,
+      required: true
+    },
+    ValorUnitario: {
+      type: String,
+      required: true
+    },
+    Importe: {
+      type: String,
+      required: true
+    },
+    ImporteRealConImp: {
+      type: Number,
+      required: true
+    },
+    ObjetoImp: {
+      type: String,
+      required: true
+    },
+    Impuestos: {
+      Traslados: [{
+        Base: {
+          type: String,
+          required: true
+        },
+        Impuesto: {
+          type: String,
+          required: true
+        },
+        TipoFactor: {
+          type: String,
+          required: true
+        },
+        TasaOCuota: {
+          type: String,
+          required: true
+        },
+        Importe: {
+          type: String,
+          required: true
+        }
+      }]
     }
   }],
   total: {
     type: Number,
-    required: true,
-    min: 0
+    required: true
   },
-  metodoPago: {
+  estatus: {
     type: String,
     required: true,
-    enum: ['efectivo', 'tarjeta', 'transferencia']
-  },
-  estado: {
-    type: String,
-    required: true,
-    enum: ['pendiente', 'pagado', 'cancelado'],
+    enum: ['pagado', 'pendiente', 'cancelado'],
     default: 'pendiente'
+  },
+  anticipo: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  observaciones: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true
 });
 
-export default mongoose.model<IRecibo>('Recibo', ReciboSchema);
+export default mongoose.models.Recibo || mongoose.model<IRecibo>('Recibo', ReciboSchema);

@@ -4,6 +4,16 @@ import { compare } from "bcryptjs"
 import dbConnect from "@/lib/mongodb"
 import { User } from "@/models/User"
 
+// Extend the built-in session types
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string
+      email: string
+    }
+  }
+}
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -50,17 +60,17 @@ const handler = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: any }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.email = token.email;
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
       }
       return session;
     },
