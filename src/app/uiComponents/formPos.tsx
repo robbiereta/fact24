@@ -55,7 +55,7 @@ function FormPos(props:FormCreatorProps) {
   const calculateChange = () => {
     return amountPaid - total;
   };
-let folio
+let  folio = orderID.generate(); 
   let ticket:any;
   let elements=props.elements
   let formElements:any[]=[]
@@ -73,7 +73,7 @@ let folio
   })
 
   function addPartida(pu:any,cantidad:any,Descripcion) {
-     folio = orderID.generate(); 
+  
     let importeConImp=pu*cantidad
     let iva = Number(importeConImp) * 0.16
     let impSinImp=Number(importeConImp-iva)
@@ -175,11 +175,12 @@ let folio
               </head>
               <body>
                 <div id="print-content">
-                  <div class="company-name">Mi Empresa</div>
+                  <div class="company-name">Bici-vic</div>
                   <div class="header">
-                    <div class="info">RFC: XXXX000000XXX</div>
-                    <div class="info">Dirección: Calle Principal #123</div>
-                    <div class="info">Tel: (123) 456-7890</div>
+                    <div class="info">Sucursal: 5 Matamoros</div>
+                    <div class="info">RFC:FOZA8801257C2</div>
+                    <div class="info">Dirección: Mariano Matamoros #1242</div>
+                    <div class="info">Tel: (834) 2027887</div>
                   </div>
                   <div class="divider"></div>
                   <div class="info">Ticket #: ${folio}</div>

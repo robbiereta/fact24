@@ -16,7 +16,7 @@ export default function ReciboMaker(notasPartidas: any,folio) {
   let subtotal: number = totalConImpuestos - iva
   let fecha = new Date();
   let fechaActual = fecha.toLocaleDateString();
-
+  
 
   let recibo = {
     'folio_venta': folio,
