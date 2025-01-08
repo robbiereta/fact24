@@ -4,6 +4,7 @@ import { Button, Table, Form } from 'react-bootstrap';
 import FormAddEmpleado from "../../../uiComponents/formAddEmpleado";
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { regimenContratacion, tipoContrato, tipoJornada, periodicidadPago, riesgoPuesto, bancos } from '../../../utils/satCatalogs';
 
 let elements = [
   {
@@ -47,18 +48,30 @@ let elements = [
     id: 7,
     type: "select",
     placeholder: "Régimen de Contratación",
+    options: regimenContratacion.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Tipo_Contrato",
     id: 8,
     type: "select",
     placeholder: "Tipo de Contrato",
+    options: tipoContrato.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Tipo_Jornada",
     id: 9,
     type: "select",
     placeholder: "Tipo de Jornada",
+    options: tipoJornada.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Salario_Base_Cotizacion",
@@ -77,12 +90,20 @@ let elements = [
     id: 12,
     type: "select",
     placeholder: "Periodicidad de Pago",
+    options: periodicidadPago.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Riesgo_Puesto",
     id: 13,
     type: "select",
     placeholder: "Riesgo del Puesto",
+    options: riesgoPuesto.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Departamento",
@@ -101,6 +122,10 @@ let elements = [
     id: 16,
     type: "select",
     placeholder: "Banco para Depósito",
+    options: bancos.map(item => ({
+      value: item.id,
+      label: `${item.id} - ${item.descripcion}`
+    }))
   },
   {
     name: "Cuenta_Bancaria",

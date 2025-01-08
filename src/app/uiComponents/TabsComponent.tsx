@@ -4,6 +4,8 @@ import { Tabs, Tab } from 'react-bootstrap';
 import FormPos from './formPos';
 import './TabsComponent.css';
 import ListaTicket from './lista_ticket';
+import CashClosing from './CashClosing';
+
 interface TabsComponentProps {
   elements: {
     name: string;
@@ -70,6 +72,15 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ elements }) => {
             <h3>Historial de Ventas</h3>
             {/* Add sales history component here */}
             <ListaTicket recurso='/notas_venta'  />
+          </div>
+        </Tab>
+        <Tab 
+          eventKey="cashClosing" 
+          title="Corte de Caja"
+          tabClassName="custom-tab"
+        >
+          <div className="p-3">
+            <CashClosing />
           </div>
         </Tab>
       </Tabs>

@@ -15,6 +15,7 @@ import Col from 'react-bootstrap/Col';
 import Receipt58mm from './receipt58mm';
 import dias from './data.json'
 import postRequest from "../libComponents/postRequest";
+import { toast } from 'react-toastify';
 const  orderID = require('order-id')('key');
 interface FormCreatorProps {
   elements: {
@@ -39,12 +40,43 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = async () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-    ReciboMaker({ notas: notasPartidas, folio });
     
-      
+    try {
+      // Guardar el recibo en la base de datos
+      const receiptData = {
+        id: folio,
+        amount: total,
+        date: new Date().toISOString(),
+        status: 'completed',
+        items: notasPartidas.map(item => ({
+          quantity: item.Cantidad,
+          description: item.Descripcion,
+          unitPrice: Number(item.ValorUnitario),
+          total: Number(item.ImporteRealConImp)
+        }))
+      };
+
+      await fetch('/api/receipts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(receiptData),
+      });
+
+      // Generar el recibo y imprimir
+      ReciboMaker({ notas: notasPartidas, folio });
       print();
-    
-  }
+
+      // Limpiar el estado después de la venta
+      setNotasPartidas([]);
+      setAmountPaid(0);
+      setTotal(0);
+    } catch (error) {
+      console.error('Error saving receipt:', error);
+      toast.error('Error al guardar el recibo');
+    }
+  };
   const handleChangeModalShow = () => {
     // Calculate total from notasPartidas
     const newTotal = notasPartidas.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0);
@@ -179,9 +211,11 @@ let  folio = orderID.generate();
                   <div class="header">
                     <div class="info">Sucursal: 5 Matamoros</div>
                     <div class="info">RFC:FOZA8801257C2</div>
-                    <div class="info">Dirección: Mariano Matamoros #1242</div>
+                    <div class="info">Dirección: Mariano Matamoros #1242 Zona Centro</div>
                     <div class="info">Tel: (834) 2027887</div>
-                  </div>
+                    <div class="info">C.P: 87000 Ciudad Victoria,Tamps.</div>
+                    <div class="info">Regimen Simplificado de Confianza</div>
+                    </div>
                   <div class="divider"></div>
                   <div class="info">Ticket #: ${folio}</div>
                   <div class="info">Fecha: ${new Date().toLocaleString()}</div>
@@ -192,6 +226,7 @@ let  folio = orderID.generate();
                     ¡Gracias por su compra!
                     <br>
                     Conserve su ticket
+                    Expedido en: Ciudad Victoria, Tamps.
                   </div>
                 </div>
                 <script>
@@ -231,6 +266,14 @@ let  folio = orderID.generate();
  
 
    
+  const handleCashClosingShow = () => {
+    setShow(true);
+  };
+
+  const handleCashClosingClose = () => {
+    setShow(false);
+  };
+
   return (
     <>
     <Container>
@@ -382,6 +425,7 @@ let  folio = orderID.generate();
           </Button>
         </Modal.Footer>
       </Modal>
+
     </>
   );
 }
