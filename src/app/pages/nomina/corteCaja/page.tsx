@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Table, Form, Modal } from 'react-bootstrap';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -28,7 +28,7 @@ export default function CorteCaja() {
     endDate: '',
   });
 
-  const fetchReceipts = async () => {
+  const fetchReceipts = useCallback(async () => {
     try {
       const response = await fetch('/api/receipts?' + new URLSearchParams({
         startDate: dateRange.startDate,
@@ -42,13 +42,13 @@ export default function CorteCaja() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [dateRange.startDate, dateRange.endDate]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
       fetchReceipts();
     }
-  }, [dateRange.startDate, dateRange.endDate]);
+  }, [fetchReceipts, dateRange.startDate, dateRange.endDate]);
 
   const handleSelectReceipt = (receiptId: string) => {
     setSelectedReceipts(prev => {

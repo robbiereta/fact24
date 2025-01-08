@@ -1,263 +1,174 @@
 'use client'
+import { useState, useEffect } from 'react';
 import makeNomina from "./makeNomina";
 import makeNomina_Finiquito from "./makeNomina_finiquito";
 import makeNomina_PrimaV from "./makeNomina_PrimaV";
 import dbConnect from '@/lib/mongodb';
 import Folio from '@/models/Folio';
-import empleados from './empleados.json'
-function NominaV1(empleado:any,datos:any) {
- 
-  
-let fecha=new Date();
-let RegistroPatronal= "F0546946107"       
 
-let totalOtrasDeducciones=43.61
-//empleado.Complemento.Nomina12.Deducciones.TotalOtrasDeducciones
-let TotalImpuestosRetenidos=20.66
-//isr
+function NominaV1() {
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [showPayroll, setShowPayroll] = useState(false);
+  const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [businessData, setBusinessData] = useState(null);
 
-//empleado.Complemento.Nomina12.Deducciones.TotalImpuestosRetenidos
-let Antiguedad="P82W"
-let numDiasPagados="7"
-let fechaPago="2024-08-03"
-let FechaInicialPago="2024-07-28"
-let FechaFinalPago="2024-08-04"
-let totalOtrosPagos="0"
-let curpPatron="RERR600822HTSTSB01"
-let RfcPatronOrigen="RERR6008226N5"
-let fechaActual="2024-12-20"
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch employees
+        const empResponse = await fetch('/api/empleados');
+        const empData = await empResponse.json();
+        setEmployees(empData);
 
-let OtrosPagos =  { 
+        // Fetch business data
+        const businessResponse = await fetch('/api/datosnegocio');
+        const businessData = await businessResponse.json();
+        setBusinessData(businessData);
+      } catch (error) {
+        console.error('Error al cargar datos:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    "OtrosPagos": [
-       {
-         "TipoOtroPago": "002",
-         "Clave": "002",
-         "Concepto": "Subsidio",
-         "Importe": "0.00",
-         "SubsidioAlEmpleo": {
-           "SubsidioCausado": "89.81"
-         }
-       }
-     ]
-   }
+    fetchData();
+  }, []);
 
-   let emisor={"Emisor": {
-                        "RegistroPatronal": ""+RegistroPatronal+"",
-                        "RfcPatronOrigen": ""+RfcPatronOrigen+"",
-                        "Curp": ""+curpPatron+"",            
-                    },}
+  const datos2 = {
+    "fechaPago": "2024-12-21",
+    "fechaInicialPago": "2024-12-23",
+    "fechaFinalPago": "2025-01-13",
+    "diasTrabajados": "18",
+  }
 
-     let finiquito=  {
-        "Version": "4.0",
-        "Serie": "Bvic",
-        "Folio": "73",
-        "Fecha":fechaActual,
-        "Sello": "",
-        "NoCertificado": "",
-        "Certificado": "",
-        "SubTotal": "3703.26",
-        "Descuento": "0.00",
-        "Moneda": "MXN",
-        "Total": "3703.26",
-        "TipoDeComprobante": "N",
-        "Exportacion": "01",
-        "MetodoPago": "PUE",
-        "LugarExpedicion": "87030",
-        "Emisor": {
-            "Rfc": "RERR6008226N5",
-            "Nombre": "ROBERTO RETA RESENDEZ",
-            "RegimenFiscal": "612"
+  const handleEmployeeSelect = (e) => {
+    const employeeId = e.target.value;
+    const employee = employees.find(emp => emp.id === employeeId);
+    setSelectedEmployee(employee);
+    setShowPayroll(false);
+  }
+
+  const generatePayroll = () => {
+    if (selectedEmployee && businessData) {
+      // Transform employee data to match the expected format
+      const employeeData = {
+        Folio: selectedEmployee.id,
+        LugarExpedicion: selectedEmployee.codigoPostal,
+        SubTotal: selectedEmployee.salarioBaseCotizacion * datos2.diasTrabajados,
+        Emisor: {
+          Rfc: businessData.rfc,
+          Nombre: businessData.razonSocial,
+          RegimenFiscal: businessData.regimenFiscal,
         },
-        "Receptor":   {
-            "Rfc": "",
-            "Nombre": "",
-            "DomicilioFiscalReceptor": "87130",
-            "RegimenFiscalReceptor": "605",
-            "UsoCFDI": "CN01"
+        Receptor: {
+          Rfc: selectedEmployee.rfc,
+          Nombre: selectedEmployee.nombreCompleto,
+          DomicilioFiscalReceptor: selectedEmployee.codigoPostal,
+          RegimenFiscalReceptor: "605",
+          UsoCFDI: "CN01",
         },
-        "Conceptos": [
-            {
-                "ClaveProdServ": "84111505",
-                "Cantidad": "1",
-                "ClaveUnidad": "ACT",
-                "Descripcion": "Pago de nómina",
-                "ValorUnitario": "3703.26",
-                "Importe": "3703.26",
-                "Descuento": "0.00",
-                "ObjetoImp": "01"
+        Conceptos: [{
+          ClaveProdServ: "84111505",
+          Cantidad: "1",
+          ClaveUnidad: "ACT",
+          Descripcion: "Pago de nómina",
+          ValorUnitario: selectedEmployee.salarioBaseCotizacion.toString(),
+          Importe: selectedEmployee.salarioBaseCotizacion.toString(),
+          ObjetoImp: "01"
+        }],
+        Complemento: {
+          Nomina12: {
+            TotalPercepciones: selectedEmployee.salarioBaseCotizacion.toString(),
+            TotalDeducciones: "0",
+            TotalOtrosPagos: "0",
+            Emisor: {
+              RegistroPatronal: businessData.registroPatronal,
+              RfcPatronOrigen: businessData.rfc,
+              Curp: businessData.curp,
+            },
+            Receptor: {
+              Curp: selectedEmployee.curp,
+              NumSeguridadSocial: selectedEmployee.numeroSeguridadSocial,
+              FechaInicioRelLaboral: selectedEmployee.fechaIngreso,
+              TipoContrato: selectedEmployee.tipoContrato,
+              TipoJornada: selectedEmployee.tipoJornada,
+              TipoRegimen: selectedEmployee.regimenContratacion,
+              NumEmpleado: selectedEmployee.id.toString(),
+              Departamento: selectedEmployee.departamento,
+              Puesto: selectedEmployee.puesto,
+              RiesgoPuesto: selectedEmployee.riesgoPuesto,
+              PeriodicidadPago: selectedEmployee.periodicidadPago,
+              SalarioBaseCotApor: selectedEmployee.salarioBaseCotizacion.toString(),
+              SalarioDiarioIntegrado: selectedEmployee.salarioDiarioIntegrado.toString(),
+              ClaveEntFed: "TAM"
             }
-        ],
-        "Complemento": {
-
-                    "Nomina12": {
-                        "Version": "1.2",
-                        "TipoNomina": "O",
-                        "FechaPago": "2024-08-03",
-                        "FechaInicialPago": "2024-07-29",
-                        "FechaFinalPago": "2024-08-04",
-                        "NumDiasPagados": "7",
-                        "TotalPercepciones": "3703.26",
-                        "TotalOtrosPagos": "0.00",
-                        "Emisor": emisor.Emisor,
-                        "Receptor": {
-                            "Curp": "RARS920401MTSMBT04",
-                            "NumSeguridadSocial": "09109253790",
-                            "FechaInicioRelLaboral": "2024-03-18",
-                            "Antiguedad": "P5M28D",
-                            "TipoContrato": "01",
-                            "TipoJornada": "01",
-                            "TipoRegimen": "02",
-                            "NumEmpleado": "14",
-                            "Departamento": "Ventas",
-                            "Puesto": "Empleado general",
-                            "RiesgoPuesto": "3",
-                            "PeriodicidadPago": "99",
-                            "SalarioBaseCotApor": "248.93",
-                            "SalarioDiarioIntegrado": "261.21",
-                            "ClaveEntFed": "TAM"
-                        },
-                        "Percepciones": {
-                            "TotalSueldos": "3703.26",
-                            "TotalGravado": "0.00",
-                            "TotalExento": "3703.26",
-                            "Percepcion": [
-                                {
-                                    "TipoPercepcion": "001",
-                                    "Clave": "001",
-                                    "Concepto": "PARTE PROPORCIONAL DE VACACIONES",
-                                    "ImporteGravado": "0.00",
-                                    "ImporteExento": "1481.30"
-                                },
-                                {
-                                    "TipoPercepcion": "002",
-                                    "Clave": "002",
-                                    "Concepto": "PARTE PROPORCIONAL DE AGUINALDO",
-                                    "ImporteGravado": "0.00",
-                                    "ImporteExento": "1851.63"
-                                },
-                                {
-                                    "TipoPercepcion": "021",
-                                    "Clave": "021",
-                                    "Concepto": "PARTE PROPORCIONAL PRIMA VACACIONAL",
-                                    "ImporteGravado": "0.00",
-                                    "ImporteExento": "370.33"
-                                },
-                            ]
-                        },
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
-                    }
-                
+          }
         }
-     }
- 
-     let PrimaV= {
-        "Version": "4.0",
-        "Serie": "Bvic",
-        "Folio": "181",
-        "Fecha":fechaActual,
-        "Sello": "",
-        "NoCertificado": "",
-        "Certificado": "",
-        "SubTotal": "1237.50",
-        "Moneda": "MXN",
-        "Total": "1237.50",
-        "TipoDeComprobante": "N",
-        "Exportacion": "01",
-        "MetodoPago": "PUE",
-        "LugarExpedicion": "87030",
-        "Emisor": {
-            "Rfc": "RERR6008226N5",
-            "Nombre": "ROBERTO RETA RESENDEZ",
-            "RegimenFiscal": "612"
-        },
-        "Receptor": {
-            "Rfc": "BALA9408074K1",
-            "Nombre": "ALDO ANGEL BARRON LADRON DE GUEVARA",
-            "DomicilioFiscalReceptor": "87080",
-            "RegimenFiscalReceptor": "605",
-            "UsoCFDI": "CN01"
-        },
-        "Conceptos": [
-            {
-                "ClaveProdServ": "84111505",
-                "Cantidad": "1",
-                "ClaveUnidad": "ACT",
-                "Descripcion": "Pago de nómina",
-                "ValorUnitario": "1237.50",
-                "Importe": "1237.50",
-                "ObjetoImp": "01"
-            }
-        ],
-        "Complemento": {
+      };
 
-                    "Nomina12": {
-                        "Version": "1.2",
-                        "TipoNomina": "E",
-                        "FechaPago": "2024-08-03",
-                        "FechaInicialPago": "2024-07-29",
-                        "FechaFinalPago": "2024-08-04",
-                        "NumDiasPagados": "7",
-                        "TotalPercepciones": "1237.50",
-                        "TotalOtrosPagos": "0.00",
-                        "Emisor": emisor.Emisor,
-                      "Receptor": {
-                        "Curp": "BALA940807HTSRDL02",
-                        "NumSeguridadSocial": "09129497229",
-                        "FechaInicioRelLaboral": "2020-11-03",
-                        "Antiguedad": "P212W",
-                        "TipoContrato": "01",
-                        "TipoJornada": "01",
-                        "TipoRegimen": "02",
-                        "NumEmpleado": "3",
-                        "Departamento": "SERVICIO",
-                        "Puesto": "Empleado general",
-                        "RiesgoPuesto": "3",
-                        "PeriodicidadPago": "99",
-                        "SalarioBaseCotApor": "275.00 ",
-                        "SalarioDiarioIntegrado": "289.32 ",
-                        "ClaveEntFed": "TAM"
-                    },
-                        "Percepciones": {
-                            "TotalSueldos": "1237.50",
-                            "TotalGravado": "0",
-                            "TotalExento": "1237.50",
-                            "Percepcion": [
-                                {
-                                    "TipoPercepcion": "021",
-                                    "Clave": "021",
-                                    "Concepto"  : "PRIMA VACACIONAL",
-                                    "ImporteGravado": "0.00",
-                                    "ImporteExento": "1237.50"
-                                }
-                            ]
-                        },
+      makeNomina(employeeData, datos2);
+      setShowPayroll(true);
+    }
+  }
 
-            "OtrosPagos":OtrosPagos.OtrosPagos
-                       
-                    }
-                
-        }}
-    
-        let datos2={
-            "fechaPago": "2024-12-21",
-            "fechaInicialPago": "2024-12-23",
-            "fechaFinalPago": "2025-01-13",
-            "diasTrabajados": "18",
-        }
-        
-     makeNomina_PrimaV(PrimaV,datos2)
-  //  let res= makeNomina(empleados.empleados[6],datos2)
-  
-return(
-    <div>
+  if (loading) {
+    return (
+      <div className="p-4">
+        <div className="text-center">
+          Cargando datos...
+        </div>
+      </div>
+    );
+  }
 
-{/* <button onClick={() => makeNomina(kevin)}>Hacer nomina</button> */}
-    </div>  
-)
+  return (
+    <div className="p-4">
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Seleccionar Empleado
+        </label>
+        <select 
+          onChange={handleEmployeeSelect}
+          className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+        >
+          <option value="">Seleccione un empleado</option>
+          {employees.map((emp) => (
+            <option key={emp.id} value={emp.id}>
+              {emp.nombreCompleto} - {emp.puesto}
+            </option>
+          ))}
+        </select>
+      </div>
 
+      {selectedEmployee && (
+        <div className="mt-4">
+          <div className="bg-gray-50 p-4 rounded mb-4">
+            <h3 className="text-lg font-medium mb-2">Información del Empleado</h3>
+            <p><strong>RFC:</strong> {selectedEmployee.rfc}</p>
+            <p><strong>CURP:</strong> {selectedEmployee.curp}</p>
+            <p><strong>Departamento:</strong> {selectedEmployee.departamento}</p>
+            <p><strong>Puesto:</strong> {selectedEmployee.puesto}</p>
+            <p><strong>Salario Base:</strong> ${selectedEmployee.salarioBaseCotizacion}</p>
+          </div>
+          
+          <button
+            onClick={generatePayroll}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            disabled={!businessData}
+          >
+            Generar Nómina
+          </button>
+        </div>
+      )}
+
+      {showPayroll && (
+        <div className="mt-4 p-4 bg-green-100 rounded">
+          Nómina generada exitosamente
+        </div>
+      )}
+    </div>
+  );
 }
 
-
-export default  NominaV1
+export default NominaV1

@@ -57,10 +57,7 @@ export default async function Nomina  () {
   
       <div>
                 {/* Render the form creator */}
-        <FormNom 
-          // Pass the elements array as a prop
-            elements={elements} 
-        />
+<NominaV1/>
 
       </div>
     

@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     doc.moveDown();
 
     // Add receipt rows
-    receipts.forEach((receipt) => {
+    receipts.forEach((receipt: { id: string; date: string; amount: number; employee: { nombreCompleto: string }; status: string }) => {
       const y = doc.y;
       doc
         .fontSize(9)

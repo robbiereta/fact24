@@ -39,35 +39,22 @@ export async function GET() {
     }
 
     // Add data rows
-    empleados.forEach((empleado: {
-      nombreCompleto: string;
-      rfc: string;
-      curp: string;
-      numeroSeguridadSocial: string;
-      codigoPostal: string;
-      fechaIngreso: Date;
-      puesto: string;
-      departamento: string;
-      salarioBaseCotizacion: number;
-      salarioDiarioIntegrado: number;
-      correoElectronico: string;
-      telefono: string;
-    }) => {
+    empleados.forEach((empleado) => {
       worksheet.addRow({
         nombreCompleto: empleado.nombreCompleto,
         rfc: empleado.rfc,
         curp: empleado.curp,
         numeroSeguridadSocial: empleado.numeroSeguridadSocial,
         codigoPostal: empleado.codigoPostal,
-        fechaIngreso: new Date(empleado.fechaIngreso).toLocaleDateString(),
+        fechaIngreso: empleado.fechaIngreso,
         puesto: empleado.puesto,
         departamento: empleado.departamento,
-        salarioBaseCotizacion: empleado.salarioBaseCotizacion,
-        salarioDiarioIntegrado: empleado.salarioDiarioIntegrado,
+        salarioBaseCotizacion: Number(empleado.salarioBaseCotizacion),
+        salarioDiarioIntegrado: Number(empleado.salarioDiarioIntegrado),
         correoElectronico: empleado.correoElectronico,
-        telefono: empleado.telefono
-      })
-    })
+        telefono: empleado.telefono,
+      });
+    });
 
     // Format number columns
     worksheet.getColumn('salarioBaseCotizacion').numFmt = '"$"#,##0.00'

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import UpdateandDeleteControls from './updateanddelete';
@@ -30,21 +30,20 @@ function ListaTicket({ recurso }: ListaTicketProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       const response = await axios.get<Nota[]>(url + recurso);
       // Ensure we're setting an array, even if empty
-      const data = response.data && Array.isArray(response.data) ? response.data : [];
-      setTableElements(data);
+      setTableElements(response.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
       setTableElements([]);
     }
-  };  
+  }, [recurso, url]);
 
   useEffect(() => {
     getData();
-  }, [recurso]); // Re-fetch when recurso changes
+  }, [getData, recurso]); // Re-fetch when recurso changes
 
   if (!Array.isArray(tableElements) || tableElements.length === 0) {
     return <div className="text-center p-4">No hay registros disponibles.</div>;

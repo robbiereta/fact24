@@ -149,7 +149,7 @@ let elements = [
 
 export default function Nomina() {
   const [showForm, setShowForm] = useState(false);
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
@@ -159,9 +159,10 @@ export default function Nomina() {
     try {
       const response = await fetch('/api/empleados');
       const data = await response.json();
-      setEmployees(data);
+      setEmployees(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching employees:', error);
+      setEmployees([]);
     } finally {
       setLoading(false);
     }

@@ -31,4 +31,32 @@ model Empleado {
   telefono             String
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
+  receipts             Receipt[]
+}
+
+model Receipt {
+  id          String    @id @default(uuid())
+  date        DateTime  @default(now())
+  amount      Decimal
+  status      String    @default("completed")
+  items       Json?
+  empleado    Empleado  @relation(fields: [empleadoId], references: [id])
+  empleadoId  Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model DatosNegocio {
+  id               Int      @id @default(autoincrement())
+  razonSocial      String
+  rfc              String
+  regimenFiscal    String
+  codigoPostal     String
+  registroPatronal String
+  curp             String
+  direccion        Json?
+  telefono         String?
+  correoElectronico String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
