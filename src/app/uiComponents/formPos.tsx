@@ -39,7 +39,7 @@ function FormPos(props:FormCreatorProps) {
   const handleChangeModalClose = async () => {
     const change = amountPaid - total;
     setShowChangeModal(false);
-    ReciboMaker(notasPartidas,folio)
+    ReciboMaker({ notas: notasPartidas, folio });
     
       
       print();
