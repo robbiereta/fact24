@@ -241,14 +241,14 @@ let OtrosPagos =  {
         }}
     
         let datos2={
-            "fechaPago": "2024-12-21",
-            "fechaInicialPago": "2024-12-23",
-            "fechaFinalPago": "2025-01-13",
-            "diasTrabajados": "18",
+            "fechaPago": "2025-01-04",
+            "fechaInicialPago": "2024-12-30",
+            "fechaFinalPago": "2025-01-05",
+            "diasTrabajados": "7",
         }
         
-     makeNomina_PrimaV(PrimaV,datos2)
-  //  let res= makeNomina(empleados.empleados[6],datos2)
+
+  let res= makeNomina(empleados.empleados[0],datos2)
   
 return(
     <div>
