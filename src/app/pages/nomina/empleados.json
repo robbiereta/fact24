@@ -264,7 +264,7 @@
             "Sello": "",
             "NoCertificado": "",
             "Certificado": "",
-            "SubTotal": "1925.00",
+            "SubTotal": "2175.00",
             "Descuento": "94.71",
             "Moneda": "MXN",
             "Total": "1830.29",
@@ -290,8 +290,8 @@
                     "Cantidad": "1",
                     "ClaveUnidad": "ACT",
                     "Descripcion": "Pago de nómina",
-                    "ValorUnitario": "1925.00",
-                    "Importe": "1925.00",
+                    "ValorUnitario": "2175.00",
+                    "Importe": "2175.00",
                     "Descuento": "94.71",
                     "ObjetoImp": "01"
                 }
@@ -304,7 +304,7 @@
                     "FechaInicialPago": "2024-07-29",
                     "FechaFinalPago": "2024-08-04",
                     "NumDiasPagados": "7",
-                    "TotalPercepciones": "1925.00",
+                    "TotalPercepciones": "2175.00",
                     "TotalDeducciones": "94.71",
                     "TotalOtrosPagos": "0.00",
                     "Emisor": {
@@ -330,15 +330,15 @@
                         "ClaveEntFed": "TAM"
                     },
                     "Percepciones": {
-                        "TotalSueldos": "1925.00",
-                        "TotalGravado": "1925.00",
+                        "TotalSueldos": "2175.00",
+                        "TotalGravado": "2175.00",
                         "TotalExento": "0",
                         "Percepcion": [
                             {
                                 "TipoPercepcion": "001",
                                 "Clave": "001",
                                 "Concepto": "SUELDO",
-                                "ImporteGravado": "1925.00",
+                                "ImporteGravado": "2175.00",
                                 "ImporteExento": "0.00"
                             }
                         ]
@@ -639,7 +639,7 @@
             "Sello": "",
             "NoCertificado": "",
             "Certificado": "",
-            "SubTotal": "1925.00",
+            "SubTotal": "2175.00",
             "Descuento": "94.71",
             "Moneda": "MXN",
             "Total": "1830.29",
@@ -665,8 +665,8 @@
                     "Cantidad": "1",
                     "ClaveUnidad": "ACT",
                     "Descripcion": "Pago de nómina",
-                    "ValorUnitario": "1925.00",
-                    "Importe": "1925.00",
+                    "ValorUnitario": "2175.00",
+                    "Importe": "2175.00",
                     "Descuento": "94.71",
                     "ObjetoImp": "01"
                 }
@@ -679,7 +679,7 @@
                     "FechaInicialPago": "2024-07-29",
                     "FechaFinalPago": "2024-08-04",
                     "NumDiasPagados": "7",
-                    "TotalPercepciones": "1925.00",
+                    "TotalPercepciones": "2175.00",
                     "TotalDeducciones": "94.71",
                     "TotalOtrosPagos": "0.00",
                     "Emisor": {
@@ -705,15 +705,15 @@
                         "ClaveEntFed": "TAM"
                     },
                     "Percepciones": {
-                        "TotalSueldos": "1925.00",
-                        "TotalGravado": "1925.00",
+                        "TotalSueldos": "2175.00",
+                        "TotalGravado": "2175.00",
                         "TotalExento": "0",
                         "Percepcion": [
                             {
                                 "TipoPercepcion": "001",
                                 "Clave": "001",
                                 "Concepto": "SUELDO",
-                                "ImporteGravado": "1925.00",
+                                "ImporteGravado": "2175.00",
                                 "ImporteExento": "0.00"
                             }
                         ]
