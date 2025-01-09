@@ -12,6 +12,11 @@ export async function POST(request: Request) {
         amount: data.amount,
         date: new Date(data.date),
         status: data.status,
+        empleado: {
+          connect: {
+            id: data.empleadoId
+          }
+        },
         items: {
           create: data.items.map((item: any) => ({
             quantity: item.quantity,
@@ -19,6 +24,14 @@ export async function POST(request: Request) {
             unitPrice: item.unitPrice,
             total: item.total
           }))
+        }
+      },
+      include: {
+        empleado: {
+          select: {
+            id: true,
+            nombreCompleto: true
+          }
         }
       }
     });
@@ -38,34 +51,43 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
+    const empleadoId = searchParams.get('empleadoId');
 
-    if (!startDate || !endDate) {
-      return NextResponse.json(
-        { error: 'Start date and end date are required' },
-        { status: 400 }
-      );
+    const where: any = {};
+
+    if (startDate || endDate) {
+      where.date = {};
+      if (startDate) {
+        where.date.gte = new Date(startDate);
+      }
+      if (endDate) {
+        where.date.lte = new Date(endDate + 'T23:59:59');
+      }
+    }
+
+    if (empleadoId) {
+      where.empleadoId = parseInt(empleadoId);
     }
 
     const receipts = await prisma.receipt.findMany({
-      where: {
-        date: {
-          gte: new Date(startDate),
-          lte: new Date(endDate)
-        }
-      },
+      where,
       include: {
-        items: true
+        empleado: {
+          select: {
+            id: true,
+            nombreCompleto: true
+          }
+        }
       },
       orderBy: {
         date: 'desc'
       }
     });
 
-    return NextResponse.json(receipts, { status: 200 });
-  } catch (error) {
-    console.error('Error fetching receipts:', error);
+    return NextResponse.json(receipts);
+  } catch (error: any) {
     return NextResponse.json(
-      { error: 'Failed to fetch receipts' },
+      { error: error.message || 'Error fetching receipts' },
       { status: 500 }
     );
   }

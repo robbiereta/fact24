@@ -18,7 +18,7 @@ interface Recibo {
   observaciones: string;
 }
 
-export default function ReciboMaker(notasPartidas: NotaPartida[], folio: string) {
+export default function ReciboMaker(notasPartidas: NotaPartida[], folio: string, empleado: string) {
 
   let total3 = 0;
   

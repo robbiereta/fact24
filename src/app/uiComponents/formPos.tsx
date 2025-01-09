@@ -34,6 +34,29 @@ function FormPos(props:FormCreatorProps) {
   const [amountPaid, setAmountPaid] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
   const [notasPartidas, setNotasPartidas] = useState<any[]>([]);
+  const [empleado, setEmpleado] = useState<number>(0);
+  const [empleados, setEmpleados] = useState<Array<{ id: number; nombreCompleto: string }>>([]);
+
+  // Fetch employees when component mounts
+  useEffect(() => {
+    const fetchEmpleados = async () => {
+      try {
+        const response = await fetch('/api/empleados');
+        if (response.ok) {
+          const data = await response.json();
+          setEmpleados(data);
+          if (data.length > 0) {
+            setEmpleado(data[0].id); // Set first employee as default
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching empleados:', error);
+        toast.error('Error al cargar empleados');
+      }
+    };
+    fetchEmpleados();
+  }, []);
+
   //const handleTicketContent = () => setTicketContent(ticket)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -48,6 +71,11 @@ function FormPos(props:FormCreatorProps) {
         amount: total,
         date: new Date().toISOString(),
         status: 'completed',
+        empleado: {
+          connect: {
+            id: empleado
+          }
+        },
         items: notasPartidas.map(item => ({
           quantity: item.Cantidad,
           description: item.Descripcion,
@@ -65,7 +93,7 @@ function FormPos(props:FormCreatorProps) {
       });
 
       // Generar el recibo y imprimir
-      ReciboMaker({ notas: notasPartidas, folio });
+      //ReciboMaker(notasPartidas, folio, empleado);
       print();
 
       // Limpiar el estado después de la venta
@@ -92,6 +120,24 @@ let  folio = orderID.generate();
   let elements=props.elements
   let formElements:any[]=[]
   var optionelements:any[]=[]
+
+  // Add employee select field at the beginning of the form
+  formElements.push(
+    <Form.Group className="mb-3" controlId="empleado-select" key="empleado-key">
+      <Form.Label>Empleado</Form.Label>
+      <Form.Select 
+        required 
+        value={empleado}
+        onChange={(e) => setEmpleado(Number(e.target.value))}
+      >
+        {empleados.map(emp => (
+          <option key={emp.id} value={emp.id}>
+            {emp.nombreCompleto}
+          </option>
+        ))}
+      </Form.Select>
+    </Form.Group>
+  );
 
    elements.map((element)=>{
   formElements.push(
