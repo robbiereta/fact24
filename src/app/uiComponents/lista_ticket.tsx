@@ -48,6 +48,9 @@ function ListaTicket({ recurso }: ListaTicketProps) {
   const [showFilters, setShowFilters] = useState(false);
   const [showClosingModal, setShowClosingModal] = useState(false);
   const [cashClosing, setCashClosing] = useState<CashClosing | null>(null);
+  const [selectedReceipts, setSelectedReceipts] = useState<Set<string>>(new Set());
+  const [savingClosing, setSavingClosing] = useState(false);
+  const [closingNotes, setClosingNotes] = useState('');
 
   const fetchEmployees = useCallback(async () => {
     try {
@@ -184,17 +187,46 @@ function ListaTicket({ recurso }: ListaTicketProps) {
     printWindow.print();
   };
 
-  const generateCashClosing = useCallback(() => {
-    const today = new Date().toISOString().split('T')[0];
-    const todayReceipts = receipts.filter(receipt => {
-      const receiptDate = new Date(receipt.date).toISOString().split('T')[0];
-      return receiptDate === today;
+  const toggleReceiptSelection = (receiptId: string) => {
+    const newSelected = new Set(selectedReceipts);
+    if (newSelected.has(receiptId)) {
+      newSelected.delete(receiptId);
+    } else {
+      newSelected.add(receiptId);
+    }
+    setSelectedReceipts(newSelected);
+  };
+
+  const selectAllInPage = () => {
+    const newSelected = new Set(selectedReceipts);
+    currentItems.forEach(receipt => {
+      newSelected.add(receipt.id);
     });
+    setSelectedReceipts(newSelected);
+  };
+
+  const deselectAllInPage = () => {
+    const newSelected = new Set(selectedReceipts);
+    currentItems.forEach(receipt => {
+      newSelected.delete(receipt.id);
+    });
+    setSelectedReceipts(newSelected);
+  };
+
+  const generateCashClosing = useCallback(() => {
+    if (selectedReceipts.size === 0) {
+      alert('Por favor, seleccione al menos un recibo para hacer el corte.');
+      return;
+    }
+
+    const selectedReceiptsList = filteredReceipts.filter(receipt => 
+      selectedReceipts.has(receipt.id)
+    );
 
     const employeeSummary: { [key: string]: { count: number; total: number } } = {};
     let totalAmount = 0;
 
-    todayReceipts.forEach(receipt => {
+    selectedReceiptsList.forEach(receipt => {
       totalAmount += Number(receipt.amount);
       
       const employeeName = receipt.empleado.nombreCompleto;
@@ -206,16 +238,16 @@ function ListaTicket({ recurso }: ListaTicketProps) {
     });
 
     const closing: CashClosing = {
-      date: today,
+      date: new Date().toISOString(),
       totalAmount,
-      receiptCount: todayReceipts.length,
-      receipts: todayReceipts,
+      receiptCount: selectedReceiptsList.length,
+      receipts: selectedReceiptsList,
       employeeSummary
     };
 
     setCashClosing(closing);
     setShowClosingModal(true);
-  }, [receipts]);
+  }, [filteredReceipts, selectedReceipts]);
 
   const printCashClosing = useCallback(() => {
     if (!cashClosing) return;
@@ -309,6 +341,44 @@ function ListaTicket({ recurso }: ListaTicketProps) {
     printWindow.print();
   }, [cashClosing]);
 
+  const saveCashClosing = async () => {
+    if (!cashClosing) return;
+
+    try {
+      setSavingClosing(true);
+      const response = await fetch('/api/cashClosings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          totalAmount: cashClosing.totalAmount,
+          receiptCount: cashClosing.receiptCount,
+          employeeSummary: cashClosing.employeeSummary,
+          notes: closingNotes,
+          receiptIds: Array.from(selectedReceipts)
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save cash closing');
+      }
+
+      // Clear selections and close modal
+      setSelectedReceipts(new Set());
+      setClosingNotes('');
+      setShowClosingModal(false);
+      
+      // Refresh receipts list
+      fetchReceipts();
+    } catch (error) {
+      console.error('Error saving cash closing:', error);
+      alert('Error al guardar el corte de caja. Por favor, intente nuevamente.');
+    } finally {
+      setSavingClosing(false);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('es-MX', {
@@ -360,7 +430,7 @@ function ListaTicket({ recurso }: ListaTicketProps) {
     <div className="p-3">
       <div className="mb-4">
         <Row className="align-items-center">
-          <Col md={6}>
+          <Col md={4}>
             <InputGroup>
               <Form.Control
                 type="text"
@@ -373,9 +443,31 @@ function ListaTicket({ recurso }: ListaTicketProps) {
               </InputGroup.Text>
             </InputGroup>
           </Col>
-          <Col md={6} className="text-end">
-            <Button variant="outline-warning" className="me-2" onClick={generateCashClosing}>
-              💰 Corte de Caja
+          <Col md={4} className="text-center">
+            <Button 
+              variant="outline-secondary" 
+              className="me-2" 
+              onClick={selectAllInPage}
+              disabled={currentItems.length === 0}
+            >
+              ✓ Seleccionar Página
+            </Button>
+            <Button 
+              variant="outline-secondary" 
+              onClick={deselectAllInPage}
+              disabled={selectedReceipts.size === 0}
+            >
+              ✗ Deseleccionar Página
+            </Button>
+          </Col>
+          <Col md={4} className="text-end">
+            <Button 
+              variant="outline-warning" 
+              className="me-2" 
+              onClick={generateCashClosing}
+              disabled={selectedReceipts.size === 0}
+            >
+              💰 Corte de Caja ({selectedReceipts.size})
             </Button>
             <Button variant="outline-primary" className="me-2" onClick={() => setShowFilters(!showFilters)}>
               {showFilters ? '✖ Ocultar Filtros' : '⚡ Mostrar Filtros'}
@@ -444,6 +536,13 @@ function ListaTicket({ recurso }: ListaTicketProps) {
       <Table striped hover>
         <thead>
           <tr>
+            <th>
+              <Form.Check 
+                type="checkbox"
+                checked={currentItems.length > 0 && currentItems.every(item => selectedReceipts.has(item.id))}
+                onChange={(e) => e.target.checked ? selectAllInPage() : deselectAllInPage()}
+              />
+            </th>
             <th>ID</th>
             <th>Fecha</th>
             <th>Empleado</th>
@@ -453,7 +552,17 @@ function ListaTicket({ recurso }: ListaTicketProps) {
         </thead>
         <tbody>
           {currentItems.map((receipt: Receipt) => (
-            <tr key={receipt.id}>
+            <tr 
+              key={receipt.id}
+              className={selectedReceipts.has(receipt.id) ? 'table-active' : ''}
+            >
+              <td>
+                <Form.Check
+                  type="checkbox"
+                  checked={selectedReceipts.has(receipt.id)}
+                  onChange={() => toggleReceiptSelection(receipt.id)}
+                />
+              </td>
               <td>{receipt.id}</td>
               <td>{formatDate(receipt.date)}</td>
               <td>{receipt.empleado.nombreCompleto}</td>
@@ -492,7 +601,12 @@ function ListaTicket({ recurso }: ListaTicketProps) {
 
       <Modal show={showClosingModal} onHide={() => setShowClosingModal(false)} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Corte de Caja - {cashClosing ? formatDate(cashClosing.date) : ''}</Modal.Title>
+          <Modal.Title>
+            Corte de Caja - {cashClosing ? formatDate(cashClosing.date) : ''}
+            <div className="text-muted fs-6">
+              {selectedReceipts.size} recibos seleccionados
+            </div>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {cashClosing && (
@@ -524,15 +638,33 @@ function ListaTicket({ recurso }: ListaTicketProps) {
                   </tbody>
                 </Table>
               </div>
+
+              <div className="mb-4">
+                <h5>Notas</h5>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Agregar notas o comentarios sobre este corte de caja..."
+                  value={closingNotes}
+                  onChange={(e) => setClosingNotes(e.target.value)}
+                />
+              </div>
             </>
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowClosingModal(false)}>
-            Cerrar
+            Cancelar
           </Button>
           <Button variant="primary" onClick={printCashClosing}>
             🖨️ Imprimir Corte
+          </Button>
+          <Button 
+            variant="success" 
+            onClick={saveCashClosing}
+            disabled={savingClosing}
+          >
+            {savingClosing ? '💾 Guardando...' : '💾 Guardar Corte'}
           </Button>
         </Modal.Footer>
       </Modal>

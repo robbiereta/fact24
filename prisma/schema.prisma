@@ -44,6 +44,8 @@ model Receipt {
   empleadoId  Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  cashClosing CashClosing? @relation(fields: [cashClosingId], references: [id])
+  cashClosingId String?
 }
 
 model DatosNegocio {
@@ -59,4 +61,16 @@ model DatosNegocio {
   correoElectronico String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+}
+
+model CashClosing {
+  id            String    @id @default(uuid())
+  date          DateTime  @default(now())
+  totalAmount   Decimal
+  receiptCount  Int
+  receipts      Receipt[]
+  employeeSummary Json
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  notes         String?
 }
