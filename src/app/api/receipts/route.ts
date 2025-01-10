@@ -92,3 +92,29 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Receipt ID is required' },
+        { status: 400 }
+      );
+    }
+
+    await prisma.receipt.delete({
+      where: { id }
+    });
+
+    return NextResponse.json({ message: 'Receipt deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting receipt:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete receipt' },
+      { status: 500 }
+    );
+  }
+}

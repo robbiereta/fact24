@@ -84,10 +84,11 @@ export async function GET(request: Request) {
         date: {
           gte: new Date(startDate),
           lte: new Date(endDate)
-        }
+        },
+        cashClosingId: null
       },
       include: {
-        employee: true
+        empleado: true
       },
       orderBy: {
         date: 'desc'
@@ -96,7 +97,7 @@ export async function GET(request: Request) {
 
     const formattedReceipts = receipts.map(receipt => ({
       id: receipt.id,
-      employeeName: receipt.employee.nombreCompleto,
+      employeeName: receipt.empleado.nombreCompleto,
       amount: receipt.amount,
       date: receipt.date,
       status: receipt.status

@@ -1,39 +1,60 @@
 'use client'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Link from 'next/link';
+import './nav.css';
 
 function NavScroll() {
   return (
-    <Navbar   expand="lg" 
-    className="navbar navbar-expand-lg navbar-light bg-primary" >
+    <Navbar expand="lg" className="navbar-dark bg-primary">
       <Container fluid>
-        <Navbar.Brand  className='text-white' href="#">Rally ERP</Navbar.Brand>
+        <Navbar.Brand href="/" className="fw-bold">Rally ERP</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-         <Nav.Link  className='text-white' href="/pages/pos">Punto de venta</Nav.Link>
-            <Nav.Link  className='text-white' href="/pages/productos">Productos</Nav.Link>
-           <Nav.Link  className='text-white' href="/pages/inventario">Inventario</Nav.Link>
-          <NavDropdown  className='text-white' title="Facturas" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/pages/facturacliente">Factura a cliente</NavDropdown.Item>
-              <NavDropdown.Item href="/pages/facturaglobal">Factura Global</NavDropdown.Item>
+          <Nav className="me-auto my-2 my-lg-0">
+            <Nav.Link href="/" className="nav-link">Inicio</Nav.Link>
+            <Nav.Link href="/pos" className="nav-link">Punto de Venta</Nav.Link>
+            <Nav.Link href="/cortes" className="nav-link">Cortes de Caja</Nav.Link>
+            
+            <NavDropdown title="Catálogos" id="catalogos-dropdown" className="custom-dropdown">
+              <NavDropdown.Item href="/productos">Productos</NavDropdown.Item>
+              <NavDropdown.Item href="/inventario">Inventario</NavDropdown.Item>
             </NavDropdown>
-          <NavDropdown  className='text-white' title="Nomina" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/pages/nomina">Hacer Nomina</NavDropdown.Item>
-              <NavDropdown.Item href="/pages/nomina/agregarEmpleado">Agregar Empleado</NavDropdown.Item>
+
+            <NavDropdown title="Facturación" id="facturacion-dropdown" className="custom-dropdown">
+              <NavDropdown.Item href="/facturacliente">Factura a Cliente</NavDropdown.Item>
+              <NavDropdown.Item href="/facturaglobal">Factura Global</NavDropdown.Item>
             </NavDropdown>
-          <Nav.Link  className='text-white' href="/pages/datosnegocio">Datos Del Negocio</Nav.Link>
+
+            <NavDropdown title="Nómina" id="nomina-dropdown" className="custom-dropdown">
+              <NavDropdown.Item href="/nomina">Hacer Nómina</NavDropdown.Item>
+              <NavDropdown.Item href="/nomina/agregarEmpleado">Agregar Empleado</NavDropdown.Item>
+              <NavDropdown.Item href="/nomina/empleados">Lista de Empleados</NavDropdown.Item>
+            </NavDropdown>
+
+            <NavDropdown title="Configuración" id="config-dropdown" className="custom-dropdown">
+              <NavDropdown.Item href="/datosnegocio">Datos del Negocio</NavDropdown.Item>
+              <NavDropdown.Item href="/usuarios">Usuarios</NavDropdown.Item>
+              <NavDropdown.Item href="/roles">Roles y Permisos</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
-          
+
+          <Nav>
+            <NavDropdown 
+              title={<span className="text-white">Mi Cuenta</span>} 
+              id="account-dropdown" 
+              className="custom-dropdown"
+              align="end"
+            >
+              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+              <NavDropdown.Item href="/configuracion">Configuración</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/logout">Cerrar Sesión</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

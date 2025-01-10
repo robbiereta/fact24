@@ -51,6 +51,8 @@ function ListaTicket({ recurso }: ListaTicketProps) {
   const [selectedReceipts, setSelectedReceipts] = useState<Set<string>>(new Set());
   const [savingClosing, setSavingClosing] = useState(false);
   const [closingNotes, setClosingNotes] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [receiptToDelete, setReceiptToDelete] = useState<string | null>(null);
 
   const fetchEmployees = useCallback(async () => {
     try {
@@ -397,6 +399,31 @@ function ListaTicket({ recurso }: ListaTicketProps) {
     }).format(amount);
   };
 
+  const handleDelete = async (id: string) => {
+    setReceiptToDelete(id);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!receiptToDelete) return;
+
+    try {
+      const response = await fetch(`/api/receipts?id=${receiptToDelete}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setReceipts(receipts.filter(receipt => receipt.id !== receiptToDelete));
+        setFilteredReceipts(filteredReceipts.filter(receipt => receipt.id !== receiptToDelete));
+        setShowDeleteModal(false);
+      } else {
+        console.error('Error deleting receipt');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   if (!Array.isArray(filteredReceipts)) {
     return <div className="text-center p-4">No hay recibos disponibles.</div>;
   }
@@ -548,6 +575,7 @@ function ListaTicket({ recurso }: ListaTicketProps) {
             <th>Empleado</th>
             <th>Importe</th>
             <th>Estado</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -568,6 +596,11 @@ function ListaTicket({ recurso }: ListaTicketProps) {
               <td>{receipt.empleado.nombreCompleto}</td>
               <td>{formatAmount(receipt.amount)}</td>
               <td>{receipt.status}</td>
+              <td>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(receipt.id)}>
+                  Eliminar
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -665,6 +698,23 @@ function ListaTicket({ recurso }: ListaTicketProps) {
             disabled={savingClosing}
           >
             {savingClosing ? '💾 Guardando...' : '💾 Guardar Corte'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Está seguro que desea eliminar este recibo?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Eliminar
           </Button>
         </Modal.Footer>
       </Modal>
