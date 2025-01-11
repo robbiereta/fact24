@@ -22,10 +22,10 @@ export async function GET(
 
     // Create a new PDF document
     const doc = new PDFDocument()
-    const chunks: Uint8Array[] = []
+    const chunks: Buffer[] = []
 
     // Collect the PDF chunks
-    doc.on('data', (chunk: Buffer) => chunks.push(new Uint8Array(chunk)))
+    doc.on('data', (chunk: Buffer) => chunks.push(chunk))
 
     // Write the PDF content
     doc.fontSize(20).text('Datos del Empleado', { align: 'center' })
@@ -75,7 +75,7 @@ export async function GET(
     await new Promise((resolve) => doc.on('end', resolve));
 
     // Convert chunks to Buffer for response
-    const pdfBuffer = Buffer.concat(chunks);
+    const pdfBuffer: Buffer = Buffer.concat(chunks);
     
     return new NextResponse(pdfBuffer, {
       headers: {

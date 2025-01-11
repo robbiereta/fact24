@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         }
       },
       include: {
-        employee: true
+        empleado: true
       },
       orderBy: {
         date: 'asc'
@@ -68,12 +68,12 @@ export async function POST(request: Request) {
     doc.moveDown();
 
     // Add receipt rows
-    receipts.forEach((receipt: { id: string; date: string; amount: number; employee: { nombreCompleto: string }; status: string }) => {
+    receipts.forEach((receipt: { id: string; date: string; amount: number; empleado: { nombreCompleto: string }; status: string }) => {
       const y = doc.y;
       doc
         .fontSize(9)
         .text(receipt.id, 50, y, { width: 80 })
-        .text(receipt.employee.nombreCompleto, 130, y, { width: 150 })
+        .text(receipt.empleado.nombreCompleto, 130, y, { width: 150 })
         .text(`$${receipt.amount.toFixed(2)}`, 280, y, { width: 80 })
         .text(new Date(receipt.date).toLocaleDateString(), 360, y, { width: 100 })
         .text(receipt.status, 460, y, { width: 80 });

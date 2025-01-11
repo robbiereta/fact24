@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import PDFDocument from 'pdfkit-table';
 
@@ -23,7 +22,7 @@ export async function GET(
     });
 
     if (!cashClosing) {
-      return NextResponse.json(
+      return Response.json(
         { error: 'Cash closing not found' },
         { status: 404 }
       );
@@ -34,7 +33,7 @@ export async function GET(
     const chunks: Buffer[] = [];
 
     // Collect the PDF data
-    const pdfPromise = new Promise((resolve, reject) => {
+    const pdfPromise = new Promise<Buffer>((resolve, reject) => {
       doc.on('data', chunk => chunks.push(chunk));
       doc.on('end', () => resolve(Buffer.concat(chunks)));
       doc.on('error', reject);
@@ -116,13 +115,13 @@ export async function GET(
     headers.set('Content-Length', pdfBuffer.length.toString());
 
     // Return the PDF as a response
-    return new NextResponse(pdfBuffer, {
+    return new Response(pdfBuffer, {
       status: 200,
       headers
     });
   } catch (error) {
     console.error('Error generating PDF:', error);
-    return NextResponse.json(
+    return Response.json(
       { error: 'Failed to generate PDF' },
       { status: 500 }
     );
