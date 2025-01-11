@@ -229,6 +229,8 @@ export default function Nomina() {
 
       {showForm ? (
         <FormAddEmpleado 
+          show={showForm}
+          onHide={() => setShowForm(false)}
           elements={elements} 
           recurso="empleados" 
           onSuccess={handleEmployeeAdded}
