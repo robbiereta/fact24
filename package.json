@@ -10,6 +10,9 @@
     "test": "jest --watch",
     "prisma:seed": "ts-node prisma/seed.ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "@cfdi/xml": "^4.0.13",
     "@fortawesome/fontawesome-free": "^6.5.1",
@@ -35,7 +38,7 @@
     "postgres": "^3.4.3",
     "prisma": "^6.2.1",
     "react": "^18",
-    "react-bootstrap": "^2.10.2",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
     "react-hot-toast": "^2.5.1",
@@ -53,7 +56,7 @@
     "@testing-library/react": "^14.0.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.0.0",
-    "@types/node": "^20",
+    "@types/node": "^20.17.12",
     "@types/pdfkit": "^0.13.8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -68,6 +71,6 @@
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5.7.3"
   }
 }

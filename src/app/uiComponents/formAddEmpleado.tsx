@@ -9,15 +9,18 @@ interface Employee {
 }
 
 interface FormCreatorProps {
-  elements: {
+  show: boolean;
+  onHide: () => void;
+  elements?: {
     name: string;
     id: number;
     type: string;
     placeholder: string;
   }[];
-  recurso: string
+  recurso?: string;
   onSuccess?: () => void;
-  initialData?: Employee;
+  employeeData?: Employee;
+  isEditing?: boolean;
 }
 
 const selectOptions = {
@@ -143,7 +146,7 @@ function FormAddEmpleado(props:FormCreatorProps) {
       <Form noValidate validated={validated} onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
         <h2 className="mb-4 text-center">Datos del Empleado</h2>
         <div className="row">
-          {props.elements.map((element) => (
+          {props.elements?.map((element) => (
             <div key={element.id} className="col-md-6 mb-3">
               <Form.Group controlId={element.name + element.id}>
                 <Form.Label>{element.placeholder}</Form.Label>

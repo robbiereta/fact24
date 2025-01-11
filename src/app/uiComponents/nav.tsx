@@ -1,5 +1,4 @@
 'use client'
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,34 +10,59 @@ function NavScroll() {
   return (
     <Navbar expand="lg" className="navbar-dark bg-primary">
       <Container fluid>
-        <Navbar.Brand href="/" className="fw-bold">Rally ERP</Navbar.Brand>
+        <Link href="/" passHref legacyBehavior>
+          <Navbar.Brand className="fw-bold">Rally ERP</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0">
-            <Nav.Link href="/" className="nav-link">Inicio</Nav.Link>
-            <Nav.Link href="/pos" className="nav-link">Punto de Venta</Nav.Link>
-            <Nav.Link href="/cortes" className="nav-link">Cortes de Caja</Nav.Link>
+            <Link href="/" passHref legacyBehavior>
+              <Nav.Link>Inicio</Nav.Link>
+            </Link>
+            <Link href="/pages/pos" passHref legacyBehavior>
+              <Nav.Link>Punto de Venta</Nav.Link>
+            </Link>
+            <Link href="/pages/cortes" passHref legacyBehavior>
+              <Nav.Link>Cortes de Caja</Nav.Link>
+            </Link>
             
             <NavDropdown title="Catálogos" id="catalogos-dropdown" className="custom-dropdown">
-              <NavDropdown.Item href="/productos">Productos</NavDropdown.Item>
-              <NavDropdown.Item href="/inventario">Inventario</NavDropdown.Item>
+              <Link href="/pages/productos" passHref legacyBehavior>
+                <NavDropdown.Item>Productos</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/inventario" passHref legacyBehavior>
+                <NavDropdown.Item>Inventario</NavDropdown.Item>
+              </Link>
             </NavDropdown>
 
             <NavDropdown title="Facturación" id="facturacion-dropdown" className="custom-dropdown">
-              <NavDropdown.Item href="/facturacliente">Factura a Cliente</NavDropdown.Item>
-              <NavDropdown.Item href="/facturaglobal">Factura Global</NavDropdown.Item>
+              <Link href="/pages/facturacliente" passHref legacyBehavior>
+                <NavDropdown.Item>Factura a Cliente</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/facturaglobal" passHref legacyBehavior>
+                <NavDropdown.Item>Factura Global</NavDropdown.Item>
+              </Link>
             </NavDropdown>
 
             <NavDropdown title="Nómina" id="nomina-dropdown" className="custom-dropdown">
-              <NavDropdown.Item href="/nomina">Hacer Nómina</NavDropdown.Item>
-              <NavDropdown.Item href="/nomina/agregarEmpleado">Agregar Empleado</NavDropdown.Item>
-              <NavDropdown.Item href="/nomina/empleados">Lista de Empleados</NavDropdown.Item>
+              <Link href="/pages/nomina" passHref legacyBehavior>
+                <NavDropdown.Item>Hacer Nómina</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/nomina/empleados" passHref legacyBehavior>
+                <NavDropdown.Item>Lista de Empleados</NavDropdown.Item>
+              </Link>
             </NavDropdown>
 
             <NavDropdown title="Configuración" id="config-dropdown" className="custom-dropdown">
-              <NavDropdown.Item href="/datosnegocio">Datos del Negocio</NavDropdown.Item>
-              <NavDropdown.Item href="/usuarios">Usuarios</NavDropdown.Item>
-              <NavDropdown.Item href="/roles">Roles y Permisos</NavDropdown.Item>
+              <Link href="/pages/datosnegocio" passHref legacyBehavior>
+                <NavDropdown.Item>Datos del Negocio</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/usuarios" passHref legacyBehavior>
+                <NavDropdown.Item>Usuarios</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/roles" passHref legacyBehavior>
+                <NavDropdown.Item>Roles y Permisos</NavDropdown.Item>
+              </Link>
             </NavDropdown>
           </Nav>
 
@@ -49,10 +73,16 @@ function NavScroll() {
               className="custom-dropdown"
               align="end"
             >
-              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-              <NavDropdown.Item href="/configuracion">Configuración</NavDropdown.Item>
+              <Link href="/pages/perfil" passHref legacyBehavior>
+                <NavDropdown.Item>Perfil</NavDropdown.Item>
+              </Link>
+              <Link href="/pages/configuracion" passHref legacyBehavior>
+                <NavDropdown.Item>Configuración</NavDropdown.Item>
+              </Link>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/logout">Cerrar Sesión</NavDropdown.Item>
+              <Link href="/auth/signout" passHref legacyBehavior>
+                <NavDropdown.Item>Cerrar Sesión</NavDropdown.Item>
+              </Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
