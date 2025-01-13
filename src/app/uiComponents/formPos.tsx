@@ -71,11 +71,7 @@ function FormPos(props:FormCreatorProps) {
         amount: total,
         date: new Date().toISOString(),
         status: 'completed',
-        empleado: {
-          connect: {
-            id: empleado
-          }
-        },
+        empleadoId: empleado,
         items: notasPartidas.map(item => ({
           quantity: item.Cantidad,
           description: item.Descripcion,
