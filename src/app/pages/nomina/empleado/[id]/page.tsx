@@ -166,13 +166,16 @@ export default function EmpleadoDetalle({ params }: { params: { id: string } }) 
         </Modal.Header>
         <Modal.Body>
           <FormAddEmpleado
-            elements={[]} // We'll update this with the form elements
+            show={showEditModal}
+            onHide={() => setShowEditModal(false)}
+            elements={[]} 
             recurso="empleados"
-            initialData={employee}
+            employeeData={employee}
             onSuccess={() => {
               setShowEditModal(false)
               fetchEmployee()
             }}
+            isEditing={true}
           />
         </Modal.Body>
       </Modal>
