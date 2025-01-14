@@ -2,12 +2,13 @@
 
 import mongoose from 'mongoose';
 
-// Declare the type for the cached mongoose instance
+interface GlobalMongoose {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
 declare global {
-  var mongoose: {
-    conn: typeof mongoose | null;
-    promise: Promise<typeof mongoose> | null;
-  } | undefined;
+  var mongoose: GlobalMongoose | undefined;
 }
 
 const MONGODB_URI = process.env.MONGODB_URI!;
@@ -18,11 +19,11 @@ if (!MONGODB_URI) {
   );
 }
 
-let cached = global.mongoose;
+// Initialize the cached variable with type assertion
+let cached = (global.mongoose || { conn: null, promise: null }) as GlobalMongoose;
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+// No need to check !cached since we initialized it above
+global.mongoose = cached;
 
 async function dbConnect(): Promise<typeof mongoose> {
   if (cached.conn) {
@@ -34,19 +35,17 @@ async function dbConnect(): Promise<typeof mongoose> {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose.connect(MONGODB_URI, opts);
   }
 
   try {
-    cached.conn = await cached.promise;
+    const mongooseInstance = await cached.promise;
+    cached.conn = mongooseInstance;
+    return mongooseInstance;
   } catch (e) {
     cached.promise = null;
     throw e;
   }
-
-  return cached.conn;
 }
 
 export default dbConnect;

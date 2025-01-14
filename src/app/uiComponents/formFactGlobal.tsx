@@ -74,7 +74,7 @@ function FormFactGlobal(props:FormCreatorProps) {
     }
 
   function onSubmitForFact() {
-    FacturaGlobalMaker(data.data)
+
   
   }
   function onSubmit(formData: FormData) {

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
@@ -16,11 +16,7 @@ const CashClosingList = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  useEffect(() => {
-    fetchCashClosings();
-  }, [startDate, endDate]);
-
-  const fetchCashClosings = async () => {
+  const fetchCashClosings = useCallback(async () => {
     try {
       const params = new URLSearchParams();
       if (startDate) params.append('startDate', startDate);
@@ -35,7 +31,11 @@ const CashClosingList = () => {
       console.error('Error fetching cash closings:', error);
       toast.error('Error al cargar los cortes de caja');
     }
-  };
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    fetchCashClosings();
+  }, [fetchCashClosings]);
 
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat('es-MX', {

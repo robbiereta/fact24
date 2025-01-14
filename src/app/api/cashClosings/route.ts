@@ -1,45 +1,50 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
+import { PrismaClient, Prisma } from '@prisma/client';
+
+interface CreateCashClosingData {
+  date: string;
+  totalAmount: number;
+  receiptCount: number;
+  employeeSummary: Record<string, any>;
+  notes?: string;
+  receiptIds: string[];
+}
+
+interface GetCashClosingsQuery {
+  startDate?: string;
+  endDate?: string;
+}
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
-    
-    // Create the cash closing and update receipts in a transaction
-    const cashClosing = await prisma.$transaction(async (tx) => {
-      // Create the cash closing
-      const closing = await tx.cashClosing.create({
-        data: {
-          totalAmount: data.totalAmount,
-          receiptCount: data.receiptCount,
-          employeeSummary: data.employeeSummary,
-          notes: data.notes,
-          receipts: {
-            connect: data.receiptIds.map((id: string) => ({ id }))
-          }
-        },
-        include: {
-          receipts: {
-            include: {
-              empleado: {
-                select: {
-                  id: true,
-                  nombreCompleto: true
-                }
-              }
-            }
+    const data: CreateCashClosingData = await request.json();
+
+    const newCashClosing = await prisma.cashClosing.create({
+      data: {
+        date: new Date(data.date),
+        totalAmount: data.totalAmount,
+        receiptCount: data.receiptCount,
+        employeeSummary: data.employeeSummary,
+        notes: data.notes,
+        receipts: {
+          connect: data.receiptIds.map(id => ({ id }))
+        }
+      },
+      include: {
+        receipts: {
+          include: {
+            empleado: true
           }
         }
-      });
-
-      return closing;
+      }
     });
 
-    return NextResponse.json(cashClosing, { status: 201 });
+    return NextResponse.json(newCashClosing);
   } catch (error: any) {
-    console.error('Error creating cash closing:', error);
+    console.error('Error al crear el corte de caja:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to create cash closing' },
+      { error: 'Error al crear el corte de caja' },
       { status: 500 }
     );
   }
@@ -48,18 +53,20 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const startDate = searchParams.get('startDate');
-    const endDate = searchParams.get('endDate');
+    const query: GetCashClosingsQuery = {
+      startDate: searchParams.get('startDate') || undefined,
+      endDate: searchParams.get('endDate') || undefined
+    };
 
-    const where: any = {};
+    const where: Prisma.CashClosingWhereInput = {};
 
-    if (startDate || endDate) {
+    if (query.startDate || query.endDate) {
       where.date = {};
-      if (startDate) {
-        where.date.gte = new Date(startDate);
+      if (query.startDate) {
+        where.date.gte = new Date(query.startDate);
       }
-      if (endDate) {
-        where.date.lte = new Date(endDate + 'T23:59:59');
+      if (query.endDate) {
+        where.date.lte = new Date(query.endDate + 'T23:59:59');
       }
     }
 
@@ -68,12 +75,7 @@ export async function GET(request: Request) {
       include: {
         receipts: {
           include: {
-            empleado: {
-              select: {
-                id: true,
-                nombreCompleto: true
-              }
-            }
+            empleado: true
           }
         }
       },
@@ -84,8 +86,9 @@ export async function GET(request: Request) {
 
     return NextResponse.json(cashClosings);
   } catch (error: any) {
+    console.error('Error al obtener cortes de caja:', error);
     return NextResponse.json(
-      { error: error.message || 'Error fetching cash closings' },
+      { error: 'Error al obtener cortes de caja' },
       { status: 500 }
     );
   }

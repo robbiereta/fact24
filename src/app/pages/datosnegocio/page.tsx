@@ -2,12 +2,33 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
+interface Direccion {
+  calle: string;
+  numeroExterior: string;
+  numeroInterior: string;
+  colonia: string;
+  municipio: string;
+  estado: string;
+}
+
+interface FormData {
+  razonSocial: string;
+  rfc: string;
+  regimenFiscal: string;
+  codigoPostal: string;
+  registroPatronal: string;
+  curp: string;
+  direccion: Direccion;
+  telefono: string;
+  correoElectronico: string;
+}
+
 export default function DatosNegocio() {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     razonSocial: '',
     rfc: '',
     regimenFiscal: '',
@@ -36,7 +57,6 @@ export default function DatosNegocio() {
       if (response.ok) {
         const data = await response.json()
         if (data) {
-          // Asegurarse de que el objeto direccion existe
           setFormData({
             ...data,
             direccion: {
@@ -61,13 +81,15 @@ export default function DatosNegocio() {
     const { name, value } = e.target
     if (name.includes('.')) {
       const [parent, child] = name.split('.')
-      setFormData(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent],
-          [child]: value
-        }
-      }))
+      if (parent === 'direccion') {
+        setFormData(prev => ({
+          ...prev,
+          direccion: {
+            ...prev.direccion,
+            [child]: value
+          }
+        }))
+      }
     } else {
       setFormData(prev => ({
         ...prev,

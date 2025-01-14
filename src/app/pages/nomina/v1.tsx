@@ -33,6 +33,16 @@ interface BusinessData {
   curp: string;
 }
 
+<<<<<<< HEAD
+=======
+interface PayrollDates {
+  fechaPago: string;
+  fechaInicialPago: string;
+  fechaFinalPago: string;
+  diasTrabajados: string;
+}
+
+>>>>>>> 4d4742dcdc4c453daa5c6df5f1683e94a1b6b386
 function NominaV1() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [showPayroll, setShowPayroll] = useState(false);
@@ -62,27 +72,31 @@ function NominaV1() {
     fetchData();
   }, []);
 
-  const datos2 = {
+  const datos2: PayrollDates = {
     "fechaPago": "2024-12-21",
     "fechaInicialPago": "2024-12-23",
     "fechaFinalPago": "2025-01-13",
+<<<<<<< HEAD
     "diasTrabajados": 18,
   }
+=======
+    "diasTrabajados": "18",
+  };
+>>>>>>> 4d4742dcdc4c453daa5c6df5f1683e94a1b6b386
 
   const handleEmployeeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const employeeId = e.target.value;
     const employee = employees.find(emp => emp.id === employeeId);
     setSelectedEmployee(employee || null);
     setShowPayroll(false);
-  }
+  };
 
   const generatePayroll = () => {
     if (selectedEmployee && businessData) {
-      // Transform employee data to match the expected format
       const employeeData = {
         Folio: selectedEmployee.id,
         LugarExpedicion: selectedEmployee.codigoPostal,
-        SubTotal: selectedEmployee.salarioBaseCotizacion * datos2.diasTrabajados,
+        SubTotal: selectedEmployee.salarioBaseCotizacion * Number(datos2.diasTrabajados),
         Emisor: {
           Rfc: businessData.rfc,
           Nombre: businessData.razonSocial,
@@ -137,7 +151,7 @@ function NominaV1() {
       makeNomina(employeeData, datos2);
       setShowPayroll(true);
     }
-  }
+  };
 
   if (loading) {
     return (
