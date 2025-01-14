@@ -33,16 +33,13 @@ interface BusinessData {
   curp: string;
 }
 
-<<<<<<< HEAD
-=======
 interface PayrollDates {
   fechaPago: string;
   fechaInicialPago: string;
   fechaFinalPago: string;
-  diasTrabajados: string;
+  diasTrabajados: number;
 }
 
->>>>>>> 4d4742dcdc4c453daa5c6df5f1683e94a1b6b386
 function NominaV1() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [showPayroll, setShowPayroll] = useState(false);
@@ -76,13 +73,8 @@ function NominaV1() {
     "fechaPago": "2024-12-21",
     "fechaInicialPago": "2024-12-23",
     "fechaFinalPago": "2025-01-13",
-<<<<<<< HEAD
     "diasTrabajados": 18,
   }
-=======
-    "diasTrabajados": "18",
-  };
->>>>>>> 4d4742dcdc4c453daa5c6df5f1683e94a1b6b386
 
   const handleEmployeeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const employeeId = e.target.value;

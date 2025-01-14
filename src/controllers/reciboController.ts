@@ -8,7 +8,8 @@ export const createRecibo = async (req: Request, res: Response) => {
     const savedRecibo = await recibo.save();
     res.status(201).json(savedRecibo);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(400).json({ message });
   }
 };
 
@@ -18,7 +19,8 @@ export const getRecibos = async (req: Request, res: Response) => {
     const recibos = await Recibo.find();
     res.status(200).json(recibos);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
   }
 };
 
@@ -31,7 +33,8 @@ export const getReciboById = async (req: Request, res: Response) => {
     }
     res.status(200).json(recibo);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
   }
 };
 
@@ -48,7 +51,8 @@ export const updateRecibo = async (req: Request, res: Response) => {
     }
     res.status(200).json(recibo);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(400).json({ message });
   }
 };
 
@@ -61,6 +65,7 @@ export const deleteRecibo = async (req: Request, res: Response) => {
     }
     res.status(200).json({ message: 'Recibo deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
   }
 };

@@ -32,3 +32,4 @@ export interface Receptor {
   RegimenFiscalReceptor: string;
   UsoCFDI: string;
 }
+

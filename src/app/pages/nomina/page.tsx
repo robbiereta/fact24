@@ -49,7 +49,7 @@ let elements= [{
 ]
  
 
-export default async function Nomina  () {
+export default  function Nomina  () {
   // Render the main container
  
  
