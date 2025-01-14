@@ -1,66 +1,93 @@
 import { NextResponse } from 'next/server';
 import ReciboMaker from '../../libComponents/ReciboMaker';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
+import { PrismaClient, Prisma } from '@prisma/client';
+
+interface NotaPartida {
+  ImporteRealConImp: number;
+}
+
+interface GenerateReceiptData {
+  ventas?: {
+    notasPartidas: NotaPartida[];
+    folio: string;
+    empleado: string;
+  };
+  receiptIds?: string[];
+  startDate?: string;
+  endDate?: string;
+}
+
+type ReceiptWithEmployee = Prisma.ReceiptGetPayload<{
+  include: { empleado: true };
+}>;
+
+interface ReceiptSummary {
+  total: number;
+  count: number;
+  startDate: string;
+  endDate: string;
+  receipts: Array<{
+    id: string;
+    employeeName: string;
+    amount: number;
+    date: Date;
+    status: string;
+  }>;
+}
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body: GenerateReceiptData = await request.json();
     
     // Handle single receipt generation
     if (body.ventas) {
-      const receipt = ReciboMaker(body.ventas);
+      const { notasPartidas, folio, empleado } = body.ventas;
+      const receipt = ReciboMaker(notasPartidas, folio, empleado);
       return NextResponse.json({ receipt }, { status: 200 });
     }
     
     // Handle cash register closing
-    if (body.receiptIds) {
-      const { receiptIds, startDate, endDate } = body;
-      
-      // Get all selected receipts
+    if (body.receiptIds && body.startDate && body.endDate) {
       const receipts = await prisma.receipt.findMany({
         where: {
           id: {
-            in: receiptIds
-          },
-          date: {
-            gte: new Date(startDate),
-            lte: new Date(endDate)
+            in: body.receiptIds
           }
         },
         include: {
-          employee: true
+          empleado: true
         }
-      });
+      }) as ReceiptWithEmployee[];
 
-      // Calculate totals
-      const total = receipts.reduce((sum, receipt) => sum + receipt.amount, 0);
+      const total = receipts.reduce((sum: number, receipt: ReceiptWithEmployee) => sum + Number(receipt.amount), 0);
       
       // Generate summary
-      const summary = {
+      const summary: ReceiptSummary = {
         total,
         count: receipts.length,
-        startDate,
-        endDate,
-        receipts: receipts.map(receipt => ({
+        startDate: body.startDate,
+        endDate: body.endDate,
+        receipts: receipts.map((receipt: ReceiptWithEmployee) => ({
           id: receipt.id,
-          employeeName: receipt.employee.nombreCompleto,
-          amount: receipt.amount,
+          employeeName: receipt.empleado.nombreCompleto,
+          amount: Number(receipt.amount),
           date: receipt.date,
           status: receipt.status
         }))
       };
 
-      return NextResponse.json(summary, { status: 200 });
+      return NextResponse.json(summary);
     }
 
     return NextResponse.json(
-      { error: 'Invalid request body' },
+      { error: 'Datos de solicitud inválidos' },
       { status: 400 }
     );
-  } catch (error) {
-    console.error('Error generating receipt or cash closing:', error);
+  } catch (error: any) {
+    console.error('Error al generar el recibo:', error);
     return NextResponse.json(
-      { error: 'Failed to process request' },
+      { error: 'Error al generar el recibo' },
       { status: 500 }
     );
   }
@@ -98,7 +125,7 @@ export async function GET(request: Request) {
     const formattedReceipts = receipts.map(receipt => ({
       id: receipt.id,
       employeeName: receipt.empleado.nombreCompleto,
-      amount: receipt.amount,
+      amount: Number(receipt.amount),
       date: receipt.date,
       status: receipt.status
     }));

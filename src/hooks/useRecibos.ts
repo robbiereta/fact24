@@ -13,7 +13,8 @@ export const useRecibos = () => {
       const data = await response.json();
       return data;
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
       return [];
     } finally {
       setLoading(false);
@@ -27,7 +28,8 @@ export const useRecibos = () => {
       if (!response.ok) throw new Error('Error fetching recibo');
       return await response.json();
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
       return null;
     } finally {
       setLoading(false);
@@ -47,7 +49,8 @@ export const useRecibos = () => {
       if (!response.ok) throw new Error('Error creating recibo');
       return await response.json();
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
       return null;
     } finally {
       setLoading(false);
@@ -67,7 +70,8 @@ export const useRecibos = () => {
       if (!response.ok) throw new Error('Error updating recibo');
       return await response.json();
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
       return null;
     } finally {
       setLoading(false);
@@ -83,7 +87,8 @@ export const useRecibos = () => {
       if (!response.ok) throw new Error('Error deleting recibo');
       return true;
     } catch (err) {
-      setError(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
       return false;
     } finally {
       setLoading(false);

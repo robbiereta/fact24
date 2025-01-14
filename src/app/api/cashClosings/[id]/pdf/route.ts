@@ -1,5 +1,21 @@
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import PDFDocument from 'pdfkit-table';
+import { NextResponse } from 'next/server';
+import { PrismaClient, Prisma } from '@prisma/client';
+
+type ReceiptWithEmployee = Prisma.ReceiptGetPayload<{
+  include: { empleado: true };
+}>;
+
+type CashClosingWithReceipts = Prisma.CashClosingGetPayload<{
+  include: {
+    receipts: {
+      include: {
+        empleado: true;
+      };
+    };
+  };
+}>;
 
 export async function GET(
   request: Request,
@@ -11,118 +27,86 @@ export async function GET(
       include: {
         receipts: {
           include: {
-            empleado: {
-              select: {
-                nombreCompleto: true
-              }
-            }
+            empleado: true
           }
         }
       }
-    });
+    }) as CashClosingWithReceipts | null;
 
     if (!cashClosing) {
-      return Response.json(
-        { error: 'Cash closing not found' },
+      return NextResponse.json(
+        { error: 'Corte de caja no encontrado' },
         { status: 404 }
       );
     }
 
-    // Create a new PDF document
-    const doc = new PDFDocument({ margin: 30, size: 'A4' });
-    const chunks: Buffer[] = [];
+    const doc = new PDFDocument();
+    let buffers: Buffer[] = [];
 
-    // Collect the PDF data
-    const pdfPromise = new Promise<Buffer>((resolve, reject) => {
-      doc.on('data', chunk => chunks.push(chunk));
-      doc.on('end', () => resolve(Buffer.concat(chunks)));
-      doc.on('error', reject);
+    doc.on('data', buffers.push.bind(buffers));
+    doc.on('end', () => {
+      const pdfData = Buffer.concat(buffers);
+      return new NextResponse(pdfData, {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
+        }
+      });
     });
 
-    // Header
-    doc.fontSize(16).text('Corte de Caja', { align: 'center' });
+    // Add content to PDF
+    doc.fontSize(16)
+      .text('Reporte de Corte de Caja', { align: 'center' })
+      .moveDown();
+
+    doc.fontSize(12)
+      .text(`ID: ${cashClosing.id}`)
+      .text(`Fecha: ${cashClosing.date.toLocaleDateString()}`)
+      .text(`Total: $${cashClosing.totalAmount}`)
+      .text(`Cantidad de Recibos: ${cashClosing.receiptCount}`)
+      .moveDown();
+
+    if (cashClosing.notes) {
+      doc.text('Notas:', { underline: true })
+        .text(cashClosing.notes)
+        .moveDown();
+    }
+
+    // Add employee summary
+    doc.text('Resumen por Empleado:', { underline: true });
+    Object.entries(cashClosing.employeeSummary as Record<string, any>).forEach(([name, data]) => {
+      doc.text(`${name}: $${(data as any).total}`);
+    });
     doc.moveDown();
 
-    // Summary information
-    const summaryTable = {
-      title: "Información General",
-      headers: ["Campo", "Valor"],
-      rows: [
-        ["Fecha", new Date(cashClosing.date).toLocaleDateString('es-MX')],
-        ["Total", `$${cashClosing.totalAmount.toString()}`],
-        ["Cantidad de Recibos", cashClosing.receiptCount.toString()],
-        ["Notas", cashClosing.notes || '-']
-      ]
+    // Add receipts table
+    const table = {
+      headers: ['ID', 'Empleado', 'Monto', 'Fecha'],
+      rows: cashClosing.receipts.map((receipt: ReceiptWithEmployee) => [
+        receipt.id,
+        receipt.empleado.nombreCompleto,
+        `$${receipt.amount}`,
+        receipt.date.toLocaleDateString()
+      ])
     };
 
-    await doc.table(summaryTable, {
-      prepareHeader: () => doc.fontSize(10),
-      prepareRow: () => doc.fontSize(10)
+    await doc.table(table, {
+      prepareHeader: () => doc.font('Helvetica-Bold'),
+      prepareRow: () => doc.font('Helvetica')
     });
 
-    doc.moveDown();
-
-    // Employee Summary
-    const employeeSummary = cashClosing.employeeSummary as Record<string, { count: number; total: number }>;
-    const employeeRows = Object.entries(employeeSummary).map(([employee, data]) => [
-      employee,
-      data.count.toString(),
-      `$${data.total.toFixed(2)}`
-    ]);
-
-    const employeeTable = {
-      title: "Resumen por Empleado",
-      headers: ["Empleado", "Recibos", "Total"],
-      rows: employeeRows
-    };
-
-    await doc.table(employeeTable, {
-      prepareHeader: () => doc.fontSize(10),
-      prepareRow: () => doc.fontSize(10)
-    });
-
-    doc.moveDown();
-
-    // Receipts table
-    const receiptRows = cashClosing.receipts.map(receipt => [
-      receipt.id.slice(0, 8),
-      receipt.empleado.nombreCompleto,
-      new Date(receipt.date).toLocaleDateString('es-MX'),
-      `$${receipt.amount.toString()}`
-    ]);
-
-    const receiptTable = {
-      title: "Lista de Recibos",
-      headers: ["ID", "Empleado", "Fecha", "Monto"],
-      rows: receiptRows
-    };
-
-    await doc.table(receiptTable, {
-      prepareHeader: () => doc.fontSize(10),
-      prepareRow: () => doc.fontSize(10)
-    });
-
-    // End the document
     doc.end();
 
-    // Wait for the PDF to be generated
-    const pdfBuffer = await pdfPromise;
-
-    // Create headers for the response
-    const headers = new Headers();
-    headers.set('Content-Type', 'application/pdf');
-    headers.set('Content-Disposition', `attachment; filename=corte_caja_${params.id}.pdf`);
-    headers.set('Content-Length', pdfBuffer.length.toString());
-
-    // Return the PDF as a response
-    return new Response(pdfBuffer, {
-      status: 200,
-      headers
+    return new NextResponse(Buffer.concat(buffers), {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
+      }
     });
-  } catch (error) {
-    console.error('Error generating PDF:', error);
-    return Response.json(
-      { error: 'Failed to generate PDF' },
+  } catch (error: any) {
+    console.error('Error al generar PDF:', error);
+    return NextResponse.json(
+      { error: 'Error al generar PDF' },
       { status: 500 }
     );
   }

@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
@@ -17,9 +15,11 @@ export async function GET() {
   } catch (error: any) {
     console.error('Error al obtener datos del negocio:', error)
     return NextResponse.json(
-      { error: 'Error al obtener datos del negocio' },
+      { error: `Error al obtener datos del negocio: ${error.message}` },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 }
 
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
     
     // Validar campos requeridos
     const requiredFields = ['razonSocial', 'rfc', 'regimenFiscal', 'codigoPostal', 'registroPatronal', 'curp']
+    
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(
@@ -38,42 +39,29 @@ export async function POST(request: Request) {
       }
     }
     
-    // Validar formato de RFC
-    const rfcRegex = /^[A-Z&Ñ]{3,4}[0-9]{6}[A-Z0-9]{3}$/
-    if (!rfcRegex.test(data.rfc)) {
-      return NextResponse.json(
-        { error: 'El formato del RFC no es válido' },
-        { status: 400 }
-      )
-    }
-    
-    // Validar formato de CURP
-    const curpRegex = /^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[0-9]{2}$/
-    if (!curpRegex.test(data.curp)) {
-      return NextResponse.json(
-        { error: 'El formato del CURP no es válido' },
-        { status: 400 }
-      )
-    }
-    
-    // Si ya existe un registro, actualizarlo
+    // Verificar si ya existe un registro
     const existingData = await prisma.datosNegocio.findFirst()
     
+    let datosNegocio
+    
     if (existingData) {
-      const updatedData = await prisma.datosNegocio.update({
+      // Actualizar registro existente
+      datosNegocio = await prisma.datosNegocio.update({
         where: { id: existingData.id },
         data
       })
-      return NextResponse.json(updatedData)
+    } else {
+      // Crear nuevo registro
+      datosNegocio = await prisma.datosNegocio.create({
+        data
+      })
     }
     
-    // Si no existe, crear uno nuevo
-    const newData = await prisma.datosNegocio.create({ data })
-    return NextResponse.json(newData)
+    return NextResponse.json(datosNegocio)
   } catch (error: any) {
     console.error('Error al guardar datos del negocio:', error)
     return NextResponse.json(
-      { error: 'Error al guardar datos del negocio' },
+      { error: `Error al guardar datos del negocio: ${error.message}` },
       { status: 500 }
     )
   } finally {

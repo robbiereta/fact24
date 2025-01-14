@@ -60,9 +60,10 @@ function ReciboMaker(notasPartidas: Partida[]) {
     let fechaActual = fecha.toLocaleDateString();
     let folio = orderid.generate();
 
-    function addPartida(Descripcion: string, importe, claveprodserv: string) {
-        let iva = Number(importe) * 0.16
-        let impdeConcepto = Number(importe - iva)
+    function addPartida(Descripcion: string, importe: number | string, claveprodserv: string) {
+        const importeNum = Number(importe);
+        let iva = importeNum * 0.16
+        let impdeConcepto = importeNum - iva
         let partida: Partida = {
             ClaveProdServ: claveprodserv,
             ClaveUnidad: "H87",

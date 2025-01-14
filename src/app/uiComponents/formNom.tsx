@@ -37,7 +37,7 @@ function FormNom(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    NominaV1(entries,"")
+   
   }
     
   

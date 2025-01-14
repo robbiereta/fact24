@@ -7,7 +7,7 @@ import Lista from "../../uiComponents/lista";
 import FormCreator from "../../uiComponents/formCreator";
 /*const sql = postgres( 'postgres://robbie:1234@localhost:5432/mydb ') // will use psql environment variables
     async function getNotes() {
-      let notes = await sql`SELECT id,partner_id, fiscal_position_id, payment_term_id, pricelist_id, create_uid, write_uid, name, state, client_order_ref, origin, reference, signed_by, invoice_status, validity_date, note, currency_rate, amount_untaxed, amount_tax, amount_total, amount_to_invoice, locked, require_signature, require_payment, create_date, commitment_date, date_order, signed_on, write_date, prepayment_percent, sale_order_template_id
+      let notes = awit sql`SELECT id,partner_id, fiscal_position_id, payment_term_id, pricelist_id, create_uid, write_uid, name, state, client_order_ref, origin, reference, signed_by, invoice_status, validity_date, note, currency_rate, amount_untaxed, amount_tax, amount_total, amount_to_invoice, locked, require_signature, require_payment, create_date, commitment_date, date_order, signed_on, write_date, prepayment_percent, sale_order_template_id
       FROM public.sale_order WHERE partner_id = '44';
       `
       // notes = Result [{ name: "Walter", age: 80 }, { name: 'Murray', age: 68 }, ...]

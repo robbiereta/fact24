@@ -111,7 +111,7 @@ function FormAddEmpleado(props:FormCreatorProps) {
     }
   };
 
-  const renderFormControl = (element: FormCreatorProps['elements'][0]) => {
+  const renderFormControl = (element: { name: string; id: number; type: string; placeholder: string }) => {
     if (element.type === 'select') {
       const options = selectOptions[element.name as keyof typeof selectOptions] || [];
       return (

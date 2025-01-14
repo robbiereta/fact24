@@ -1,12 +1,29 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import PDFDocument from 'pdfkit';
+import { Receipt, Empleado } from '@prisma/client';
+
+interface ReceiptWithEmployee extends Receipt {
+  empleado: Empleado;
+}
+
+interface SummaryData {
+  startDate: string;
+  endDate: string;
+  count: number;
+  total: number;
+}
+
+interface RequestData {
+  receiptIds: string[];
+  summaryData: SummaryData;
+}
 
 export async function POST(request: Request) {
   try {
-    const { receiptIds, summaryData } = await request.json();
+    const data: RequestData = await request.json();
 
-    if (!receiptIds || !summaryData) {
+    if (!data.receiptIds || !data.summaryData) {
       return NextResponse.json(
         { error: 'Receipt IDs and summary data are required' },
         { status: 400 }
@@ -14,10 +31,10 @@ export async function POST(request: Request) {
     }
 
     // Get receipts data
-    const receipts = await prisma.receipt.findMany({
+    const receipts: ReceiptWithEmployee[] = await prisma.receipt.findMany({
       where: {
         id: {
-          in: receiptIds
+          in: data.receiptIds
         }
       },
       include: {
@@ -43,9 +60,9 @@ export async function POST(request: Request) {
     // Add summary information
     doc
       .fontSize(12)
-      .text(`Periodo: ${new Date(summaryData.startDate).toLocaleDateString()} - ${new Date(summaryData.endDate).toLocaleDateString()}`)
-      .text(`Total de Recibos: ${summaryData.count}`)
-      .text(`Monto Total: $${summaryData.total.toFixed(2)}`)
+      .text(`Periodo: ${new Date(data.summaryData.startDate).toLocaleDateString()} - ${new Date(data.summaryData.endDate).toLocaleDateString()}`)
+      .text(`Total de Recibos: ${data.summaryData.count}`)
+      .text(`Monto Total: $${data.summaryData.total.toFixed(2)}`)
       .moveDown();
 
     // Add table header
@@ -89,7 +106,7 @@ export async function POST(request: Request) {
 
     doc
       .fontSize(12)
-      .text(`Total: $${summaryData.total.toFixed(2)}`, { align: 'right' });
+      .text(`Total: $${data.summaryData.total.toFixed(2)}`, { align: 'right' });
 
     // Add footer with date and page number
     const bottomMargin = 50;
