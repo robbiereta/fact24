@@ -6,12 +6,39 @@ import makeNomina_PrimaV from "./makeNomina_PrimaV";
 import dbConnect from '@/lib/mongodb';
 import Folio from '@/models/Folio';
 
+interface Employee {
+  id: string;
+  nombreCompleto: string;
+  rfc: string;
+  curp: string;
+  codigoPostal: string;
+  numeroSeguridadSocial: string;
+  fechaIngreso: string;
+  tipoContrato: string;
+  tipoJornada: string;
+  regimenContratacion: string;
+  departamento: string;
+  puesto: string;
+  riesgoPuesto: string;
+  periodicidadPago: string;
+  salarioBaseCotizacion: number;
+  salarioDiarioIntegrado: number;
+}
+
+interface BusinessData {
+  rfc: string;
+  razonSocial: string;
+  regimenFiscal: string;
+  registroPatronal: string;
+  curp: string;
+}
+
 function NominaV1() {
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [showPayroll, setShowPayroll] = useState(false);
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState(true);
-  const [businessData, setBusinessData] = useState(null);
+  const [businessData, setBusinessData] = useState<BusinessData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,13 +66,13 @@ function NominaV1() {
     "fechaPago": "2024-12-21",
     "fechaInicialPago": "2024-12-23",
     "fechaFinalPago": "2025-01-13",
-    "diasTrabajados": "18",
+    "diasTrabajados": 18,
   }
 
-  const handleEmployeeSelect = (e) => {
+  const handleEmployeeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const employeeId = e.target.value;
     const employee = employees.find(emp => emp.id === employeeId);
-    setSelectedEmployee(employee);
+    setSelectedEmployee(employee || null);
     setShowPayroll(false);
   }
 
