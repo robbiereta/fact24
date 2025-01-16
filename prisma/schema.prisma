@@ -76,7 +76,6 @@ model CashClosing {
   notes         String?
 }
 
-<<<<<<< HEAD
 model Product {
   id          String    @id @default(uuid())
   name        String
@@ -116,7 +115,8 @@ model Customer {
   address   Json?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-=======
+}
+
 model Nomina {
   id                String    @id @default(uuid())
   employeeId        String
@@ -132,5 +132,4 @@ model Nomina {
   updatedAt         DateTime  @updatedAt
   empleado          Empleado  @relation(fields: [empleadoId], references: [id])
   empleadoId        Int
->>>>>>> 65d3384ad16251c5e59aad87e153bc5b53eff8f1
 }
