@@ -1,7 +1,7 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NominaV1 from '../v1';
+import NominaV1 from '../page';
 
 // Mock the fetch function
 const mockFetch = jest.fn<typeof fetch>();

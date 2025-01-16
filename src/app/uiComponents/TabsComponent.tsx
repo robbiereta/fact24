@@ -4,7 +4,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 import FormPos from './formPos';
 import './TabsComponent.css';
 import ListaTicket from './lista_ticket';
-import CashClosing from './CashClosing';
+import CashClosingList from './CashClosingList';
 
 interface TabsComponentProps {
   elements: {
@@ -80,7 +80,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ elements }) => {
           tabClassName="custom-tab"
         >
           <div className="p-3">
-            <CashClosing />
+            <CashClosingList />
           </div>
         </Tab>
       </Tabs>

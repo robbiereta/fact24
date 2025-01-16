@@ -32,6 +32,7 @@ model Empleado {
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
   receipts             Receipt[]
+  nominas              Nomina[]
 }
 
 model Receipt {
@@ -75,6 +76,7 @@ model CashClosing {
   notes         String?
 }
 
+<<<<<<< HEAD
 model Product {
   id          String    @id @default(uuid())
   name        String
@@ -114,4 +116,21 @@ model Customer {
   address   Json?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+=======
+model Nomina {
+  id                String    @id @default(uuid())
+  employeeId        String
+  employeeName      String
+  totalAmount       Decimal
+  fechaPago         String
+  fechaInicialPago  String
+  fechaFinalPago    String
+  diasTrabajados    Int
+  status            String    // 'preview' | 'stamped'
+  stampedAt         DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  empleado          Empleado  @relation(fields: [empleadoId], references: [id])
+  empleadoId        Int
+>>>>>>> 65d3384ad16251c5e59aad87e153bc5b53eff8f1
 }
