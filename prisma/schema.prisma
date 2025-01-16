@@ -32,6 +32,7 @@ model Empleado {
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
   receipts             Receipt[]
+  nominas              Nomina[]
 }
 
 model Receipt {
@@ -73,4 +74,21 @@ model CashClosing {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   notes         String?
+}
+
+model Nomina {
+  id                String    @id @default(uuid())
+  employeeId        String
+  employeeName      String
+  totalAmount       Decimal
+  fechaPago         String
+  fechaInicialPago  String
+  fechaFinalPago    String
+  diasTrabajados    Int
+  status            String    // 'preview' | 'stamped'
+  stampedAt         DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  empleado          Empleado  @relation(fields: [empleadoId], references: [id])
+  empleadoId        Int
 }

@@ -1,5 +1,5 @@
 'use client'
-import FormFactCliente from "@/app/uiComponents/formFactCliente";
+import FormFactCliente from "@/app/uiComponents/formFactClienteNew";
 import NavScroll from "@/app/uiComponents/nav";
  function Page() {
     

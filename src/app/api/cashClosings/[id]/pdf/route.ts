@@ -41,19 +41,10 @@ export async function GET(
     }
 
     const doc = new PDFDocument();
-    let buffers: Buffer[] = [];
+    const buffers: Buffer[] = [];
 
-    doc.on('data', buffers.push.bind(buffers));
-    doc.on('end', () => {
-      const pdfData = Buffer.concat(buffers);
-      return new NextResponse(pdfData, {
-        headers: {
-          'Content-Type': 'application/pdf',
-          'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
-        }
-      });
-    });
-
+    doc.on('data', chunk => buffers.push(chunk));
+    
     // Add content to PDF
     doc.fontSize(16)
       .text('Reporte de Corte de Caja', { align: 'center' })
@@ -97,11 +88,15 @@ export async function GET(
 
     doc.end();
 
-    return new NextResponse(Buffer.concat(buffers), {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
-      }
+    return new Promise<NextResponse>((resolve) => {
+      doc.on('end', () => {
+        resolve(new NextResponse(Buffer.concat(buffers), {
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
+          }
+        }));
+      });
     });
   } catch (error: any) {
     console.error('Error al generar PDF:', error);
