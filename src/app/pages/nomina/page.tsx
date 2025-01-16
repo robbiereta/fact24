@@ -1,6 +1,15 @@
 'use client'
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { prisma } from '@/lib/prisma';
+=======
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FormNom from "@/app/uiComponents/formNom";
+import NavScroll from "@/app/uiComponents/nav";
+import NominaV1 from "./v1";
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
 
 interface Employee {
   id: number;
@@ -36,6 +45,7 @@ interface PayrollDates {
   diasTrabajados: string;
 }
 
+<<<<<<< HEAD
 interface PayrollPreview {
   id: string;
   employeeId: string;
@@ -45,6 +55,17 @@ interface PayrollPreview {
   status: 'preview' | 'stamped';
   stampedAt?: string;
 }
+=======
+export default  function Nomina  () {
+  // Render the main container
+ 
+ 
+  return (
+  
+      <div>
+                {/* Render the form creator */}
+<NominaV1/>
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
 
 export default function NominaPage() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);

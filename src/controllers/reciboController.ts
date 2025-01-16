@@ -8,8 +8,13 @@ export const createRecibo = async (req: Request, res: Response) => {
     const savedRecibo = await recibo.save();
     res.status(201).json(savedRecibo);
   } catch (error) {
+<<<<<<< HEAD
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     res.status(400).json({ message: errorMessage });
+=======
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(400).json({ message });
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
   }
 };
 
@@ -19,8 +24,13 @@ export const getRecibos = async (req: Request, res: Response) => {
     const recibos = await Recibo.find();
     res.status(200).json(recibos);
   } catch (error) {
+<<<<<<< HEAD
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     res.status(500).json({ message: errorMessage });
+=======
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
   }
 };
 
@@ -33,8 +43,13 @@ export const getReciboById = async (req: Request, res: Response) => {
     }
     res.status(200).json(recibo);
   } catch (error) {
+<<<<<<< HEAD
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     res.status(500).json({ message: errorMessage });
+=======
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
   }
 };
 
@@ -51,8 +66,13 @@ export const updateRecibo = async (req: Request, res: Response) => {
     }
     res.status(200).json(recibo);
   } catch (error) {
+<<<<<<< HEAD
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     res.status(400).json({ message: errorMessage });
+=======
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(400).json({ message });
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
   }
 };
 
@@ -65,7 +85,12 @@ export const deleteRecibo = async (req: Request, res: Response) => {
     }
     res.status(200).json({ message: 'Recibo deleted successfully' });
   } catch (error) {
+<<<<<<< HEAD
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     res.status(500).json({ message: errorMessage });
+=======
+    const message = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ message });
+>>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
   }
 };
