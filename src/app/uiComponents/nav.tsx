@@ -27,7 +27,7 @@ function NavScroll() {
             </Link>
             
             <NavDropdown title="Catálogos" id="catalogos-dropdown" className="custom-dropdown">
-              <Link href="/pages/productos" passHref legacyBehavior>
+              <Link href="/pages/products" passHref legacyBehavior>
                 <NavDropdown.Item>Productos</NavDropdown.Item>
               </Link>
               <Link href="/pages/inventario" passHref legacyBehavior>
