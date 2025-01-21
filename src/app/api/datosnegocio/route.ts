@@ -1,70 +1,70 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import DatosNegocio from '@/app/models/datosNegocio.model'
+import connectDB from '@/app/config/db'
 
 export async function GET() {
   try {
-    const datosNegocio = await prisma.datosNegocio.findFirst()
+    await connectDB();
+    const datosNegocio = await DatosNegocio.findOne();
     
     if (!datosNegocio) {
-      return NextResponse.json({
-        error: 'No se encontraron datos del negocio'
-      }, { status: 404 })
+      return NextResponse.json(
+        { error: 'No business data found' },
+        { status: 404 }
+      )
     }
-    
+
     return NextResponse.json(datosNegocio)
-  } catch (error: any) {
-    console.error('Error al obtener datos del negocio:', error)
+  } catch (error: unknown) {
+    console.error('Error fetching business data:', error)
     return NextResponse.json(
-      { error: `Error al obtener datos del negocio: ${error.message}` },
+      { error: 'Error fetching business data' },
       { status: 500 }
     )
-  } finally {
-    await prisma.$disconnect()
   }
 }
 
 export async function POST(request: Request) {
   try {
+    await connectDB();
     const data = await request.json()
     
-    // Validar campos requeridos
+    // Validate required fields
     const requiredFields = ['razonSocial', 'rfc', 'regimenFiscal', 'codigoPostal', 'registroPatronal', 'curp']
-    
     for (const field of requiredFields) {
       if (!data[field]) {
         return NextResponse.json(
-          { error: `El campo ${field} es requerido` },
+          { error: `Field ${field} is required` },
           { status: 400 }
         )
       }
     }
     
-    // Verificar si ya existe un registro
-    const existingData = await prisma.datosNegocio.findFirst()
-    
-    let datosNegocio
-    
+    const existingData = await DatosNegocio.findOne();
+    let datosNegocio;
+
     if (existingData) {
-      // Actualizar registro existente
-      datosNegocio = await prisma.datosNegocio.update({
-        where: { id: existingData.id },
-        data
-      })
+      datosNegocio = await DatosNegocio.findByIdAndUpdate(
+        existingData._id,
+        data,
+        { new: true, runValidators: true }
+      );
     } else {
-      // Crear nuevo registro
-      datosNegocio = await prisma.datosNegocio.create({
-        data
-      })
+      datosNegocio = await DatosNegocio.create(data);
     }
-    
+
     return NextResponse.json(datosNegocio)
-  } catch (error: any) {
-    console.error('Error al guardar datos del negocio:', error)
+  } catch (error: unknown) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
+      return NextResponse.json(
+        { error: 'Duplicate value found for a unique field' },
+        { status: 400 }
+      )
+    }
+    console.error('Error saving business data:', error)
     return NextResponse.json(
-      { error: `Error al guardar datos del negocio: ${error.message}` },
+      { error: 'Error saving business data' },
       { status: 500 }
     )
-  } finally {
-    await prisma.$disconnect()
   }
 }

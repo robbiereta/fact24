@@ -1,50 +1,57 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { PrismaClient, Prisma } from '@prisma/client';
+import Receipt from '@/app/models/receipt.model';
+import connectDB from '@/app/config/db';
 
 interface GetReceiptsQuery {
   startDate?: string;
   endDate?: string;
   empleadoId?: string;
+  cashClosingId?: string;
+  status?: string;
 }
 
 export async function GET(request: Request) {
   try {
+    await connectDB();
     const { searchParams } = new URL(request.url);
     const query: GetReceiptsQuery = {
       startDate: searchParams.get('startDate') || undefined,
       endDate: searchParams.get('endDate') || undefined,
-      empleadoId: searchParams.get('empleadoId') || undefined
+      empleadoId: searchParams.get('empleadoId') || undefined,
+      cashClosingId: searchParams.get('cashClosingId') || undefined,
+      status: searchParams.get('status') || undefined
     };
 
-    const where: Prisma.ReceiptWhereInput = {};
+    const mongooseQuery: any = {};
 
-    if (query.startDate || query.endDate) {
-      where.date = {};
-      if (query.startDate) {
-        where.date.gte = new Date(query.startDate);
-      }
-      if (query.endDate) {
-        where.date.lte = new Date(query.endDate + 'T23:59:59');
-      }
+    if (query.startDate && query.endDate) {
+      mongooseQuery.date = {
+        $gte: new Date(query.startDate),
+        $lte: new Date(query.endDate)
+      };
     }
 
     if (query.empleadoId) {
-      where.empleadoId = parseInt(query.empleadoId);
+      mongooseQuery.empleadoId = query.empleadoId;
     }
 
-    const receipts = await prisma.receipt.findMany({
-      where,
-      include: {
-        empleado: true
-      }
-    });
+    if (query.cashClosingId) {
+      mongooseQuery.cashClosingId = query.cashClosingId;
+    }
+
+    if (query.status) {
+      mongooseQuery.status = query.status;
+    }
+
+    const receipts = await Receipt.find(mongooseQuery)
+      .populate('empleadoId')
+      .sort({ date: -1 });
 
     return NextResponse.json(receipts);
-  } catch (error: any) {
-    console.error('Error al obtener recibos:', error);
+  } catch (error) {
+    console.error('Error fetching receipts:', error);
     return NextResponse.json(
-      { error: 'Error al obtener recibos' },
+      { error: 'Error fetching receipts' },
       { status: 500 }
     );
   }
@@ -52,24 +59,16 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    await connectDB();
     const data = await request.json();
     
-    const newReceipt = await prisma.receipt.create({
-      data: {
-        amount: data.amount,
-        empleadoId: data.empleadoId,
-        items: data.items,
-      },
-      include: {
-        empleado: true
-      }
-    });
+    const newReceipt = await Receipt.create(data);
 
     return NextResponse.json(newReceipt);
-  } catch (error: any) {
-    console.error('Error al crear recibo:', error);
+  } catch (error) {
+    console.error('Error creating receipt:', error);
     return NextResponse.json(
-      { error: 'Error al crear recibo' },
+      { error: 'Error creating receipt' },
       { status: 500 }
     );
   }
@@ -77,25 +76,31 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    await connectDB();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
     if (!id) {
       return NextResponse.json(
-        { error: 'ID del recibo es requerido' },
+        { error: 'Receipt ID is required' },
         { status: 400 }
       );
     }
 
-    const deletedReceipt = await prisma.receipt.delete({
-      where: { id }
-    });
+    const deletedReceipt = await Receipt.findByIdAndDelete(id);
 
-    return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error('Error al eliminar recibo:', error);
+    if (!deletedReceipt) {
+      return NextResponse.json(
+        { error: 'Receipt not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ message: 'Receipt deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting receipt:', error);
     return NextResponse.json(
-      { error: 'Error al eliminar recibo' },
+      { error: 'Error deleting receipt' },
       { status: 500 }
     );
   }

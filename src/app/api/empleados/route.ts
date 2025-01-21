@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import Empleado from '@/app/models/empleado.model'
+import connectDB from '@/app/config/db'
 
 export async function GET() {
   try {
-    const empleados = await prisma.empleado.findMany({
-      orderBy: {
-        nombreCompleto: 'asc'
-      }
-    })
+    await connectDB();
+    const empleados = await Empleado.find().sort({ createdAt: -1 });
     return NextResponse.json(empleados)
-  } catch (error: any) {
+  } catch (error) {
+    console.error('Error fetching empleados:', error)
     return NextResponse.json(
-      { error: error.message || 'Error al obtener empleados' },
+      { error: 'Error fetching empleados' },
       { status: 500 }
     )
   }
@@ -19,36 +18,20 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await connectDB();
     const data = await request.json()
-    
-    const empleado = await prisma.empleado.create({
-      data: {
-        nombreCompleto: data.Nombre_Completo,
-        rfc: data.RFC,
-        curp: data.CURP,
-        numeroSeguridadSocial: data.No_deSeguridadSocial,
-        codigoPostal: data.Codigo_postal,
-        fechaIngreso: new Date(data.Fecha_Ingreso),
-        regimenContratacion: data.Regimen_Contratacion,
-        tipoContrato: data.Tipo_Contrato,
-        tipoJornada: data.Tipo_Jornada,
-        salarioBaseCotizacion: parseFloat(data.Salario_Base_Cotizacion),
-        salarioDiarioIntegrado: parseFloat(data.Salario_Diario_Integrado),
-        periodicidadPago: data.Periodicidad_Pago,
-        riesgoPuesto: data.Riesgo_Puesto,
-        departamento: data.Departamento,
-        puesto: data.Puesto,
-        banco: data.Banco,
-        cuentaBancaria: data.Cuenta_Bancaria,
-        correoElectronico: data.Correo_Electronico,
-        telefono: data.Telefono,
-      },
-    })
-
+    const empleado = await Empleado.create(data);
     return NextResponse.json(empleado)
   } catch (error: any) {
+    if (error.code === 11000) {
+      return NextResponse.json(
+        { error: 'Duplicate value found for a unique field' },
+        { status: 400 }
+      )
+    }
+    console.error('Error creating empleado:', error)
     return NextResponse.json(
-      { error: error.message || 'Error al crear empleado' },
+      { error: 'Error creating empleado' },
       { status: 500 }
     )
   }

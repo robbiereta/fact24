@@ -1,9 +1,8 @@
 'use server'
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import postgres from "postgres";
 import NavScroll from "./uiComponents/nav";
-let url =axios.defaults.baseURL = 'https://express-low5.onrender.com'
+let url = axios.defaults.baseURL = 'https://express-low5.onrender.com'
 
   
 
