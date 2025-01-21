@@ -113,13 +113,12 @@ function FormPos(props:FormCreatorProps) {
   };
 let  folio = orderID.generate(); 
   let ticket:any;
-  let elements=props.elements
-  let formElements:any[]=[]
-  var optionelements:any[]=[]
-
-  // Add employee select field at the beginning of the form
-  formElements.push(
-    <Form.Group className="mb-3" controlId="empleado-select" key="empleado-key">
+  let elements = props.elements
+  
+  // Create form elements array
+  const formElements = [
+    // Add employee select field at the beginning of the form
+    <Form.Group className="mb-3" controlId="empleado-select" key="empleado-select">
       <Form.Label>Empleado</Form.Label>
       <Form.Select 
         required 
@@ -132,19 +131,25 @@ let  folio = orderID.generate();
           </option>
         ))}
       </Form.Select>
-    </Form.Group>
-  );
-
-   elements.map((element)=>{
-  formElements.push(
-    <Form.Group className="mb-3" controlId={element.name+element.id} key={element.id+"key1"}>
-    <Form.Label key={element.id+"key2"}>{element.placeholder}</Form.Label>
-    <Form.Control required key={element.id+"key3"}type={element.type} name={element.name} placeholder={element.placeholder} />
-  
-  </Form.Group>
-  )
-  return formElements
-  })
+    </Form.Group>,
+    
+    // Map through the elements array to create form groups
+    ...elements.map((element) => (
+      <Form.Group 
+        className="mb-3" 
+        controlId={`${element.name}-${element.id}`} 
+        key={`form-group-${element.id}`}
+      >
+        <Form.Label>{element.placeholder}</Form.Label>
+        <Form.Control
+          required
+          type={element.type}
+          name={element.name}
+          placeholder={element.placeholder}
+        />
+      </Form.Group>
+    ))
+  ];
 
   function addPartida(pu:any,cantidad:any,Descripcion:any) {
   

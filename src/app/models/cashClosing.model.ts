@@ -20,4 +20,4 @@ const CashClosingSchema = new Schema({
   timestamps: true
 });
 
-export default mongoose.model<ICashClosing>('CashClosing', CashClosingSchema);
+export default mongoose.models.CashClosing || mongoose.model<ICashClosing>('CashClosing', CashClosingSchema);

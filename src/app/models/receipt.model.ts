@@ -23,4 +23,4 @@ const ReceiptSchema = new Schema({
   timestamps: true
 });
 
-export default mongoose.model<IReceipt>('Receipt', ReceiptSchema);
+export default mongoose.models.Receipt || mongoose.model<IReceipt>('Receipt', ReceiptSchema);
