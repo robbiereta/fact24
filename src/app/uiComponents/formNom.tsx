@@ -2,7 +2,7 @@
 import Form from 'react-bootstrap/Form';
 import { FormGroup, Button } from 'react-bootstrap';
 import React from 'react';
-import NominaV1 from '../pages/nomina/v1';
+import NominaV1 from '../pages/nomina/page';
 interface FormCreatorProps {
   elements: {
     name: string;
@@ -37,7 +37,7 @@ function FormNom(props:FormCreatorProps) {
   function onSubmit(formData: FormData) {
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
-    NominaV1(entries,"")
+   
   }
     
   

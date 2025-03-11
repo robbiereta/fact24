@@ -143,7 +143,8 @@ function makeNomina(empleado:any,datos:any) {
      
    
         let response = swConnector(nomina) 
-                   return response
+                       
+        return response
        } 
 
        export default makeNomina

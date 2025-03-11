@@ -1,3 +1,0 @@
-approuter
-auth
-inventario

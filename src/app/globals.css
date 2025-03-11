@@ -26,6 +26,13 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.collapse {
+  visibility: visible;
+}
+.custom-dropdown .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: black;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
