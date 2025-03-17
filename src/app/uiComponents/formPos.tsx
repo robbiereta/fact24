@@ -71,7 +71,6 @@ function FormPos(props:FormCreatorProps) {
         amount: total,
         date: new Date().toISOString(),
         status: 'completed',
-        empleadoId: empleado,
         items: notasPartidas.map(item => ({
           quantity: item.Cantidad,
           description: item.Descripcion,
@@ -80,7 +79,7 @@ function FormPos(props:FormCreatorProps) {
         }))
       };
 
-      await fetch('/api/receipts', {
+      await fetch('http://localhost:5000/api/ventas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,20 +117,20 @@ let  folio = orderID.generate();
   // Create form elements array
   const formElements = [
     // Add employee select field at the beginning of the form
-    <Form.Group className="mb-3" controlId="empleado-select" key="empleado-select">
-      <Form.Label>Empleado</Form.Label>
-      <Form.Select 
-        required 
-        value={empleado}
-        onChange={(e) => setEmpleado(Number(e.target.value))}
-      >
-        {empleados.map(emp => (
-          <option key={emp.id} value={emp.id}>
-            {emp.nombreCompleto}
-          </option>
-        ))}
-      </Form.Select>
-    </Form.Group>,
+    // <Form.Group className="mb-3" controlId="empleado-select" key="empleado-select">
+    //   <Form.Label>Empleado</Form.Label>
+    //   <Form.Select 
+    //     required 
+    //     value={empleado}
+    //     onChange={(e) => setEmpleado(Number(e.target.value))}
+    //   >
+    //     {empleados.map(emp => (
+    //       <option key={emp.id} value={emp.id}>
+    //         {emp.nombreCompleto}
+    //       </option>
+    //     ))}
+    //   </Form.Select>
+    // </Form.Group>,
     
     // Map through the elements array to create form groups
     ...elements.map((element) => (
