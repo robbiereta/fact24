@@ -99,29 +99,7 @@ function FormPos(props:FormCreatorProps) {
       setAmountPaid(0);
       setTotal(0);
       
-      // Ask if user wants to generate CFDI
-      if (window.confirm('¿Desea generar factura CFDI para esta venta?')) {
-        try {
-          const cfdiResponse = await fetch('http://localhost:5003/api/generate_client_cfdi', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ nota_venta: saleId }),
-          });
-          
-          const cfdiResult = await cfdiResponse.json();
-          
-          if (cfdiResult.success) {
-            toast.success('Factura CFDI generada exitosamente');
-          } else {
-            toast.error(`Error al generar factura: ${cfdiResult.error}`);
-          }
-        } catch (error) {
-          console.error('Error generating CFDI:', error);
-          toast.error('Error al generar factura CFDI');
-        }
-      }
+    
     } catch (error) {
       console.error('Error saving receipt:', error);
       toast.error('Error al guardar el recibo');
