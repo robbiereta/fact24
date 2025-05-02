@@ -36,6 +36,7 @@ function FormPos(props:FormCreatorProps) {
   const [notasPartidas, setNotasPartidas] = useState<any[]>([]);
   const [empleado, setEmpleado] = useState<number>(0);
   const [empleados, setEmpleados] = useState<Array<{ id: number; nombreCompleto: string }>>([]);
+  const [isAddingProduct, setIsAddingProduct] = useState(false);
 
   // Fetch employees when component mounts
   useEffect(() => {
@@ -308,11 +309,14 @@ let  folio = orderID.generate();
 
 
   function onSubmit(formData: FormData) {
+    if (isAddingProduct) return; // Prevent double click
+    setIsAddingProduct(true);
     let entries = Object.fromEntries(formData.entries()); 
     console.log(entries);
     addPartida(entries.importe,entries.Cantidad,entries.Descripcion)
     //send to state
     setNotasPartidas([...notasPartidas]);
+    setTimeout(() => setIsAddingProduct(false),5200); // Re-enable after 5200ms
   }
  
 
@@ -324,6 +328,12 @@ let  folio = orderID.generate();
   const handleCashClosingClose = () => {
     setShow(false);
   };
+
+  // Function to remove a product from the ticket
+  function removeProduct(index: number) {
+    const updatedPartidas = notasPartidas.filter((_, i) => i !== index);
+    setNotasPartidas(updatedPartidas);
+  }
 
   return (
     <>
@@ -390,10 +400,11 @@ let  folio = orderID.generate();
                 <th style={{ padding: '12px 15px' }}>Descripción</th>
                 <th style={{ padding: '12px 15px' }}>P.U.</th>
                 <th style={{ padding: '12px 15px' }}>Importe</th>
+                <th style={{ padding: '12px 15px' }}></th>
               </tr>
             </thead>
             <tbody>
-              {notasPartidas.map((item: any, index: number) => (
+              {notasPartidas.map((item, index) => (
                 <tr key={index} style={{ 
                   borderBottom: '1px solid #dee2e6',
                   transition: 'background-color 0.2s'
@@ -402,6 +413,15 @@ let  folio = orderID.generate();
                   <td style={{ padding: '12px 15px' }}>{item.Descripcion}</td>
                   <td style={{ padding: '12px 15px' }}>${Number(item.ValorUnitario).toFixed(2)}</td>
                   <td style={{ padding: '12px 15px' }}>${Number(item.ImporteRealConImp).toFixed(2)}</td>
+                  <td style={{ padding: '12px 15px' }}>
+                    <button 
+                      onClick={() => removeProduct(index)}
+                      className="text-red-500 hover:text-red-700 ml-2"
+                      aria-label="Eliminar producto"
+                    >
+                      🗑️
+                    </button>
+                  </td>
                 </tr>
               ))}
               <tr style={{ 
@@ -409,7 +429,7 @@ let  folio = orderID.generate();
                 backgroundColor: '#f8f9fa',
                 fontWeight: 'bold'
               }}>
-                <td colSpan={3} style={{ padding: '12px 15px', textAlign: 'right' }}>Total:</td>
+                <td colSpan={4} style={{ padding: '12px 15px', textAlign: 'right' }}>Total:</td>
                 <td style={{ padding: '12px 15px' }}>${notasPartidas.reduce((sum, item) => sum + Number(item.ImporteRealConImp), 0).toFixed(2)}</td>
               </tr>
             </tbody>
