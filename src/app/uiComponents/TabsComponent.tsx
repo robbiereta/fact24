@@ -5,6 +5,7 @@ import FormPos from './formPos';
 import './TabsComponent.css';
 import ListaTicket from './lista_ticket';
 import CashClosingList from './CashClosingList';
+import RecibosManager from './RecibosManager'; // Add this line
 
 interface TabsComponentProps {
   elements: {
@@ -70,8 +71,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ elements }) => {
         >
           <div className="p-3">
             <h3>Historial de Ventas</h3>
-            {/* Add sales history component here */}
-            <ListaTicket recurso='/notas_venta'  />
+            <RecibosManager />
           </div>
         </Tab>
         <Tab 

@@ -8,7 +8,7 @@ export const useRecibos = () => {
   const getRecibos = async (): Promise<IRecibo[]> => {
     setLoading(true);
     try {
-      const response = await fetch('/api/recibos');
+      const response = await fetch('http://localhost:5003/api/sales');
       if (!response.ok) throw new Error('Error fetching recibos');
       const data = await response.json();
       return data;
@@ -24,7 +24,7 @@ export const useRecibos = () => {
   const getReciboById = async (id: string): Promise<IRecibo | null> => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/recibos/${id}`);
+      const response = await fetch(`http://localhost:5003/api/sales/${id}`);
       if (!response.ok) throw new Error('Error fetching recibo');
       return await response.json();
     } catch (err) {
@@ -39,7 +39,7 @@ export const useRecibos = () => {
   const createRecibo = async (reciboData: Partial<IRecibo>): Promise<IRecibo | null> => {
     setLoading(true);
     try {
-      const response = await fetch('/api/recibos', {
+      const response = await fetch('http://localhost:5003/api/sales', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const useRecibos = () => {
   const updateRecibo = async (id: string, reciboData: Partial<IRecibo>): Promise<IRecibo | null> => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/recibos/${id}`, {
+      const response = await fetch(`http://localhost:5003/api/sales/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const useRecibos = () => {
   const deleteRecibo = async (id: string): Promise<boolean> => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/recibos/${id}`, {
+      const response = await fetch(`http://localhost:5003/api/sales/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Error deleting recibo');

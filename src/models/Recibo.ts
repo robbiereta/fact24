@@ -22,17 +22,24 @@ interface LineaVenta {
   };
 }
 
-export interface IRecibo extends Document {
-  folio_venta: string;
-  fecha: string;
-  cliente: string;
-  lineas_venta: LineaVenta[];
-  total: number;
-  estatus: 'pagado' | 'pendiente' | 'cancelado';
-  anticipo: number;
-  observaciones: string;
-  createdAt: Date;
-  updatedAt: Date;
+export interface IRecibo {
+  _id?: string;
+  folio_venta?: string;
+  date?: string;
+  client_id?: string;
+  cliente?: string;
+  total_amount?: number;
+  total?: number;
+  estatus?: string;
+  facturada?: boolean;
+  observaciones?: string;
+  items?: Array<{
+    description: string;
+    quantity: string | number;
+    unitPrice: number;
+    total: number;
+  }>;
+  payment_method?: string;
 }
 
 const ReciboSchema: Schema = new Schema({
