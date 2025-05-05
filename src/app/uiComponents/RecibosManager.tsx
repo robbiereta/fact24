@@ -3,6 +3,7 @@ import { useRecibos } from '@/hooks/useRecibos';
 import { IRecibo } from '@/models/Recibo';
 import { Button, Table, Modal, Form } from 'react-bootstrap';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 
 function RecibosManager() {
   const { getRecibos, deleteRecibo, loading, error: errorMessage } = useRecibos();
@@ -10,6 +11,9 @@ function RecibosManager() {
   const [selectedRecibo, setSelectedRecibo] = useState<IRecibo | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filterDate, setFilterDate] = useState<string>('');
+  const itemsPerPage = 10;
 
   useEffect(() => {
     loadRecibos();
@@ -43,59 +47,138 @@ function RecibosManager() {
     }
   };
 
+  // Filter out recibos with 'Fecha no disponible'
+  const filteredRecibos = recibos.filter(recibo => recibo.date !== null);
+
+  // Apply date filter
+  const dateFilteredRecibos = filterDate 
+    ? filteredRecibos.filter(recibo => recibo.date && format(new Date(recibo.date), 'yyyy-MM-dd') === filterDate)
+    : filteredRecibos;
+
+  // Calculate total amount for visible receipts
+  const totalAmount = dateFilteredRecibos.reduce((sum, recibo) => {
+    return sum + (recibo.total_amount || 0);
+  }, 0);
+
+  // Calculate pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentRecibos = dateFilteredRecibos.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(dateFilteredRecibos.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleDeleteRecibo = async (id: string) => {
+    try {
+      await deleteRecibo(id);
+      toast.success("Recibo eliminado correctamente");
+    } catch (error) {
+      toast.error("No se pudo eliminar el recibo");
+    }
+  };
+
   if (loading) return <div>Cargando recibos...</div>;
   if (errorMessage) return <div>Error: {typeof errorMessage === 'string' ? errorMessage : 'An error occurred'}</div>;
 
   return (
     <div className="recibos-manager">
       <h2>Gestión de Recibos</h2>
-      <Button variant="primary" onClick={loadRecibos} className="mb-3">
-        Actualizar Lista
-      </Button>
+      <div className="mb-3">
+        <Button variant="primary" onClick={loadRecibos} className="me-2">
+          Actualizar Lista
+        </Button>
+        <input
+          type="date"
+          value={filterDate}
+          onChange={(e) => {
+            setFilterDate(e.target.value);
+            setCurrentPage(1); // Reset to first page when filter changes
+          }}
+          className="form-control d-inline-block"
+          style={{ width: 'auto' }}
+        />
+        {dateFilteredRecibos.length > 0 && (
+          <h4 className="d-inline-block ms-3 mt-2">
+            Total: ${totalAmount.toFixed(2)}
+          </h4>
+        )}
+      </div>
       
-      {recibos.length === 0 ? (
+      {dateFilteredRecibos.length === 0 ? (
         <p>No hay recibos para mostrar.</p>
       ) : (
-        <Table striped bordered hover responsive>
-          <thead>
-            <tr>
-              <th>Folio</th>
-              <th>Fecha</th>
-              <th>Cliente</th>
-              <th>Total</th>
-              <th>Estatus</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recibos.map((recibo) => (
-              <tr key={recibo._id as string}>
-                <td>{recibo.folio_venta || recibo._id}</td>
-                <td>{recibo.date ? format(new Date(recibo.date), 'dd/MM/yyyy') : 'Fecha no disponible'}</td>
-                <td>{recibo.cliente || recibo.client_id || 'N/A'}</td>
-                <td>${recibo.total_amount !== undefined ? recibo.total_amount.toFixed(2) : 'N/A'}</td>
-                <td>{recibo.estatus || (recibo.facturada ? 'Facturada' : 'No facturada')}</td>
-                <td>
-                  <Button 
-                    variant="info" 
-                    size="sm" 
-                    onClick={() => handleViewDetails(recibo)}
-                    className="me-2"
-                  >
-                    Detalles
-                  </Button>
-                  <Button 
-                    variant="danger" 
-                    size="sm"
-                    onClick={() => handleDeleteConfirm(recibo)}
-                  >
-                    Eliminar
-                  </Button>
-                </td>
+        <>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>Folio</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Forma de Pago</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
               </tr>
+            </thead>
+            <tbody>
+              {currentRecibos.map((recibo) => (
+                <tr key={recibo._id as string}>
+                  <td>{recibo.folio_venta || recibo._id}</td>
+                  <td>{recibo.date ? format(new Date(recibo.date), 'dd/MM/yyyy') : 'Fecha no disponible'}</td>
+                  <td>{recibo.cliente || recibo.client_id || 'N/A'}</td>
+                  <td>${recibo.total_amount !== undefined ? recibo.total_amount.toFixed(2) : 'N/A'}</td>
+                  <td>{recibo.payment_method || 'N/A'}</td>
+                  <td>{recibo.estatus || (recibo.facturada ? 'Facturada' : 'No facturada')}</td>
+                  <td>
+                    <Button 
+                      variant="info" 
+                      size="sm" 
+                      onClick={() => handleViewDetails(recibo)}
+                      className="me-2"
+                    >
+                      Detalles
+                    </Button>
+                    <Button 
+                      variant="danger" 
+                      size="sm"
+                      onClick={() => handleDeleteRecibo(recibo._id as string)}
+                    >
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div className="pagination">
+            <Button
+              variant="outline-primary"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </Button>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <Button
+                key={i + 1}
+                variant={currentPage === i + 1 ? "primary" : "outline-primary"}
+                onClick={() => handlePageChange(i + 1)}
+                className="mx-1"
+              >
+                {i + 1}
+              </Button>
             ))}
-          </tbody>
-        </Table>
+            <Button
+              variant="outline-primary"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </Button>
+          </div>
+        </>
       )}
 
       {/* Details Modal */}
@@ -110,6 +193,7 @@ function RecibosManager() {
               <p><strong>Fecha:</strong> {selectedRecibo.date ? format(new Date(selectedRecibo.date), 'dd/MM/yyyy HH:mm') : 'Fecha no disponible'}</p>
               <p><strong>Cliente:</strong> {selectedRecibo.cliente || selectedRecibo.client_id || 'N/A'}</p>
               <p><strong>Total:</strong> ${selectedRecibo.total_amount !== undefined ? selectedRecibo.total_amount.toFixed(2) : 'N/A'}</p>
+              <p><strong>Forma de Pago:</strong> {selectedRecibo.payment_method || 'N/A'}</p>
               <p><strong>Estatus:</strong> {selectedRecibo.estatus || (selectedRecibo.facturada ? 'Facturada' : 'No facturada')}</p>
               <p><strong>Observaciones:</strong> {selectedRecibo.observaciones || 'Ninguna'}</p>
               

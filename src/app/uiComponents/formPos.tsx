@@ -37,6 +37,7 @@ function FormPos(props:FormCreatorProps) {
   const [empleado, setEmpleado] = useState<number>(0);
   const [empleados, setEmpleados] = useState<Array<{ id: number; nombreCompleto: string }>>([]);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<string>('cash');
 
   // Fetch employees when component mounts
   useEffect(() => {
@@ -72,6 +73,7 @@ function FormPos(props:FormCreatorProps) {
         amount: total,
         date: new Date().toISOString(),
         status: 'completed',
+        payment_method: paymentMethod,
         items: notasPartidas.map(item => ({
           quantity: item.Cantidad,
           description: item.Descripcion,
@@ -456,43 +458,36 @@ let  folio = orderID.generate();
 
       <Modal show={showChangeModal} onHide={handleChangeModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Pago</Modal.Title>
+          <Modal.Title>Cobrar</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Total a pagar</Form.Label>
-              <Form.Control
-                type="number"
-                value={total}
-                readOnly
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Cantidad pagada</Form.Label>
-              <Form.Control
-                type="number"
-                value={amountPaid}
-                onChange={(e) => setAmountPaid(Number(e.target.value))}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Cambio</Form.Label>
-              <Form.Control
-                type="number"
-                value={amountPaid - total}
-                readOnly
-              />
-            </Form.Group>
-          </Form>
+          <p>Total a pagar: ${total.toFixed(2)}</p>
+          <Form.Group>
+            <Form.Label>Forma de Pago</Form.Label>
+            <Form.Select 
+              value={paymentMethod} 
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            >
+              <option value="cash">Efectivo</option>
+              <option value="card">Tarjeta</option>
+              <option value="transfer">Transferencia</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Cantidad Pagada</Form.Label>
+            <Form.Control
+              type="number"
+              value={amountPaid}
+              onChange={(e) => setAmountPaid(Number(e.target.value))}
+              min={total}
+              step="0.01"
+            />
+          </Form.Group>
+          <p>Cambio: ${(amountPaid - total).toFixed(2)}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowChangeModal(false)}>
-            Cerrar
-          </Button>
           <Button variant="primary" onClick={handleChangeModalClose}>
-            Imprimir
+            Finalizar Venta
           </Button>
         </Modal.Footer>
       </Modal>
