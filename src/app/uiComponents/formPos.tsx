@@ -34,27 +34,27 @@ function FormPos(props:FormCreatorProps) {
   const [amountPaid, setAmountPaid] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
   const [notasPartidas, setNotasPartidas] = useState<any[]>([]);
-  const [empleado, setEmpleado] = useState<number>(0);
-  const [empleados, setEmpleados] = useState<Array<{ id: number; nombreCompleto: string }>>([]);
-
-  // Fetch employees when component mounts
+  
+  const [client_id, setClient_id] = useState<number>(0);  
+  const [clients, setClients] = useState<any[]>([]);
+  // Fetch clients when component mounts
   useEffect(() => {
-    const fetchEmpleados = async () => {
+    const fetchClients = async () => {
       try {
-        const response = await fetch('/api/empleados');
+        const response = await fetch('http://localhost:5001/api/clients');
         if (response.ok) {
           const data = await response.json();
-          setEmpleados(data);
+          setClients(data);
           if (data.length > 0) {
-            setEmpleado(data[0].id); // Set first employee as default
+            setClient_id(data[0].id); // Set first client as default
           }
         }
       } catch (error) {
-        console.error('Error fetching empleados:', error);
-        toast.error('Error al cargar empleados');
+        console.error('Error fetching clients:', error);
+        toast.error('Error al cargar clientes');
       }
     };
-    fetchEmpleados();
+    fetchClients();
   }, []);
 
   //const handleTicketContent = () => setTicketContent(ticket)
@@ -71,7 +71,7 @@ function FormPos(props:FormCreatorProps) {
         amount: total,
         date: new Date().toISOString(),
         status: 'completed',
-        empleadoId: empleado,
+        client_id: client_id,
         items: notasPartidas.map(item => ({
           quantity: item.Cantidad,
           description: item.Descripcion,
@@ -80,7 +80,7 @@ function FormPos(props:FormCreatorProps) {
         }))
       };
 
-      await fetch('/api/receipts', {
+      await fetch('http://localhost:5001/api/sales', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,16 +118,16 @@ let  folio = orderID.generate();
   // Create form elements array
   const formElements = [
     // Add employee select field at the beginning of the form
-    <Form.Group className="mb-3" controlId="empleado-select" key="empleado-select">
-      <Form.Label>Empleado</Form.Label>
+    <Form.Group className="mb-3" controlId="client-select" key="client-select">
+      <Form.Label>Cliente</Form.Label>
       <Form.Select 
         required 
-        value={empleado}
-        onChange={(e) => setEmpleado(Number(e.target.value))}
+        value={client_id}
+        onChange={(e) => setClient_id(Number(e.target.value))}
       >
-        {empleados.map(emp => (
-          <option key={emp.id} value={emp.id}>
-            {emp.nombreCompleto}
+        {clients.map(client => (
+          <option key={client.id} value={client.id}>
+            {client.nombreCompleto}
           </option>
         ))}
       </Form.Select>
