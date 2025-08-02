@@ -40,17 +40,6 @@ export async function GET(
       );
     }
 
-<<<<<<< HEAD
-    const doc = new PDFDocument();
-    const buffers: Buffer[] = [];
-
-    doc.on('data', chunk => buffers.push(chunk));
-    
-    // Add content to PDF
-    doc.fontSize(16)
-      .text('Reporte de Corte de Caja', { align: 'center' })
-      .moveDown();
-=======
     return new Promise<NextResponse>((resolve, reject) => {
       try {
         const doc = new PDFDocument();
@@ -93,7 +82,6 @@ export async function GET(
           });
           doc.moveDown();
         }
->>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
 
         // Add receipts table
         const table = {
@@ -111,42 +99,6 @@ export async function GET(
           prepareRow: () => doc.font('Helvetica')
         });
 
-<<<<<<< HEAD
-    // Add employee summary
-    doc.text('Resumen por Empleado:', { underline: true });
-    Object.entries(cashClosing.employeeSummary as Record<string, any>).forEach(([name, data]) => {
-      doc.text(`${name}: $${(data as any).total}`);
-    });
-    doc.moveDown();
-
-    // Add receipts table
-    const table = {
-      headers: ['ID', 'Empleado', 'Monto', 'Fecha'],
-      rows: cashClosing.receipts.map((receipt: ReceiptWithEmployee) => [
-        receipt.id,
-        receipt.empleado.nombreCompleto,
-        `$${receipt.amount}`,
-        receipt.date.toLocaleDateString()
-      ])
-    };
-
-    await doc.table(table, {
-      prepareHeader: () => doc.font('Helvetica-Bold'),
-      prepareRow: () => doc.font('Helvetica')
-    });
-
-    doc.end();
-
-    return new Promise<NextResponse>((resolve) => {
-      doc.on('end', () => {
-        resolve(new NextResponse(Buffer.concat(buffers), {
-          headers: {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment; filename="corte-${cashClosing.id}.pdf"`
-          }
-        }));
-      });
-=======
         doc.end();
       } catch (error) {
         reject(error);
@@ -157,7 +109,6 @@ export async function GET(
         { error: 'Error al generar PDF' },
         { status: 500 }
       );
->>>>>>> 6f82e5df1b808368d19314932d46c372f2d5fc8f
     });
   } catch (error) {
     console.error('Error al generar PDF:', error);

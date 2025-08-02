@@ -149,3 +149,7 @@ export const bancos = [
   { id: "902", descripcion: "INDEVAL" },
   { id: "999", descripcion: "N/A" }
 ];
+
+export const usoCFDI = [
+   { id: "99", descripcion: "Por Definir" },
+]

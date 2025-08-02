@@ -20,10 +20,34 @@ async function getNotes() {
 }
 
 let notes = getNotes()
-let  notasPartidas: {
-  clave_producto_servicio: string; clave_unidad_de_medida: string; cantidad: number; descripcion: string; valor_unitario: number; total // will use psql environment variables
-    : number; exento_de_impuestos: boolean; impuestos: { traslados: { traslado: { base: any; impuesto: string; tipoFactor: string; tasaOCuota: number; importe: number; tipo: string; }[]; }; };
-}[]=  [];
+
+interface Traslado {
+  base: any;
+  impuesto: string;
+  tipoFactor: string;
+  tasaOCuota: number;
+  importe: number;
+  tipo: string;
+}
+
+interface Impuestos {
+  traslados: {
+    traslado: Traslado[];
+  };
+}
+
+interface NotaPartida {
+  clave_producto_servicio: string;
+  clave_unidad_de_medida: string;
+  cantidad: number;
+  descripcion: string;
+  valor_unitario: number;
+  total: number;
+  exento_de_impuestos: boolean;
+  impuestos: Impuestos;
+}
+
+let notasPartidas: NotaPartida[] = [];
 
 function addPartida(notaManual: any) {
      
@@ -62,40 +86,35 @@ let iva = Number(importe) * 0.16
 console.log(notasPartidas);
 }
 
-notes.then((notes) => notes.map((note) => {
-  let sec =  Date.now();
-  let hoy = new Date(sec).toISOString();
-
-  let fechaCreacion = new Date(note.create_date).toISOString().split('T')[0];
-  
-  
-console.log(hoy,note.name,fechaCreacion,
-  note.amount_untaxed,note.amount_total,note.invoice_status,note.state); 
-  
-   namecheap pone la fecha de creacion 12 horas despues
-  console.log(note);
-  
-  if (note.partner_id == '44' && fechaCreacion== hoy && note.invoice_status == 'to invoice') {
-
-
-    addPartida(note);
-    console.log(notasPartidas);
-}
-
-
-}
-
-)
-
-)
+// Process notes when the promise resolves
+notes.then((notes) => {
+  notes.forEach((note) => {
+    const sec = Date.now();
+    const hoy = new Date(sec).toISOString().split('T')[0];
+    const fechaCreacion = new Date(note.create_date).toISOString().split('T')[0];
+    
+    console.log(hoy, note.name, fechaCreacion,
+      note.amount_untaxed, note.amount_total, note.invoice_status, note.state);
+    
+    // namecheap pone la fecha de creacion 12 horas despues
+    console.log(note);
+    
+    if (note.partner_id === '44' && fechaCreacion === hoy && note.invoice_status === 'to invoice') {
+      addPartida(note);
+      console.log(notasPartidas);
+    }
+  });
+}).catch((error) => {
+  console.error('Error processing notes:', error);
+});
 
 export default async function Productos() {
   // Render the main container
   return (
   
       <div>
-        {/* Render the form creator */}
-      
+    
+     a
       </div>
     
   );

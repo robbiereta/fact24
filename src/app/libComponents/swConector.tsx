@@ -11,7 +11,7 @@ function swConnector(fact:object) {
     maxBodyLength: Infinity,
     url: 'http://services.sw.com.mx/v3/cfdi33/issue/json/v4',
     headers: { 
-      'Authorization': 'Bearer '+process.env.tokenTest,
+      'Authorization': 'Bearer '+process.env.tokenProd,
       'Content-Type': 'application/jsontoxml'
     },
     data: fact
@@ -19,11 +19,11 @@ function swConnector(fact:object) {
   
   return axios.request(config)
     .then((response) => {
+      console.log(response);
       return response;
     })
     .catch((error) => {
       console.log(error);
-      throw error;
     });
 }
 
