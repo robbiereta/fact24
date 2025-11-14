@@ -20,28 +20,6 @@ function FacturaGlobalMaker(notasPartidas: any) {
     let fecha = new Date();
  
     const facturaGlobal = {
-        Version: "4.0",
-        Serie: "F",
-        Fecha: fecha.toISOString(),
-        SubTotal: subtotal.toFixed(2),
-        Moneda: "MXN",
-        Total: totalConImpuestos.toFixed(2),
-        TipoDeComprobante: "I",
-        Exportacion: "01",
-        MetodoPago: "PUE",
-        FormaPago: "01",
-        LugarExpedicion: "45079",
-        Conceptos: notasPartidas,
-        Impuestos: {
-            TotalImpuestosTrasladados: iva.toFixed(2),
-            Traslados: [{
-                Base: subtotal.toFixed(2),
-                Impuesto: "002",
-                TipoFactor: "Tasa",
-                TasaOCuota: "0.160000",
-                Importe: iva.toFixed(2)
-            }]
-        }
     };
 
     return JSON.stringify(facturaGlobal);

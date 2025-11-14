@@ -43,12 +43,7 @@ function generateTicketContent(folio: string, fechaActual: string, notasPartidas
 
   return receipt.create([
     { type: 'text', value: [
-      'BICI-VIC CENTRO',
-      'Mariano Matamoros 1242',
-      'Centro, C.P. 87000',
-      'Cd. Victoria, Tamps.',
-      'RFC: FOZA8801257C2',
-      'Reg. Simplificado Confianza'
+    
     ], align: 'center', width: 32 },
     { type: 'empty' },
     { type: 'properties', lines: [

@@ -256,12 +256,7 @@ let  folio = orderID.generate();
                 <div id="print-content">
                   <div class="company-name">Bici-vic</div>
                   <div class="header">
-                    <div class="info">Sucursal: 5 Matamoros</div>
-                    <div class="info">RFC:FOZA8801257C2</div>
-                    <div class="info">Dirección: Mariano Matamoros #1242 Zona Centro</div>
-                    <div class="info">Tel: (834) 2027887</div>
-                    <div class="info">C.P: 87000 Ciudad Victoria,Tamps.</div>
-                    <div class="info">Regimen Simplificado de Confianza</div>
+                   
                     </div>
                   <div class="divider"></div>
                   <div class="info">Ticket #: ${folio}</div>
@@ -273,7 +268,6 @@ let  folio = orderID.generate();
                     ¡Gracias por su compra!
                     <br>
                     Conserve su ticket
-                    Expedido en: Ciudad Victoria, Tamps.
                   </div>
                 </div>
                 <script>

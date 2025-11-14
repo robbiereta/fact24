@@ -1,9 +1,7 @@
 'use client'
 import Form from 'react-bootstrap/Form';
-import axios from "axios";
-import { FormGroup, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import React from 'react';
-import swConnector from '../libComponents/swConector';
 import facturaGlobalMaker from '../libComponents/facturaGlobalMaker';
 import FacturaGlobalMaker from '../libComponents/facturaGlobalMaker';
 
